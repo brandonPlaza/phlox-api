@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "x45PY8n42T6YWUBj6XYDOxb/5OlOMkog3AJi6oueR5jeIvz70Y9OufFxHZqTPhtbE8tnl203zIEZVjHlRa9FOQ==",
+  "success": true,
+  "projectFilePath": "/Users/brandon/Desktop/Capstone/phlox-API/Phlox-API/Phlox-API.csproj",
+  "expectedPackageFiles": [
+    "/Users/brandon/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/brandon/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/brandon/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/brandon/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/brandon/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/brandon/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
