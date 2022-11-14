@@ -6,9 +6,9 @@
     using System;
     using System.Collections.Generic;
 
-    public class PhloxDbContext : IdentityDbContext
+    public class PhloxDbContext : IdentityDbContext<User>
     {
-        public DbSet<UserDTO> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public string DbPath { get; }
 
