@@ -8,7 +8,10 @@
     }
     public class Report
     {
+        public Guid Id { get; set; }
         public ReportType ReportType { get; set; }
         public string Description { get; set; }
+        public char Building { get; set; }
+        public int Floor { get; set; }
     }
 }

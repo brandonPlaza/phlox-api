@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Phlox_API.DatabaseContext;
 
@@ -10,9 +11,11 @@ using Phlox_API.DatabaseContext;
 namespace PhloxAPI.Migrations
 {
     [DbContext(typeof(PhloxDbContext))]
-    partial class PhloxDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221114205203_CreateReportTable")]
+    partial class CreateReportTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");

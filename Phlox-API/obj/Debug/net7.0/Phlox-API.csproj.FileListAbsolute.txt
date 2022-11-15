@@ -102,3 +102,4 @@ E:\Personal-Files_Main-Dir\Capstone\phlox-api\Phlox-API\obj\Debug\net7.0\refint\
 E:\Personal-Files_Main-Dir\Capstone\phlox-api\Phlox-API\obj\Debug\net7.0\Phlox-API.pdb
 E:\Personal-Files_Main-Dir\Capstone\phlox-api\Phlox-API\obj\Debug\net7.0\Phlox-API.genruntimeconfig.cache
 E:\Personal-Files_Main-Dir\Capstone\phlox-api\Phlox-API\obj\Debug\net7.0\ref\Phlox-API.dll
+E:\Personal-Files_Main-Dir\Capstone\phlox-api\Phlox-API\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.InMemory.dll
