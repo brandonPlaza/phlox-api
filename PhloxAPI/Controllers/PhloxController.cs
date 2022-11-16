@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhloxAPI.Models;
+using PhloxAPI.Services.AdministrationService;
 
 namespace PhloxAPI.Controllers
 {
@@ -13,6 +14,13 @@ namespace PhloxAPI.Controllers
                 new Report{ Id = new Guid(), Type = ReportType.ElevatorDown, Building = 'G', Floor = 1},
                 new Report{ Id = new Guid(), Type = ReportType.EntranceBlocked, Building = 'B', Floor = 1},
         };
+
+        private readonly IAdministrationService _administrationService;
+
+        public PhloxController(IAdministrationService administrationService)
+        {
+            _administrationService = administrationService;
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAllReports()
