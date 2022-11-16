@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PhloxAPI.Models;
 using PhloxAPI.Services.AdministrationService;
 
 namespace PhloxAPI.Controllers
@@ -13,6 +14,12 @@ namespace PhloxAPI.Controllers
         public PhloxAdminController(IAdministrationService administrationService)
         {
             _administrationService = administrationService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAmenity(Amenity newAmenity)
+        {
+            return Ok("Hola");
         }
     }
 }

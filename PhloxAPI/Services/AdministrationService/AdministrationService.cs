@@ -1,15 +1,21 @@
-﻿using PhloxAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PhloxAPI.Data;
+using PhloxAPI.Models;
 
 namespace PhloxAPI.Services.AdministrationService
 {
     public class AdministrationService : IAdministrationService
     {
-        public AdministrationService() {
-        
+        private readonly PhloxDbContext _context;
+
+        public AdministrationService(PhloxDbContext context) {
+            _context = context;
         }
+
         public void AddAmenity(Amenity amenity)
         {
-            throw new NotImplementedException();
+            _context.Amenities.Add(amenity);
+            _context.SaveChanges();
         }
 
         public List<Amenity> GetAmenities()
