@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Personal-Files_Main-Dir\\Capstone\\phlox-api\\Phlox-API\\Phlox-API.csproj": {}
+    "C:\\Development\\phlox-api\\Phlox-API\\Phlox-API.csproj": {}
   },
   "projects": {
-    "E:\\Personal-Files_Main-Dir\\Capstone\\phlox-api\\Phlox-API\\Phlox-API.csproj": {
+    "C:\\Development\\phlox-api\\Phlox-API\\Phlox-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Personal-Files_Main-Dir\\Capstone\\phlox-api\\Phlox-API\\Phlox-API.csproj",
+        "projectUniqueName": "C:\\Development\\phlox-api\\Phlox-API\\Phlox-API.csproj",
         "projectName": "Phlox-API",
-        "projectPath": "E:\\Personal-Files_Main-Dir\\Capstone\\phlox-api\\Phlox-API\\Phlox-API.csproj",
-        "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
-        "outputPath": "E:\\Personal-Files_Main-Dir\\Capstone\\phlox-api\\Phlox-API\\obj\\",
+        "projectPath": "C:\\Development\\phlox-api\\Phlox-API\\Phlox-API.csproj",
+        "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Development\\phlox-api\\Phlox-API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dylan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
