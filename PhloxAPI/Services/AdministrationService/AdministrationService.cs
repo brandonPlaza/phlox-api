@@ -18,6 +18,12 @@ namespace PhloxAPI.Services.AdministrationService
             _context.SaveChanges();
         }
 
+        public void AddBuilding(Building building)
+        {
+            _context.Buildings.Add(building);
+            _context.SaveChanges();
+        }
+
         public List<Amenity> GetAmenities()
         {
             throw new NotImplementedException();

@@ -7,11 +7,11 @@ namespace PhloxAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PhloxAdminController : ControllerBase
+    public class AdminController : ControllerBase
     {
         private readonly IAdministrationService _administrationService;
 
-        public PhloxAdminController(IAdministrationService administrationService)
+        public AdminController(IAdministrationService administrationService)
         {
             _administrationService = administrationService;
         }
