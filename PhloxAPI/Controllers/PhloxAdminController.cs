@@ -19,7 +19,20 @@ namespace PhloxAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAmenity(Amenity newAmenity)
         {
-            return Ok("Hola");
+            _administrationService.AddAmenity(newAmenity);
+            return Ok("Amenity Added");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GenerateAmenities()
+        {
+            var amenities = new List<Amenity> 
+            { 
+                new Amenity{Id = Guid.NewGuid(), Building = 'C', Floor = 1, IsOutOfService = false, Type=AmenityType.Ramp},
+
+            };
+
+            return Ok();
         }
     }
 }

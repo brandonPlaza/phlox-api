@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhloxAPI.Data;
 
@@ -11,9 +12,11 @@ using PhloxAPI.Data;
 namespace PhloxAPI.Migrations
 {
     [DbContext(typeof(PhloxDbContext))]
-    partial class PhloxDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116224601_AddedBuildingAndFloorRowsToAmenityTable")]
+    partial class AddedBuildingAndFloorRowsToAmenityTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,12 +31,8 @@ namespace PhloxAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Building")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<int>("Floor")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("AmenityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsOutOfService")
                         .HasColumnType("bit");
@@ -43,27 +42,9 @@ namespace PhloxAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Amenities");
-                });
-
-            modelBuilder.Entity("PhloxAPI.Models.Building", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AmenityId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Letter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.HasKey("Id");
-
                     b.HasIndex("AmenityId");
 
-                    b.ToTable("Building");
+                    b.ToTable("Amenities");
                 });
 
             modelBuilder.Entity("PhloxAPI.Models.Report", b =>
@@ -118,16 +99,16 @@ namespace PhloxAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.Building", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Amenity", b =>
                 {
                     b.HasOne("PhloxAPI.Models.Amenity", null)
-                        .WithMany("ConnectedBuildings")
+                        .WithMany("ConnectedAmenities")
                         .HasForeignKey("AmenityId");
                 });
 
             modelBuilder.Entity("PhloxAPI.Models.Amenity", b =>
                 {
-                    b.Navigation("ConnectedBuildings");
+                    b.Navigation("ConnectedAmenities");
                 });
 #pragma warning restore 612, 618
         }
