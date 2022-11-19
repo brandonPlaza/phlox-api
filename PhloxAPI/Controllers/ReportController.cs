@@ -20,7 +20,7 @@ namespace PhloxAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetReports()
         {
-            return(_reportsService.GetReports());
+            return Ok(_reportsService.GetReports());
         }
 
         [HttpPost]
