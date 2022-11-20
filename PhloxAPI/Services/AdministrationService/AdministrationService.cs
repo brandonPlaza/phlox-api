@@ -24,6 +24,17 @@ namespace PhloxAPI.Services.AdministrationService
             _context.SaveChanges();
         }
 
+        public void ConnectBuildings(char buildingOne, char buildingTwo)
+        {
+            var building1 = _context.Buildings.Include(b1 => b1.ConnectedBuildings).First(b1 => b1.Letter == buildingOne);
+            var building2 = _context.Buildings.Include(b2 => b2.ConnectedBuildings).First(b2 => b2.Letter == buildingTwo);
+
+            building1.ConnectedBuildings.Add(building2);
+            building2.ConnectedBuildings.Add(building1);
+
+            _context.SaveChanges();
+        }
+
         public List<Amenity> GetAmenities()
         {
             throw new NotImplementedException();

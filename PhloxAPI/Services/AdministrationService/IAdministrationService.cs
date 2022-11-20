@@ -6,6 +6,7 @@ namespace PhloxAPI.Services.AdministrationService
     {
         void AddAmenity(Amenity amenity);
         void AddBuilding(Building building);
+        void ConnectBuildings(char buildingOne, char buidingTwo);
         List<Amenity> GetAmenities();
         Amenity UpdateAmenity();
     }
