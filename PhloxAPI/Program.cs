@@ -2,6 +2,7 @@ using PhloxAPI.Data;
 using PhloxAPI.Services.AccountsService;
 using PhloxAPI.Services.AdministrationService;
 using PhloxAPI.Services.ReportService;
+using PhloxAPI.Services.RoutingService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,9 @@ builder.Services.AddScoped<IAccountsService, AccountsService>();
 
 // Add Reports service to builder so it can be dependency injected 
 builder.Services.AddScoped<IReportService, ReportService>();
+
+// Add Reports service to builder so it can be dependency injected 
+builder.Services.AddScoped<IRoutingService, RoutingService>();
 
 //Register Db Context with the builder
 builder.Services.AddDbContext<PhloxDbContext>();
