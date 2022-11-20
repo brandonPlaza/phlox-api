@@ -12,9 +12,10 @@ namespace PhloxAPI.Services.AdministrationService
             _context = context;
         }
 
-        public void AddAmenity(Amenity amenity)
+        public void AddAmenity(string name, int type, char building, char connectedBuilding)
         {
-            _context.Amenities.Add(amenity);
+            var newAmenity = new Amenity { Floor = 0, Building = building, ConnectedBuilding = _context.Buildings.First(x => x.Letter == connectedBuilding), Name = name, Type = (AmenityType)type};
+            _context.Amenities.Add(newAmenity);
             _context.SaveChanges();
         }
 
@@ -30,6 +31,7 @@ namespace PhloxAPI.Services.AdministrationService
             var building2 = _context.Buildings.Include(b2 => b2.ConnectedBuildings).First(b2 => b2.Letter == buildingTwo);
 
             building1.ConnectedBuildings.Add(building2);
+
             building2.ConnectedBuildings.Add(building1);
 
             _context.SaveChanges();
@@ -38,6 +40,11 @@ namespace PhloxAPI.Services.AdministrationService
         public List<Amenity> GetAmenities()
         {
             throw new NotImplementedException();
+        }
+
+        public List<Building> GetBuildings()
+        {
+            return _context.Buildings.Include(building => building.ConnectedBuildings).ToList();
         }
 
         public Amenity UpdateAmenity()

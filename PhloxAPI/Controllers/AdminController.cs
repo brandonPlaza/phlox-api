@@ -17,9 +17,9 @@ namespace PhloxAPI.Controllers
         }
 
         [HttpPost("/amenity")]
-        public async Task<IActionResult> AddAmenity(Amenity newAmenity)
+        public async Task<IActionResult> AddAmenity(string name, int type, char building, char connectedBuilding)
         {
-            _administrationService.AddAmenity(newAmenity);
+            _administrationService.AddAmenity(name, type, building, connectedBuilding);
             return Ok("Amenity Added");
         }
 
@@ -36,6 +36,12 @@ namespace PhloxAPI.Controllers
         {
             _administrationService.ConnectBuildings(buildingOne, buildingTwo);
             return Ok("Buildings connected");
+        }
+
+        [HttpGet("/allbuildings")]
+        public async Task<IActionResult> GetBuildings()
+        {
+            return Ok(_administrationService.GetBuildings());
         }
     }
 }

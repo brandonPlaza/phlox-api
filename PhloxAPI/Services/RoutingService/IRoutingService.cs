@@ -4,6 +4,6 @@ namespace PhloxAPI.Services.RoutingService
 {
     public interface IRoutingService
     {
-        List<Amenity> RequestRoute(string currentBuilding, string destinationBuilding);
+        List<Amenity> RequestRoute(char currentBuilding, char destinationBuilding);
     }
 }
