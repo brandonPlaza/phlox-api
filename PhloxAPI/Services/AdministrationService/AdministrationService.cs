@@ -32,8 +32,6 @@ namespace PhloxAPI.Services.AdministrationService
 
             building1.ConnectedBuildings.Add(building2);
 
-            building2.ConnectedBuildings.Add(building1);
-
             _context.SaveChanges();
         }
 

@@ -24,6 +24,41 @@ namespace PhloxAPI.Services.RoutingService
             return amenityRoute;
         }
 
+        private List<Building> ConstructRoute(Building currBuilding, Building destBuilding)
+        {
+            // Trace route to currBuilding 
+            var currBuildingTraceRoute = TraceRoute(currBuilding);
+
+            // Trace route to destBuilding 
+            var destBuildingTraceRoute = TraceRoute(destBuilding);
+
+            // Get the list of buildings that are not shared between both curr and dest
+            var notIntersectedRoute = destBuildingTraceRoute.Except(currBuildingTraceRoute).ToList();
+
+            // Return not instersected building route
+            return notIntersectedRoute;
+        }
+
+        private List<Building> TraceRoute(Building buildingToFind)
+        {
+            // Get all buildings in a list
+            var buildingList = _context.Buildings.Include(b => b.ConnectedBuildings).ToList();
+            
+            // Create a new list to hold the route from the beginning of the list to the building 
+            var buildingRoute = new List<Building>();
+
+            // Loop through buildingsList until the required building is found
+            foreach(Building building in buildingList)
+            {
+                if (building.Letter == buildingToFind.Letter)
+                    break;
+                buildingRoute.Add(building);
+            }
+
+            // return the route of buildings
+            return buildingRoute;
+        }
+
         private List<char> ConstructBuildingRoute(Building currBuilding, Building destBuilding)
         {
             List<char> buildingRoute = new List<char>();
