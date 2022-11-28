@@ -16,7 +16,7 @@ namespace PhloxAPI.Controllers
             _routingService = routingService;
         }
 
-        [HttpGet("/route/{currBuilding}/{destBuilding}")]
+        [HttpGet("/requestroute")]
         public async Task<IActionResult> GetRoute(char currBuilding, char destBuilding)
         {
             var route = _routingService.RequestRoute(currBuilding, destBuilding);
