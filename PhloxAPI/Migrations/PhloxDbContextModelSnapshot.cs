@@ -57,20 +57,19 @@ namespace PhloxAPI.Migrations
 
             modelBuilder.Entity("PhloxAPI.Models.Building", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BuildingId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("ConnectedBuilding")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("Letter")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BuildingId");
 
                     b.ToTable("Buildings");
                 });
@@ -140,13 +139,6 @@ namespace PhloxAPI.Migrations
                     b.Navigation("ConnectedBuilding");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.Building", b =>
-                {
-                    b.HasOne("PhloxAPI.Models.Building", null)
-                        .WithMany("ConnectedBuildings")
-                        .HasForeignKey("BuildingId");
-                });
-
             modelBuilder.Entity("PhloxAPI.Models.Report", b =>
                 {
                     b.HasOne("PhloxAPI.Models.Amenity", "Amenity")
@@ -161,11 +153,6 @@ namespace PhloxAPI.Migrations
             modelBuilder.Entity("PhloxAPI.Models.Amenity", b =>
                 {
                     b.Navigation("Reports");
-                });
-
-            modelBuilder.Entity("PhloxAPI.Models.Building", b =>
-                {
-                    b.Navigation("ConnectedBuildings");
                 });
 #pragma warning restore 612, 618
         }

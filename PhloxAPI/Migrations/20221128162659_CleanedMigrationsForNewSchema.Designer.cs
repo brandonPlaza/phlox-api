@@ -12,8 +12,8 @@ using PhloxAPI.Data;
 namespace PhloxAPI.Migrations
 {
     [DbContext(typeof(PhloxDbContext))]
-    [Migration("20221116224641_AddedBuildingAndFloorRowsToAmenityTablev2")]
-    partial class AddedBuildingAndFloorRowsToAmenityTablev2
+    [Migration("20221128162659_CleanedMigrationsForNewSchema")]
+    partial class CleanedMigrationsForNewSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,12 +31,12 @@ namespace PhloxAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AmenityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Building")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
+
+                    b.Property<Guid>("ConnectedBuildingId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Floor")
                         .HasColumnType("int");
@@ -44,14 +44,37 @@ namespace PhloxAPI.Migrations
                     b.Property<bool>("IsOutOfService")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AmenityId");
+                    b.HasIndex("ConnectedBuildingId");
 
                     b.ToTable("Amenities");
+                });
+
+            modelBuilder.Entity("PhloxAPI.Models.Building", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConnectedBuilding")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("Letter")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Buildings");
                 });
 
             modelBuilder.Entity("PhloxAPI.Models.Report", b =>
@@ -60,17 +83,15 @@ namespace PhloxAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Building")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<int>("Floor")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AmenityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AmenityId");
 
                     b.ToTable("Reports");
                 });
@@ -101,6 +122,10 @@ namespace PhloxAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -108,14 +133,29 @@ namespace PhloxAPI.Migrations
 
             modelBuilder.Entity("PhloxAPI.Models.Amenity", b =>
                 {
-                    b.HasOne("PhloxAPI.Models.Amenity", null)
-                        .WithMany("ConnectedAmenities")
-                        .HasForeignKey("AmenityId");
+                    b.HasOne("PhloxAPI.Models.Building", "ConnectedBuilding")
+                        .WithMany()
+                        .HasForeignKey("ConnectedBuildingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ConnectedBuilding");
+                });
+
+            modelBuilder.Entity("PhloxAPI.Models.Report", b =>
+                {
+                    b.HasOne("PhloxAPI.Models.Amenity", "Amenity")
+                        .WithMany("Reports")
+                        .HasForeignKey("AmenityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Amenity");
                 });
 
             modelBuilder.Entity("PhloxAPI.Models.Amenity", b =>
                 {
-                    b.Navigation("ConnectedAmenities");
+                    b.Navigation("Reports");
                 });
 #pragma warning restore 612, 618
         }

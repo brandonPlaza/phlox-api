@@ -27,10 +27,12 @@ namespace PhloxAPI.Services.AdministrationService
 
         public void ConnectBuildings(char buildingOne, char buildingTwo)
         {
-            var building1 = _context.Buildings.Include(b1 => b1.ConnectedBuildings).First(b1 => b1.Letter == buildingOne);
-            var building2 = _context.Buildings.Include(b2 => b2.ConnectedBuildings).First(b2 => b2.Letter == buildingTwo);
+            var building1 = _context.Buildings.First(b1 => b1.Letter == buildingOne);
+            var building2 = _context.Buildings.First(b2 => b2.Letter == buildingTwo);
 
-            building1.ConnectedBuildings.Add(building2);
+            var building2Connected = _context.Buildings.First(x => x.Letter == building1.Letter);
+
+            building2Connected.ConnectedBuilding = building2.Letter;
 
             _context.SaveChanges();
         }
@@ -42,7 +44,7 @@ namespace PhloxAPI.Services.AdministrationService
 
         public List<Building> GetBuildings()
         {
-            return _context.Buildings.Include(building => building.ConnectedBuildings).ToList();
+            return _context.Buildings.ToList();
         }
 
         public Amenity UpdateAmenity()

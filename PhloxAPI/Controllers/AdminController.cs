@@ -26,7 +26,7 @@ namespace PhloxAPI.Controllers
         [HttpPost("/building")]
         public async Task<IActionResult> AddBuilding(char buildingLetter)
         {
-            Building building = new Building { Letter = buildingLetter, ConnectedBuildings = new List<Building>() };
+            Building building = new Building { Letter = buildingLetter, ConnectedBuilding = ' ' };
             _administrationService.AddBuilding(building);
             return Ok("Building Added");
         }
