@@ -22,7 +22,7 @@ namespace PhloxAPI.Services.ReportService
             var amenity = _context.Amenities.SingleOrDefault(a => a.Name == amenityName);
             if (amenity != null)
             {
-                var newReport = new Report { Type = reportType, Amenity = amenity }
+                var newReport = new Report { Type = (ReportType)reportType, Amenity = amenity };
                 amenity.Reports.Add(newReport);
                 _context.Reports.Add(newReport);
                 _context.SaveChanges();
