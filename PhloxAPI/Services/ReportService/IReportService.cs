@@ -4,7 +4,7 @@ namespace PhloxAPI.Services.ReportService
 {
     public interface IReportService
     {
-        void PostReport(int type, string amenityLabel);
+        void PostReport(Report report);
         List<Report> GetReports();
     }
 }
