@@ -102,7 +102,7 @@
                 "description": null,
                 "subscriptionRequired": true,
                 "serviceUrl": null,
-                "path": "phloxapi",
+                "path": "Phlox",
                 "protocols": [
                   "https"
                 ],

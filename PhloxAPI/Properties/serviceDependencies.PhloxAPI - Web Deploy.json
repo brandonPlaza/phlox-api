@@ -1,15 +1,16 @@
 {
   "dependencies": {
-    "apis1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/PhloxAPI/apis/PhloxAPI",
-      "type": "apis.azure"
-    },
     "mssql1": {
       "secretStore": "AzureAppSettings",
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/phloxapidbserver/databases/PhloxAPI_db",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/phloxdbserver/databases/Phlox_db",
       "type": "mssql.azure",
-      "connectionId": "PhloxDBConnectionString",
+      "connectionId": "phloxdb",
       "dynamicId": null
+    },
+    "apis1": {
+      "apiEndpoint": "https://phlox-api.azure-api.net/phloxapi",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/Phlox-API/apis/PhloxAPI",
+      "type": "apis.azure"
     }
   }
 }

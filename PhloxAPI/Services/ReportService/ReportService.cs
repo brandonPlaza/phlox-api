@@ -19,7 +19,7 @@ namespace PhloxAPI.Services.ReportService
 
         public void PostReport(Report report)
         {
-            var amenity = _context.Amenities.SingleOrDefault(a => a.Name == report.Amenity);
+            var amenity = _context.Amenities.SingleOrDefault(a => a.Name == report.Amenity.Name);
             if (amenity != null)
             {
                 _context.Reports.Add(new Report { Type = report.Type, Amenity = report.Amenity });

@@ -12,7 +12,7 @@ using PhloxAPI.Data;
 namespace PhloxAPI.Migrations
 {
     [DbContext(typeof(PhloxDbContext))]
-    [Migration("20221128234408_MovedDBToAzureServer")]
+    [Migration("20221129030156_MovedDBToAzureServer")]
     partial class MovedDBToAzureServer
     {
         /// <inheritdoc />
