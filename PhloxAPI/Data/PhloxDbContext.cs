@@ -13,7 +13,7 @@ namespace PhloxAPI.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=phloxDb;Trusted_Connection=True;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server=tcp:phloxapidbserver.database.windows.net,1433;Initial Catalog=PhloxAPI_db;Persist Security Info=False;User ID=voxels;Password=XS%cH429;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         public DbSet<User> Users { get; set; }

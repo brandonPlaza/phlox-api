@@ -18,6 +18,9 @@ namespace PhloxAPI.Services.RoutingService
             Building currBuilding = _context.Buildings.First(currBuild => currBuild.Letter == currentBuilding);
             Building destBuilding = _context.Buildings.First(dBuild => dBuild.Letter == destinationBuilding);
 
+            if (currBuilding.Letter == destBuilding.Letter)
+                return null;
+
             var buildingRoute = ConstructRoute(currBuilding, destBuilding);
             var amenityRoute = BuildAmenityRoute(currBuilding, buildingRoute, destBuilding);
             return amenityRoute;

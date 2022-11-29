@@ -20,6 +20,10 @@ namespace PhloxAPI.Controllers
         public async Task<IActionResult> GetRoute(char currBuilding, char destBuilding)
         {
             var route = _routingService.RequestRoute(currBuilding, destBuilding);
+
+            if (route == null)
+                return Ok("You are already in this building");
+
             List<string> routeInstructions = new List<string>();
             foreach(Amenity amenity in route)
             {

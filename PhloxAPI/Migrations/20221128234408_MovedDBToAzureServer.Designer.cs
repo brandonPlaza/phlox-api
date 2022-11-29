@@ -12,8 +12,8 @@ using PhloxAPI.Data;
 namespace PhloxAPI.Migrations
 {
     [DbContext(typeof(PhloxDbContext))]
-    [Migration("20221128162659_CleanedMigrationsForNewSchema")]
-    partial class CleanedMigrationsForNewSchema
+    [Migration("20221128234408_MovedDBToAzureServer")]
+    partial class MovedDBToAzureServer
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

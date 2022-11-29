@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PhloxAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class CleanedMigrationsForNewSchema : Migration
+    public partial class MovedDBToAzureServer : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
