@@ -17,12 +17,14 @@ namespace PhloxAPI.Services.ReportService
             return _context.Reports.ToList();
         }
 
-        public void PostReport(Report report)
+        public void PostReport(int reportType, string amenityName)
         {
-            var amenity = _context.Amenities.SingleOrDefault(a => a.Name == report.Amenity.Name);
+            var amenity = _context.Amenities.SingleOrDefault(a => a.Name == amenityName);
             if (amenity != null)
             {
-                _context.Reports.Add(new Report { Type = report.Type, Amenity = report.Amenity });
+                var newReport = new Report { Type = reportType, Amenity = amenity }
+                amenity.Reports.Add(newReport);
+                _context.Reports.Add(newReport);
                 _context.SaveChanges();
             }
         }

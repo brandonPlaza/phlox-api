@@ -24,9 +24,9 @@ namespace PhloxAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddReport(Report report)
+        public async Task<IActionResult> AddReport(int reportType, string amenityName)
         {
-            _reportsService.PostReport(report);
+            _reportsService.PostReport(reportType, amenityName);
             return Ok("Report Added");
         }
     }
