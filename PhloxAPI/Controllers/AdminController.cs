@@ -43,5 +43,10 @@ namespace PhloxAPI.Controllers
         {
             return Ok(_administrationService.GetBuildings());
         }
+        [HttpGet("/allamenities")]
+        public async Task<IActionResult> GetAmenities()
+        {
+            return Ok(_administrationService.GetAmenities());
+        }
     }
 }

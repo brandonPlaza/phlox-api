@@ -39,7 +39,7 @@ namespace PhloxAPI.Services.AdministrationService
 
         public List<Amenity> GetAmenities()
         {
-            throw new NotImplementedException();
+            return _context.Amenities.ToList();
         }
 
         public List<Building> GetBuildings()

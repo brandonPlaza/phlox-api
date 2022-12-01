@@ -1,4 +1,5 @@
-﻿using PhloxAPI.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PhloxAPI.Data;
 using PhloxAPI.Models;
 
 namespace PhloxAPI.Services.ReportService
@@ -19,7 +20,7 @@ namespace PhloxAPI.Services.ReportService
 
         public void PostReport(int reportType, string amenityName)
         {
-            var amenity = _context.Amenities.SingleOrDefault(a => a.Name == amenityName);
+            var amenity = _context.Amenities.Include(a => a.Reports).SingleOrDefault(a => a.Name == amenityName);
             if (amenity != null)
             {
                 var newReport = new Report { Type = (ReportType)reportType, Amenity = amenity };
