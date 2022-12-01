@@ -141,16 +141,48 @@ namespace PhloxAPI.Services.RoutingService
                 }
                 nextHop = route[index];
                 index++;
-            }*/
-
-            for (int x = 0; x < route.Count - 1; x++)
-            {
-                var amenity = _context.Amenities.First(a => ((a.Building == route[x].Letter) || (a.ConnectedBuilding.Letter == route[x].Letter)) && ((a.Building == route[x + 1].Letter) || (a.ConnectedBuilding.Letter == route[x + 1].Letter)));
-                amenityRoute.Add(amenity);
             }
 
             return amenityRoute;
         }
 
+        /*private List<char> ConstructBuildingRoute(Building currBuilding, Building destBuilding)
+        {
+            List<char> buildingRoute = new List<char>();
+
+            if (currBuilding.Letter == destBuilding.Letter)
+                return new List<char>();
+
+            var nextHop = currBuilding.ConnectedBuildings;
+            Building prevHop;
+
+            buildingRoute.Add(nextHop.First().Letter);
+
+
+            while(nextHop.Letter != destBuilding.Letter)
+            {
+                var x = 0;
+                prevHop = nextHop;
+                nextHop = nextHop.ConnectedBuilding;
+                buildingRoute.Add(nextHop.Letter);
+
+                if (prevHop.Letter == nextHop.ConnectedBuilding.Letter)
+                {
+                    x++;
+                    prevHop = nextHop;
+                    nextHop = nextHop.ConnectedBuilding;
+                    buildingRoute.Add(nextHop.Letter);
+                    x--;
+                }
+            }
+
+            for (int x = 0; x<route.Count-1; x++)
+            {
+                var amenity = _context.Amenities.First(a => ((a.Building == route[x].Letter) || (a.ConnectedBuilding.Letter == route[x].Letter)) && ((a.Building == route[x+1].Letter) || (a.ConnectedBuilding.Letter == route[x+1].Letter)));
+                amenityRoute.Add(amenity);
+            }
+
+            return amenityRoute;
+        }
     }
 }
