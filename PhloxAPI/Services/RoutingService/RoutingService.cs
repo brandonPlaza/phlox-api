@@ -174,7 +174,7 @@ namespace PhloxAPI.Services.RoutingService
                     buildingRoute.Add(nextHop.Letter);
                     x--;
                 }
-            }
+            }*/
 
             for (int x = 0; x<route.Count-1; x++)
             {
