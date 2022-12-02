@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using PhloxAPI.Data;
 using PhloxAPI.Services.AccountsService;
+using PhloxAPI.Services.AccountsService.JwtProvider;
 using PhloxAPI.Services.AdministrationService;
 using PhloxAPI.Services.ReportService;
 using PhloxAPI.Services.RoutingService;
@@ -30,6 +31,9 @@ builder.Services.AddScoped<IReportService, ReportService>();
 
 // Add Reports service to builder so it can be dependency injected 
 builder.Services.AddScoped<IRoutingService, RoutingService>();
+
+builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+
 
 // Enable authorization
 builder.Services.AddAuthorization();

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhloxAPI.Models;
 using PhloxAPI.Services.RoutingService;
 
 namespace PhloxAPI.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class RoutingController : ControllerBase
@@ -16,6 +18,7 @@ namespace PhloxAPI.Controllers
             _routingService = routingService;
         }
 
+        [Authorize]
         [HttpGet("/requestroute")]
         public async Task<IActionResult> GetRoute(char currBuilding, char destBuilding)
         {
