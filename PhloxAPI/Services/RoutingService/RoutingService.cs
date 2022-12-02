@@ -22,7 +22,7 @@ namespace PhloxAPI.Services.RoutingService
                 return null;
 
             var buildingRoute = ConstructRoute(currBuilding, destBuilding);
-            var amenityRoute = BuildAmenityRoute(currBuilding, buildingRoute, destBuilding);
+            var amenityRoute = BuildAmenityRoute(buildingRoute);
             return amenityRoute;
         }
 
@@ -116,7 +116,7 @@ namespace PhloxAPI.Services.RoutingService
         /// <param name="currBuilding"></param>
         /// <param name="route"></param>
         /// <returns></returns>
-        private List<Amenity> BuildAmenityRoute(Building currBuilding, List<Building> route, Building destBuilding)
+        private List<Amenity> BuildAmenityRoute(List<Building> route)
         {
             // Create list to hold amenity route
             var amenityRoute = new List<Amenity>();
