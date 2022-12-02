@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using PhloxAPI.Data;
 using PhloxAPI.Services.AccountsService;
 using PhloxAPI.Services.AdministrationService;
 using PhloxAPI.Services.ReportService;
 using PhloxAPI.Services.RoutingService;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +31,30 @@ builder.Services.AddScoped<IReportService, ReportService>();
 // Add Reports service to builder so it can be dependency injected 
 builder.Services.AddScoped<IRoutingService, RoutingService>();
 
+// Enable authorization
+builder.Services.AddAuthorization();
+
+// Add JwtBearer authentication
+builder.Services.AddAuthentication(options => {
+
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme= JwtBearerDefaults.AuthenticationScheme;
+
+}).AddJwtBearer(o => {
+    o.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey
+        (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = false,
+        ValidateIssuerSigningKey = true
+    };
+});
+
 //Register Db Context with the builder
 builder.Services.AddDbContext<PhloxDbContext>();
 
@@ -45,6 +72,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 
