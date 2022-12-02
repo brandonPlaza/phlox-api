@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using PhloxAPI.Data;
+using PhloxAPI.OptionsSetup;
 using PhloxAPI.Services.AccountsService;
 using PhloxAPI.Services.AccountsService.JwtProvider;
 using PhloxAPI.Services.AdministrationService;
@@ -39,7 +40,20 @@ builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddAuthorization();
 
 // Add JwtBearer authentication
+
 builder.Services.AddAuthentication(options => {
+
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
+})
+    .AddJwtBearer();
+
+builder.Services.ConfigureOptions<JwtOptionsSetup>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
+
+/*builder.Services.AddAuthentication(options => {
 
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -57,7 +71,7 @@ builder.Services.AddAuthentication(options => {
         ValidateLifetime = false,
         ValidateIssuerSigningKey = true
     };
-});
+});*/
 
 //Register Db Context with the builder
 builder.Services.AddDbContext<PhloxDbContext>();
@@ -75,9 +89,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapControllers();
 
