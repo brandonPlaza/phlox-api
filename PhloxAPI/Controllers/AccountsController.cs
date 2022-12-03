@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PhloxAPI.Models;
 using PhloxAPI.Services.AccountsService;
 
 namespace PhloxAPI.Controllers
@@ -13,6 +14,20 @@ namespace PhloxAPI.Controllers
         public AccountsController(IAccountsService accountsService)
         {
             _accountsService = accountsService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetFavouriteAmenities(string username)
+        {
+            var favAmenities = _accountsService.GetFavAmenities(username);
+            return Ok(favAmenities);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFavouriteAmenity(Amenity amenity, string username)
+        {
+            _accountsService.AddFavAmenity(amenity, username);
+            return Ok("Amenity Added");
         }
     }
 }
