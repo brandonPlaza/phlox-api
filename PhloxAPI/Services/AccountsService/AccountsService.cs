@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
+using PhloxAPI.DTOs;
 using PhloxAPI.Models;
 using System.Security.Cryptography;
 
@@ -15,19 +16,19 @@ namespace PhloxAPI.Services.AccountsService
             _context = context;
         }
 
-        public string Login(string username, string password)
+        public string Login(UserLoginDTO userLoginDTO)
         {
-            var user = _context.Users.SingleOrDefault(u => u.Username == username);
-            if (user != null && MatchPasswords(user.Password, password, Convert.FromBase64String(user.Salt)))
+            var user = _context.Users.SingleOrDefault(u => u.Username == userLoginDTO.Username);
+            if (user != null && MatchPasswords(user.Password, userLoginDTO.Password, Convert.FromBase64String(user.Salt)))
             {
                 return user.Username;
             }
             return "Username or password is incorrect";
         }
 
-        public string RegisterUser(string firstname, string lastname, string username, string email, string password)
+        public string RegisterUser(UserDTO user)
         {
-            if (_context.Users.FirstOrDefault(u => u.Email == email) != null)
+            if (_context.Users.FirstOrDefault(u => u.Email == user.Email) != null)
             {
                 return "Error: A user with that email already exists";
             }
@@ -45,14 +46,14 @@ namespace PhloxAPI.Services.AccountsService
                 }
             }
 
-            var hashedPass = HashPassword(password, salt);
+            var hashedPass = HashPassword(user.Password, salt);
 
             var newUser = new User
             {
-                FirstName = firstname,
-                LastName = lastname,
-                Username = username,
-                Email = email,
+                FirstName = user.Firstname,
+                LastName = user.Lastname,
+                Username = user.Username,
+                Email = user.Email,
                 Password = hashedPass,
                 Salt = Convert.ToBase64String(salt)
             };
