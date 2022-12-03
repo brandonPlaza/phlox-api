@@ -1,10 +1,11 @@
-﻿using PhloxAPI.Models;
+﻿using PhloxAPI.DTOs;
+using PhloxAPI.Models;
 
 namespace PhloxAPI.Services.AccountsService
 {
     public interface IAccountsService
     {
-        string RegisterUser(string firstname, string lastname, string username, string email, string password);
-        string Login(string username, string password);
+        string RegisterUser(UserDTO user);
+        string Login(UserLoginDTO userLoginDTO);
     }
 }
