@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PhloxAPI.DTOs;
 using PhloxAPI.Models;
 using PhloxAPI.Services.AccountsService;
+using PhloxAPI.DTOs;
 
 namespace PhloxAPI.Controllers
 {
