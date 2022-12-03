@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
+using PhloxAPI.DTOs;
 using PhloxAPI.Models;
 using System.Security.Cryptography;
 
@@ -62,9 +63,11 @@ namespace PhloxAPI.Services.AccountsService
             return "User created";
         }
 
-        public void AddFavAmenity(Amenity amenity, string username)
+        public void AddFavAmenity(AmenityDTO amenityDTO, string username)
         {
             var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
+
+            var amenity = _context.Amenities.FirstOrDefault(a => a.Name == amenityDTO.Name);
             if(user.FavouriteAmenities == null)
             {
                 user.FavouriteAmenities = new List<Amenity>{

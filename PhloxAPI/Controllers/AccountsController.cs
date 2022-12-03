@@ -16,14 +16,14 @@ namespace PhloxAPI.Controllers
             _accountsService = accountsService;
         }
 
-        [HttpGet]
+        [HttpGet("/getfavamenities")]
         public async Task<IActionResult> GetFavouriteAmenities(string username)
         {
             var favAmenities = _accountsService.GetFavAmenities(username);
             return Ok(favAmenities);
         }
 
-        [HttpPost]
+        [HttpPost("/addfavamenities")]
         public async Task<IActionResult> AddFavouriteAmenity(Amenity amenity, string username)
         {
             _accountsService.AddFavAmenity(amenity, username);
