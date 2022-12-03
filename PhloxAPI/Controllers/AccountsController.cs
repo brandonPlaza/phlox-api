@@ -17,10 +17,23 @@ namespace PhloxAPI.Controllers
             _accountsService = accountsService;
         }
 
+        /// <summary>
+        /// Retrieve a list of the users favourite amenities
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("/getfavamenities")]
         public async Task<IActionResult> GetFavouriteAmenities(string username)
         {
             var favAmenities = _accountsService.GetFavAmenities(username);
+
+            var favAmenitiesStrings = new List<string>();
+
+            foreach(Amenity amenity in favAmenities)
+            {
+                favAmenitiesStrings.Add(amenity.Name);
+            }
+
             return Ok(favAmenities);
         }
 
