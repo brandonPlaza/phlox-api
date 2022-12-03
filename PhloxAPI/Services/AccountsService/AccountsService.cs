@@ -77,7 +77,8 @@ namespace PhloxAPI.Services.AccountsService
 
         public List<Amenity> GetFavAmenities(string username)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
+            return user.FavouriteAmenities;
         }
 
         private static string HashPassword(string password, byte[] salt)
