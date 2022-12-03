@@ -17,11 +17,12 @@ namespace PhloxAPI.Services.AccountsService
 
         public string Login(string username, string password)
         {
-            var user = _context.Users.SingleOrDefault(u => u.Username == username && u.Password == password);
-            if (user != null)
+            var user = _context.Users.SingleOrDefault(u => u.Username == username);
+            if (user != null && MatchPasswords(user.Password, password, Convert.FromBase64String(user.Salt)))
+            {
                 return user.Username;
-            else
-                return string.Empty;
+            }
+            return "Username or password is incorrect";
         }
 
         public string RegisterUser(string firstname, string lastname, string username, string email, string password)
@@ -74,13 +75,7 @@ namespace PhloxAPI.Services.AccountsService
 
         private static bool MatchPasswords(string hashedUserPass, string plaintextUserPass, byte[] salt)
         {
-            string tempHash = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: plaintextUserPass,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 100000,
-                numBytesRequested: 256 / 8
-            ));
+            string tempHash = HashPassword(plaintextUserPass, salt);
             return hashedUserPass.Equals(tempHash);
         }
     }
