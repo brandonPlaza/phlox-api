@@ -76,6 +76,7 @@ namespace PhloxAPI.Services.AccountsService
                 return;
             }
             user.FavouriteAmenities.Add(amenity);
+            _context.SaveChanges();
         }
 
         public List<Amenity> GetFavAmenities(string username)

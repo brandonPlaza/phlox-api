@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PhloxAPI.DTOs;
 using PhloxAPI.Models;
 using PhloxAPI.Services.AccountsService;
 
@@ -24,7 +25,7 @@ namespace PhloxAPI.Controllers
         }
 
         [HttpPost("/addfavamenities")]
-        public async Task<IActionResult> AddFavouriteAmenity(Amenity amenity, string username)
+        public async Task<IActionResult> AddFavouriteAmenity(AmenityDTO amenity, string username)
         {
             _accountsService.AddFavAmenity(amenity, username);
             return Ok("Amenity Added");
