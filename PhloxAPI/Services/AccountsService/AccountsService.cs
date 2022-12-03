@@ -62,6 +62,24 @@ namespace PhloxAPI.Services.AccountsService
             return "User created";
         }
 
+        public void AddFavAmenity(Amenity amenity, string username)
+        {
+            var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
+            if(user.FavouriteAmenities == null)
+            {
+                user.FavouriteAmenities = new List<Amenity>{
+                    amenity
+                };
+                return;
+            }
+            user.FavouriteAmenities.Add(amenity);
+        }
+
+        public List<Amenity> GetFavAmenities(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         private static string HashPassword(string password, byte[] salt)
         {
             return Convert.ToBase64String(KeyDerivation.Pbkdf2(
