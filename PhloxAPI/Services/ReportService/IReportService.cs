@@ -6,5 +6,6 @@ namespace PhloxAPI.Services.ReportService
     {
         void PostReport(int reportType, string amenityName);
         List<Report> GetReports();
+        List<Amenity> GetAllDownServices();
     }
 }
