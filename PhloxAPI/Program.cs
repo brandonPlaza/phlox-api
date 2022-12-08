@@ -25,7 +25,7 @@ builder.Services.AddScoped<IAccountsService, AccountsService>();
 // Add Reports service to builder so it can be dependency injected 
 builder.Services.AddScoped<IReportService, ReportService>();
 
-// Add Reports service to builder so it can be dependency injected 
+// Add Routing service to builder so it can be dependency injected 
 builder.Services.AddScoped<IRoutingService, RoutingService>();
 
 //Register Db Context with the builder
