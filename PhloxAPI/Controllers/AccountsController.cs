@@ -44,5 +44,19 @@ namespace PhloxAPI.Controllers
             _accountsService.AddFavAmenity(amenity, username);
             return Ok("Amenity Added");
         }
+
+        [HttpPost("/login")]
+        public async Task<IActionResult> Login(UserLoginDTO userLogin)
+        {
+            string user = _accountsService.Login(userLogin);
+            return Ok(user);
+        }
+
+        [HttpPost("/register")]
+        public IActionResult Register(UserDTO user)
+        {
+            string result = _accountsService.RegisterUser(user);
+            return Ok(result);
+        }
     }
 }
