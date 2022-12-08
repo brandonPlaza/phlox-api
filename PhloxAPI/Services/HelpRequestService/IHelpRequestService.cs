@@ -5,9 +5,12 @@ namespace PhloxAPI.Services.HelpRequestService
 {
     public interface IHelpRequestService
     {
-      // TODO: POTENTIALLY CHANGE TYPE OF GET'S TO HelpRequestWithTimeDTO?
         Guid PostHelpRequest(HelpRequestDTO helpRequest);
-        void UpdateHelpRequestState(Guid id);
+        void AcceptHelpRequest(Guid id);
+        void CompleteHelpRequest(Guid id);
+        void CancelHelpRequest(Guid id);
+        HelpRequest GetHelpRequestById(Guid id);
         List<HelpRequest> GetHelpRequests();
+        List<HelpRequest> GetActiveHelpRequests();
     }
 }

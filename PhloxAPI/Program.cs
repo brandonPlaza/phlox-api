@@ -3,6 +3,7 @@ using PhloxAPI.Services.AccountsService;
 using PhloxAPI.Services.AdministrationService;
 using PhloxAPI.Services.ReportService;
 using PhloxAPI.Services.RoutingService;
+using PhloxAPI.Services.HelpRequestService;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,9 @@ builder.Services.AddScoped<IReportService, ReportService>();
 
 // Add Routing service to builder so it can be dependency injected 
 builder.Services.AddScoped<IRoutingService, RoutingService>();
+
+// Add Help Request service to builder so it can be dependency injected 
+builder.Services.AddScoped<IHelpRequestService, HelpRequestService>();
 
 //Register Db Context with the builder
 builder.Services.AddDbContext<PhloxDbContext>();
