@@ -10,7 +10,7 @@ namespace PhloxAPI.Models
     public class HelpRequest
     {
         public Guid Id { get; set; }
-        public User User { get; set; }
+        public string UserEmail { get; set; }
         public HelpRequestStatus Status { get; set; }
         public int? Position { get; set; }
         public Latitude Latitude { get; set; }

@@ -20,6 +20,7 @@ namespace PhloxAPI.Data
         public DbSet<Amenity> Amenities { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<Building> Buildings { get; set; }
+        public DbSet<HelpRequest> HelpRequests { get; set; }
 
     }
 }
