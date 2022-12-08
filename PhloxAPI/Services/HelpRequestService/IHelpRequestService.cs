@@ -1,4 +1,5 @@
 using PhloxAPI.Models;
+using PhloxAPI.DTOs;
 
 namespace PhloxAPI.Services.HelpRequestService
 {

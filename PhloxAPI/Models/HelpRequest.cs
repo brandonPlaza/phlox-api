@@ -1,3 +1,5 @@
+
+
 namespace PhloxAPI.Models
 {
     public enum HelpRequestStatus
@@ -13,8 +15,8 @@ namespace PhloxAPI.Models
         public string UserEmail { get; set; }
         public HelpRequestStatus Status { get; set; }
         public int? Position { get; set; }
-        public Latitude Latitude { get; set; }
-        public Longitute Longitute { get; set; }
+        public double Latitude { get; set; }
+        public double Longitute { get; set; }
         public DateTime TimeCreated { get; set; }
         public DateTime? TimeAccepted { get; set; }
         public DateTime? TimeCompleted { get; set; }
