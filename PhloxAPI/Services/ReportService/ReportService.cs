@@ -30,7 +30,7 @@ namespace PhloxAPI.Services.ReportService
             }
         }
 
-        public List<Amernity> GetAllDownServices()
+        public List<Amenity> GetAllDownServices()
         {
             return _context.Amenities.Where(a => a.IsOutOfService == true);
         }
