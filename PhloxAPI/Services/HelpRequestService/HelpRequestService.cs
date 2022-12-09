@@ -36,8 +36,28 @@ namespace PhloxAPI.Services.HelpRequestService
     {
       var helpRequest = GetHelpRequestById(id);
 
-      helpRequest.Status = HelpRequestStatus.Accepted.ToString();
-      helpRequest.TimeAccepted = DateTime.Now;
+      helpRequest.Status = newStatus.ToString();
+
+      switch (newStatus)
+      {
+        case HelpRequestStatus.Waiting:
+          helpRequest.TimeAccepted = null;
+          break;
+
+        case HelpRequestStatus.Accepted:
+          helpRequest.TimeAccepted = DateTime.Now;
+          break;
+
+        case HelpRequestStatus.Completed:
+          helpRequest.TimeCompleted = DateTime.Now;
+          break;
+
+        case HelpRequestStatus.Cancelled:
+          helpRequest.TimeCancelled = DateTime.Now;
+          break;
+
+      }
+
       _context.SaveChanges();
 
       UpdateQueuePositions();
@@ -92,11 +112,9 @@ namespace PhloxAPI.Services.HelpRequestService
     {
       //Grab all waiting or accepted help requests, sort by status then by time created (oldest to newest)
       // Is it better to put waiting or accepted first?
+      //TODO: Sort by status then by time
       var activeRequests = _context.HelpRequests
-        .Where(r => r.Status == HelpRequestStatus.Waiting.ToString() || r.Status == HelpRequestStatus.Accepted.ToString())
-        .OrderBy(r => (int)((HelpRequestStatus)Enum.Parse(typeof(HelpRequestStatus), r.Status, true)))
-        .ThenByDescending(r => r.TimeCreated);
-
+        .Where(r => r.Status.Equals(HelpRequestStatus.Waiting.ToString()) || r.Status.Equals(HelpRequestStatus.Accepted.ToString()));
       return activeRequests.ToList();
     }
 
