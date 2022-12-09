@@ -29,5 +29,10 @@ namespace PhloxAPI.Services.ReportService
                 _context.SaveChanges();
             }
         }
+
+        public List<Amenity> GetAllDownServices()
+        {
+            return _context.Amenities.Where(a => a.IsOutOfService == true).ToList();
+        }
     }
 }
