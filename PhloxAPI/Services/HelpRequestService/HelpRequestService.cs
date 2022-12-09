@@ -110,11 +110,9 @@ namespace PhloxAPI.Services.HelpRequestService
 
     public List<HelpRequest> GetActiveHelpRequests()
     {
-      //Grab all waiting or accepted help requests, sort by status then by time created (oldest to newest)
-      // Is it better to put waiting or accepted first?
-      //TODO: Sort by status then by time
       var activeRequests = _context.HelpRequests
-        .Where(r => r.Status.Equals(HelpRequestStatus.Waiting.ToString()) || r.Status.Equals(HelpRequestStatus.Accepted.ToString()));
+        .Where(r => r.Status.Equals(HelpRequestStatus.Waiting.ToString()) || r.Status.Equals(HelpRequestStatus.Accepted.ToString()))
+        .OrderByDescending(o => o.TimeCreated);
       return activeRequests.ToList();
     }
 
