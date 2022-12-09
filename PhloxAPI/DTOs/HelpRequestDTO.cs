@@ -6,4 +6,10 @@ namespace PhloxAPI.DTOs
         public string Latitude { get; set; }
         public string Longitute { get; set; }
     }
+
+    public class StatusHelpRequestDTO
+    {
+        public string Id { get; set; }
+        public string Status { get; set; }
+    }
 }
