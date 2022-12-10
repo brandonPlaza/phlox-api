@@ -15,7 +15,7 @@ namespace PhloxAPI.Services.ReportService
 
         public List<Report> GetReports()
         {
-            return _context.Reports.ToList();
+            return _context.Reports.Include(r => r.Amenity).ToList();
         }
 
         public void PostReport(int reportType, string amenityName)
@@ -33,6 +33,17 @@ namespace PhloxAPI.Services.ReportService
         public List<Amenity> GetAllDownServices()
         {
             return _context.Amenities.Where(a => a.IsOutOfService == true).ToList();
+        }
+
+        public List<string> GetAllAmenityNames()
+        {
+            var amenities = _context.Amenities.ToList();
+            var amenityNames = new List<string>();
+            foreach(var amenity in amenities)
+            {
+                amenityNames.Add(amenity.Name);
+            }
+            return amenityNames;
         }
     }
 }
