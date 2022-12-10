@@ -41,5 +41,11 @@ namespace PhloxAPI.Controllers
         {
             return Ok(_reportsService.GetAllAmenityNames());
         }
+
+        [HttpGet("/getallreporttypes")]
+        public async Task<IActionResult> GetAllReportTypes()
+        {
+            return Ok(_reportsService.GetAllReportTypes());
+        }
     }
 }

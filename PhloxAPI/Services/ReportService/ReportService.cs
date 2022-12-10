@@ -45,5 +45,15 @@ namespace PhloxAPI.Services.ReportService
             }
             return amenityNames;
         }
+
+        public List<string> GetAllReportTypes()
+        {
+            var names = new List<string>();
+            foreach(ReportType reporttype in (ReportType[]) Enum.GetValues(typeof(ReportType)))
+            {
+                names.Add(reporttype.ToString());
+            }
+            return names;
+        }
     }
 }

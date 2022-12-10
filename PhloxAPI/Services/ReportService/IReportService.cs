@@ -8,5 +8,6 @@ namespace PhloxAPI.Services.ReportService
         List<Report> GetReports();
         List<Amenity> GetAllDownServices();
         List<string> GetAllAmenityNames();
+        List<string> GetAllReportTypes();
     }
 }
