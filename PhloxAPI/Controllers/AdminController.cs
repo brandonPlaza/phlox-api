@@ -5,7 +5,7 @@ using PhloxAPI.Services.AdministrationService;
 
 namespace PhloxAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AdminController : ControllerBase
     {
@@ -16,14 +16,14 @@ namespace PhloxAPI.Controllers
             _administrationService = administrationService;
         }
 
-        [HttpPost("/amenity")]
+        [HttpPost]
         public async Task<IActionResult> AddAmenity(string name, int type, char building, char connectedBuilding)
         {
             _administrationService.AddAmenity(name, type, building, connectedBuilding);
             return Ok("Amenity Added");
         }
 
-        [HttpPost("/building")]
+        [HttpPost]
         public async Task<IActionResult> AddBuilding(char buildingLetter)
         {
             Building building = new Building { Letter = buildingLetter, ConnectedBuilding = ' ' };
@@ -31,19 +31,19 @@ namespace PhloxAPI.Controllers
             return Ok("Building Added");
         }
 
-        [HttpPost("/connectbuilding")]
+        [HttpPost]
         public async Task<IActionResult> ConnectBuildings(char buildingOne, char buildingTwo)
         {
             _administrationService.ConnectBuildings(buildingOne, buildingTwo);
             return Ok("Buildings connected");
         }
 
-        [HttpGet("/allbuildings")]
+        [HttpGet]
         public async Task<IActionResult> GetBuildings()
         {
             return Ok(_administrationService.GetBuildings());
         }
-        [HttpGet("/allamenities")]
+        [HttpGet]
         public async Task<IActionResult> GetAmenities()
         {
             return Ok(_administrationService.GetAmenities());

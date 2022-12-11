@@ -5,7 +5,7 @@ using PhloxAPI.Services.RoutingService;
 
 namespace PhloxAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class RoutingController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace PhloxAPI.Controllers
             _routingService = routingService;
         }
 
-        [HttpGet("/requestroute")]
+        [HttpGet]
         public async Task<IActionResult> GetRoute(char currBuilding, char destBuilding)
         {
             var route = _routingService.RequestRoute(currBuilding, destBuilding);
