@@ -22,7 +22,7 @@ namespace PhloxAPI.Services.HelpRequestService
         UserEmail = helpRequest.UserEmail,
         Status = HelpRequestStatus.Waiting.ToString(),
         Latitude = Convert.ToDouble(helpRequest.Latitude),
-        Longitute = Convert.ToDouble(helpRequest.Longitute),
+        Longitute = Convert.ToDouble(helpRequest.Longitude),
         TimeCreated = DateTime.Now
       };
 
