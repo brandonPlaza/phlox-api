@@ -6,7 +6,7 @@ using PhloxAPI.Services.ReportService;
 
 namespace PhloxAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ReportController : ControllerBase
     {
@@ -30,19 +30,19 @@ namespace PhloxAPI.Controllers
             return Ok("Report Added");
         }
 
-        [HttpGet("/getalldownservices")]
+        [HttpGet]
         public async Task<IActionResult> GetAllDownServices()
         {
             return Ok(_reportsService.GetAllDownServices());
         }
 
-        [HttpGet("/getallamenitynames")]
+        [HttpGet]
         public async Task<IActionResult> GetAllAmenityNames()
         {
             return Ok(_reportsService.GetAllAmenityNames());
         }
 
-        [HttpGet("/getallreporttypes")]
+        [HttpGet]
         public async Task<IActionResult> GetAllReportTypes()
         {
             return Ok(_reportsService.GetAllReportTypes());

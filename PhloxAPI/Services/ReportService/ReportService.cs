@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
+using PhloxAPI.DTOs;
 using PhloxAPI.Models;
 
 namespace PhloxAPI.Services.ReportService
@@ -31,9 +32,25 @@ namespace PhloxAPI.Services.ReportService
             }
         }
 
-        public List<Amenity> GetAllDownServices()
+        public List<DownServiceDTO> GetAllDownServices()
         {
-            return _context.Amenities.Include(a => a.Reports).Where(a => a.IsOutOfService == true).ToList();
+            var amenities = _context.Amenities.Include(a => a.Reports).Where(a => a.IsOutOfService == true).ToList();
+            var amenityDtos = new List<DownServiceDTO>();
+            foreach(var amenity in amenities)
+            {
+                amenityDtos.Add(
+                    new DownServiceDTO
+                    {
+                        Name = amenity.Name,
+                        Type = amenity.Type.ToString(),
+                        Building = amenity.Building,
+                        Floor = amenity.Floor,
+                        ReportCount = amenity.Reports.Count,
+                        IsOutOfService = amenity.IsOutOfService,
+                    }
+                );
+            }
+            return amenityDtos;
         }
 
         public List<string> GetAllAmenityNames()
