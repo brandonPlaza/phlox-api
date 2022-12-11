@@ -29,5 +29,23 @@ namespace PhloxAPI.Controllers
             _reportsService.PostReport(reportType, amenityName);
             return Ok("Report Added");
         }
+
+        [HttpGet("/getalldownservices")]
+        public async Task<IActionResult> GetAllDownServices()
+        {
+            return Ok(_reportsService.GetAllDownServices());
+        }
+
+        [HttpGet("/getallamenitynames")]
+        public async Task<IActionResult> GetAllAmenityNames()
+        {
+            return Ok(_reportsService.GetAllAmenityNames());
+        }
+
+        [HttpGet("/getallreporttypes")]
+        public async Task<IActionResult> GetAllReportTypes()
+        {
+            return Ok(_reportsService.GetAllReportTypes());
+        }
     }
 }
