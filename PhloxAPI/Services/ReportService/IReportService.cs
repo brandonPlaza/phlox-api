@@ -1,4 +1,5 @@
-﻿using PhloxAPI.Models;
+﻿using PhloxAPI.DTOs;
+using PhloxAPI.Models;
 
 namespace PhloxAPI.Services.ReportService
 {
@@ -6,7 +7,7 @@ namespace PhloxAPI.Services.ReportService
     {
         void PostReport(int reportType, string amenityName);
         List<Report> GetReports();
-        List<Amenity> GetAllDownServices();
+        List<DownServiceDTO> GetAllDownServices();
         List<string> GetAllAmenityNames();
         List<string> GetAllReportTypes();
     }
