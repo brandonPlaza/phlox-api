@@ -25,6 +25,7 @@ namespace PhloxAPI.Services.ReportService
             {
                 var newReport = new Report { Type = (ReportType)reportType, Amenity = amenity };
                 amenity.Reports.Add(newReport);
+                amenity.IsOutOfService = true;
                 _context.Reports.Add(newReport);
                 _context.SaveChanges();
             }
@@ -32,7 +33,7 @@ namespace PhloxAPI.Services.ReportService
 
         public List<Amenity> GetAllDownServices()
         {
-            return _context.Amenities.Where(a => a.IsOutOfService == true).ToList();
+            return _context.Amenities.Include(a => a.Reports).Where(a => a.IsOutOfService == true).ToList();
         }
 
         public List<string> GetAllAmenityNames()
