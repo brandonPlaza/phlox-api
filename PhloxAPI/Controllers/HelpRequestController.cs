@@ -7,7 +7,7 @@ using PhloxAPI.DTOs;
 
 namespace PhloxAPI.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/[controller]/[action]")]
   [ApiController]
   public class HelpRequestController : ControllerBase
   {
@@ -23,11 +23,11 @@ namespace PhloxAPI.Controllers
     /// </summary>
     /// <param name="helpRequestDTO"></param>
     /// <returns></returns>
-    [HttpPost("/add")]
-    public async Task<IActionResult> AddHelpRequest(HelpRequestDTO helpRequestDTO)
+    [HttpPost]
+    public async Task<IActionResult> Add(HelpRequestDTO helpRequestDTO)
     {
-      var newId = _helpRequestService.PostHelpRequest(helpRequestDTO);
-      return Ok(newId);
+      var statusHelpRequestDTO = _helpRequestService.PostHelpRequest(helpRequestDTO);
+      return Ok(statusHelpRequestDTO);
     }
 
     /// <summary>
@@ -35,11 +35,11 @@ namespace PhloxAPI.Controllers
     /// </summary>
     /// <param name="statusHelpRequestDTO"></param>
     /// <returns></returns>
-    [HttpPost("/updatestatus")]
-    public async Task<IActionResult> UpdateHelpRequestStatus(StatusHelpRequestDTO statusHelpRequestDTO)
+    [HttpPost]
+    public async Task<IActionResult> UpdateStatus(StatusHelpRequestDTO statusHelpRequestDTO)
     {
       Guid guid = new Guid(statusHelpRequestDTO.Id);
-      HelpRequestStatus status = (HelpRequestStatus) Enum.Parse(typeof(HelpRequestStatus), statusHelpRequestDTO.Status, true);
+      HelpRequestStatus status = (HelpRequestStatus)Enum.Parse(typeof(HelpRequestStatus), statusHelpRequestDTO.Status, true);
 
       _helpRequestService.UpdateHelpRequestStatus(guid, status);
       return Ok("Status updated.");
@@ -50,8 +50,8 @@ namespace PhloxAPI.Controllers
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("/getbyid")]
-    public async Task<IActionResult> GetHelpRequestById(string id)
+    [HttpGet]
+    public async Task<IActionResult> GetById(string id)
     {
       Guid guid = new Guid(id);
       var helpRequest = _helpRequestService.GetHelpRequestById(guid);
@@ -63,8 +63,8 @@ namespace PhloxAPI.Controllers
     /// </summary>
     /// <param></param>
     /// <returns></returns>
-    [HttpGet("/getall")]
-    public async Task<IActionResult> GetAllHelpRequests()
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
     {
       var helpRequests = _helpRequestService.GetHelpRequests();
       return Ok(helpRequests);
@@ -75,8 +75,8 @@ namespace PhloxAPI.Controllers
     /// </summary>
     /// <param></param>
     /// <returns></returns>
-    [HttpGet("/getactive")]
-    public async Task<IActionResult> GetActiveHelpRequests()
+    [HttpGet]
+    public async Task<IActionResult> GetActive()
     {
       var activeHelpRequests = _helpRequestService.GetActiveHelpRequests();
       return Ok(activeHelpRequests);

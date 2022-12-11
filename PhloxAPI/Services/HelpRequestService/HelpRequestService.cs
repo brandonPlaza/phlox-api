@@ -15,7 +15,7 @@ namespace PhloxAPI.Services.HelpRequestService
       _context = context;
     }
 
-    public Guid PostHelpRequest(HelpRequestDTO helpRequest)
+    public StatusHelpRequestDTO PostHelpRequest(HelpRequestDTO helpRequest)
     {
       var newHelpRequest = new HelpRequest
       {
@@ -29,7 +29,14 @@ namespace PhloxAPI.Services.HelpRequestService
       _context.HelpRequests.Add(newHelpRequest);
       _context.SaveChanges();
 
-      return newHelpRequest.Id;
+      //at this point position is null because the status is waiting, it hasnt been accepted yet so user is not in queue yet
+      var statusHelpRequest = new StatusHelpRequestDTO
+      {
+        Id = newHelpRequest.Id.ToString(),
+        Status = newHelpRequest.Status,
+      };
+
+      return statusHelpRequest;
     }
 
     public void UpdateHelpRequestStatus(Guid id, HelpRequestStatus newStatus)
