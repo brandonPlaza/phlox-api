@@ -7,7 +7,7 @@ using PhloxAPI.DTOs;
 
 namespace PhloxAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AccountsController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace PhloxAPI.Controllers
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        [HttpGet("/getfavamenities")]
+        [HttpGet]
         public async Task<IActionResult> GetFavouriteAmenities(string username)
         {
             var favAmenities = _accountsService.GetFavAmenities(username);
@@ -38,21 +38,21 @@ namespace PhloxAPI.Controllers
             return Ok(favAmenities);
         }
 
-        [HttpPost("/addfavamenities")]
+        [HttpPost]
         public async Task<IActionResult> AddFavouriteAmenity(AmenityDTO amenity, string username)
         {
             _accountsService.AddFavAmenity(amenity, username);
             return Ok("Amenity Added");
         }
 
-        [HttpPost("/login")]
+        [HttpPost]
         public async Task<IActionResult> Login(UserLoginDTO userLogin)
         {
             string user = _accountsService.Login(userLogin);
             return Ok(user);
         }
 
-        [HttpPost("/register")]
+        [HttpPost]
         public IActionResult Register(UserDTO user)
         {
             string result = _accountsService.RegisterUser(user);
