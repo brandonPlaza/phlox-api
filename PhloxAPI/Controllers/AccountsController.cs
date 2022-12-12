@@ -35,7 +35,7 @@ namespace PhloxAPI.Controllers
                 favAmenitiesStrings.Add(amenity.Name);
             }
 
-            return Ok(favAmenities);
+            return Ok(favAmenitiesStrings);
         }
 
         [HttpPost]
