@@ -1,152 +1,76 @@
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.AssemblyReference.cache
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.GeneratedMSBuildEditorConfig.editorconfig
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.AssemblyInfoInputs.cache
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.AssemblyInfo.cs
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.CoreCompileInputs.cache
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.MvcApplicationPartsAssemblyInfo.cs
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\appsettings.Development.json
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\appsettings.json
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.exe
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.deps.json
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.runtimeconfig.json
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.pdb
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Azure.Core.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Azure.Identity.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Humanizer.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Identity.Client.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.OpenApi.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.CodeDom.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Drawing.Common.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Memory.Data.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Runtime.Caching.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Security.Permissions.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Windows.Extensions.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Development\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.AssemblyReference.cache
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.AssemblyInfoInputs.cache
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.AssemblyInfo.cs
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.CoreCompileInputs.cache
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.MvcApplicationPartsAssemblyInfo.cs
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.PhloxAPI.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.build.PhloxAPI.props
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.PhloxAPI.props
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.PhloxAPI.props
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.build.json
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.development.json
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\scopedcss\bundle\PhloxAPI.styles.css
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.CopyComplete
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.dll
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\refint\PhloxAPI.dll
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.pdb
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.genruntimeconfig.cache
-C:\Development\phlox-api\PhloxAPI\obj\Debug\net7.0\ref\PhloxAPI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\appsettings.Development.json
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\appsettings.json
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.exe
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.deps.json
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.runtimeconfig.json
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.pdb
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Azure.Core.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Azure.Identity.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Humanizer.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Identity.Client.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.OpenApi.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.CodeDom.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Drawing.Common.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Memory.Data.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Runtime.Caching.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Security.Permissions.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Windows.Extensions.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.PhloxAPI.Microsoft.AspNetCore.StaticWebAssets.props
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.build.PhloxAPI.props
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.PhloxAPI.props
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.PhloxAPI.props
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.pack.json
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.build.json
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.development.json
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\scopedcss\bundle\PhloxAPI.styles.css
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.CopyComplete
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\refint\PhloxAPI.dll
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.pdb
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.genruntimeconfig.cache
-E:\Personal-Files_Main-Dir\Capstone\phlox-api\PhloxAPI\obj\Debug\net7.0\ref\PhloxAPI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\appsettings.Development.json
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\appsettings.json
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.exe
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.deps.json
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.runtimeconfig.json
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\PhloxAPI.pdb
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Azure.Core.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Azure.Identity.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Humanizer.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Identity.Client.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.OpenApi.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.CodeDom.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Drawing.Common.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Memory.Data.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Runtime.Caching.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Security.Permissions.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\System.Windows.Extensions.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.AssemblyReference.cache
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.GeneratedMSBuildEditorConfig.editorconfig
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.AssemblyInfoInputs.cache
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.AssemblyInfo.cs
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.CoreCompileInputs.cache
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.MvcApplicationPartsAssemblyInfo.cs
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.MvcApplicationPartsAssemblyInfo.cache
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.PhloxAPI.Microsoft.AspNetCore.StaticWebAssets.props
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.build.PhloxAPI.props
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.PhloxAPI.props
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.PhloxAPI.props
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.pack.json
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.build.json
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\staticwebassets.development.json
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\scopedcss\bundle\PhloxAPI.styles.css
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.CopyComplete
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\refint\PhloxAPI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.pdb
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.genruntimeconfig.cache
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\ref\PhloxAPI.dll
