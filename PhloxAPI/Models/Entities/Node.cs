@@ -2,16 +2,6 @@
 
 namespace PhloxAPI.Models.Entities
 {
-  public enum NodeTypes
- {
-  Elevator,
-  Ramp,
-  AutomaticDoor,
-  Hallway,
-  Stairs,
-  Room,
-  POI
- }
 public class Node
  {
   public Guid Id { get; set; }

@@ -16,7 +16,7 @@ namespace PhloxAPI.Services.AdministrationService
         public void AddAmenity(string name, int type, char building, char connectedBuilding)
         {
             var newAmenity = new Node {Name = name, Type = (NodeTypes)type};
-            _context.Amenities.Add(newAmenity);
+            _context.Nodes.Add(newAmenity);
             _context.SaveChanges();
         }
 
@@ -40,7 +40,7 @@ namespace PhloxAPI.Services.AdministrationService
 
         public List<Node> GetAmenities()
         {
-            return _context.Amenities.ToList();
+            return _context.Nodes.ToList();
         }
 
         public List<Building> GetBuildings()

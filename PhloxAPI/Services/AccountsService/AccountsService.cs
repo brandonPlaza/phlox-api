@@ -67,7 +67,7 @@ namespace PhloxAPI.Services.AccountsService
         {
             var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
 
-            var amenity = _context.Amenities.FirstOrDefault(a => a.Name == amenityDTO.Name);
+            var amenity = _context.Nodes.FirstOrDefault(a => a.Name == amenityDTO.Name);
             if(user.FavouriteAmenities == null)
             {
                 user.FavouriteAmenities = new List<Node>{
