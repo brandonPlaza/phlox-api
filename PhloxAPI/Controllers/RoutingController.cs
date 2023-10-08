@@ -16,20 +16,10 @@ namespace PhloxAPI.Controllers
             _routingService = routingService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetRoute(char currBuilding, char destBuilding)
-        {
-            var route = _routingService.RequestRoute(currBuilding, destBuilding);
+        // [HttpGet]
+        // public async Task<IActionResult> GetRoute(char currBuilding, char destBuilding)
+        // {
 
-            if (route == null)
-                return Ok("You are already in this building");
-
-            List<string> routeInstructions = new List<string>();
-            foreach(Amenity amenity in route)
-            {
-                routeInstructions.Add(amenity.Name);
-            }
-            return Ok(routeInstructions);
-        }
+        // }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
-using PhloxAPI.DTOs;
-using PhloxAPI.Models;
+using PhloxAPI.Models.DTOs;
+using PhloxAPI.Models.Entities;
 using System.Security.Cryptography;
 
 namespace PhloxAPI.Services.AccountsService
@@ -63,14 +63,14 @@ namespace PhloxAPI.Services.AccountsService
             return "User created";
         }
 
-        public void AddFavAmenity(AmenityDTO amenityDTO, string username)
+        public void AddFavAmenity(NodeDTO amenityDTO, string username)
         {
             var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
 
             var amenity = _context.Amenities.FirstOrDefault(a => a.Name == amenityDTO.Name);
             if(user.FavouriteAmenities == null)
             {
-                user.FavouriteAmenities = new List<Amenity>{
+                user.FavouriteAmenities = new List<Node>{
                     amenity
                 };
                 return;
@@ -79,7 +79,7 @@ namespace PhloxAPI.Services.AccountsService
             _context.SaveChanges();
         }
 
-        public List<Amenity> GetFavAmenities(string username)
+        public List<Node> GetFavAmenities(string username)
         {
             var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
             return user.FavouriteAmenities;

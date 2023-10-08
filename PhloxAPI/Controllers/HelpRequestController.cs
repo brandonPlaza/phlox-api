@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PhloxAPI.DTOs;
-using PhloxAPI.Models;
+using PhloxAPI.Models.DTOs;
+using PhloxAPI.Models.Entities;
 using PhloxAPI.Services.HelpRequestService;
-using PhloxAPI.DTOs;
 
 namespace PhloxAPI.Controllers
 {

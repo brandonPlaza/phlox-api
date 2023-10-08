@@ -23,13 +23,13 @@ namespace PhloxAPI.Controllers
             return Ok("Amenity Added");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddBuilding(char buildingLetter)
-        {
-            Building building = new Building { Letter = buildingLetter, ConnectedBuilding = ' ' };
-            _administrationService.AddBuilding(building);
-            return Ok("Building Added");
-        }
+        // [HttpPost]
+        // public async Task<IActionResult> AddBuilding(char buildingLetter)
+        // {
+        //     Building building = new Building { Letter = buildingLetter, ConnectedBuilding = ' ' };
+        //     _administrationService.AddBuilding(building);
+        //     return Ok("Building Added");
+        // }
 
         [HttpPost]
         public async Task<IActionResult> ConnectBuildings(char buildingOne, char buildingTwo)

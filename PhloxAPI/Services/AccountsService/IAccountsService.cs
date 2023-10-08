@@ -1,5 +1,5 @@
-﻿using PhloxAPI.DTOs;
-using PhloxAPI.Models;
+﻿using PhloxAPI.Models.DTOs;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.AccountsService
 {
@@ -7,7 +7,7 @@ namespace PhloxAPI.Services.AccountsService
     {
         string RegisterUser(UserDTO user);
         string Login(UserLoginDTO userLoginDTO);
-        List<Amenity> GetFavAmenities(string username);
-        void AddFavAmenity(AmenityDTO amenityDTO, string username);
+        List<Node> GetFavAmenities(string username);
+        void AddFavAmenity(NodeDTO amenityDTO, string username);
     }
 }
