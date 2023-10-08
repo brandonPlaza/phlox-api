@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PhloxAPI.Models;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Data
 {
@@ -17,7 +17,7 @@ namespace PhloxAPI.Data
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Amenity> Amenities { get; set; }
+        public DbSet<Node> Amenities { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<HelpRequest> HelpRequests { get; set; }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
-using PhloxAPI.DTOs;
-using PhloxAPI.Models;
+using PhloxAPI.Models.DTOs;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.ReportService
 {
@@ -43,8 +43,6 @@ namespace PhloxAPI.Services.ReportService
                     {
                         Name = amenity.Name,
                         Type = amenity.Type.ToString(),
-                        Building = amenity.Building,
-                        Floor = amenity.Floor,
                         ReportCount = amenity.Reports.Count,
                         IsOutOfService = amenity.IsOutOfService,
                     }

@@ -1,4 +1,4 @@
-﻿using PhloxAPI.Models;
+﻿using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.RoutingService
 {

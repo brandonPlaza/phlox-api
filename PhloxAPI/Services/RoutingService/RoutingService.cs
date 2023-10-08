@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PhloxAPI.Data;
-using PhloxAPI.Models;
+﻿
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.RoutingService
 {
