@@ -1,4 +1,4 @@
-﻿namespace PhloxAPI.DTOs
+﻿namespace PhloxAPI.Models.DTOs
 {
     public class UserDTO
     {

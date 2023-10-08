@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
-using PhloxAPI.DTOs;
-using PhloxAPI.Models;
+using PhloxAPI.Models.DTOs;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.ReportService
 {
@@ -21,7 +21,7 @@ namespace PhloxAPI.Services.ReportService
 
         public void PostReport(int reportType, string amenityName)
         {
-            var amenity = _context.Amenities.Include(a => a.Reports).SingleOrDefault(a => a.Name == amenityName);
+            var amenity = _context.Nodes.Include(a => a.Reports).SingleOrDefault(a => a.Name == amenityName);
             if (amenity != null)
             {
                 var newReport = new Report { Type = (ReportType)reportType, Amenity = amenity };
@@ -34,7 +34,7 @@ namespace PhloxAPI.Services.ReportService
 
         public List<DownServiceDTO> GetAllDownServices()
         {
-            var amenities = _context.Amenities.Include(a => a.Reports).Where(a => a.IsOutOfService == true).ToList();
+            var amenities = _context.Nodes.Include(a => a.Reports).Where(a => a.IsOutOfService == true).ToList();
             var amenityDtos = new List<DownServiceDTO>();
             foreach(var amenity in amenities)
             {
@@ -43,8 +43,6 @@ namespace PhloxAPI.Services.ReportService
                     {
                         Name = amenity.Name,
                         Type = amenity.Type.ToString(),
-                        Building = amenity.Building,
-                        Floor = amenity.Floor,
                         ReportCount = amenity.Reports.Count,
                         IsOutOfService = amenity.IsOutOfService,
                     }
@@ -55,7 +53,7 @@ namespace PhloxAPI.Services.ReportService
 
         public List<string> GetAllAmenityNames()
         {
-            var amenities = _context.Amenities.ToList();
+            var amenities = _context.Nodes.ToList();
             var amenityNames = new List<string>();
             foreach(var amenity in amenities)
             {

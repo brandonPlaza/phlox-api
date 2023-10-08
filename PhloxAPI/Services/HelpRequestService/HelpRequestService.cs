@@ -1,7 +1,6 @@
-using PhloxAPI.Models;
-using PhloxAPI.DTOs;
 using PhloxAPI.Data;
-using Microsoft.EntityFrameworkCore;
+using PhloxAPI.Models.DTOs;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.HelpRequestService
 {

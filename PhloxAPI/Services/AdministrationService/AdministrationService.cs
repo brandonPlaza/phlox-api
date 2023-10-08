@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
 using PhloxAPI.Models;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.AdministrationService
 {
@@ -14,8 +15,8 @@ namespace PhloxAPI.Services.AdministrationService
 
         public void AddAmenity(string name, int type, char building, char connectedBuilding)
         {
-            var newAmenity = new Amenity { Floor = 0, Building = building, ConnectedBuilding = _context.Buildings.First(x => x.Letter == connectedBuilding), Name = name, Type = (AmenityType)type};
-            _context.Amenities.Add(newAmenity);
+            var newAmenity = new Node {Name = name, Type = (NodeTypes)type};
+            _context.Nodes.Add(newAmenity);
             _context.SaveChanges();
         }
 
@@ -37,9 +38,9 @@ namespace PhloxAPI.Services.AdministrationService
             _context.SaveChanges();
         }
 
-        public List<Amenity> GetAmenities()
+        public List<Node> GetAmenities()
         {
-            return _context.Amenities.ToList();
+            return _context.Nodes.ToList();
         }
 
         public List<Building> GetBuildings()
@@ -47,7 +48,7 @@ namespace PhloxAPI.Services.AdministrationService
             return _context.Buildings.ToList();
         }
 
-        public Amenity UpdateAmenity()
+        public Node UpdateAmenity()
         {
             throw new NotImplementedException();
         }

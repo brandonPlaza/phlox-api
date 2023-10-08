@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PhloxAPI.DTOs;
-using PhloxAPI.Models;
+using PhloxAPI.Models.DTOs;
+using PhloxAPI.Models.Entities;
 using PhloxAPI.Services.AccountsService;
-using PhloxAPI.DTOs;
+
 
 namespace PhloxAPI.Controllers
 {
@@ -30,7 +30,7 @@ namespace PhloxAPI.Controllers
 
             var favAmenitiesStrings = new List<string>();
 
-            foreach(Amenity amenity in favAmenities)
+            foreach(Node amenity in favAmenities)
             {
                 favAmenitiesStrings.Add(amenity.Name);
             }
@@ -39,7 +39,7 @@ namespace PhloxAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddFavouriteAmenity(AmenityDTO amenity, string username)
+        public async Task<IActionResult> AddFavouriteAmenity(NodeDTO amenity, string username)
         {
             _accountsService.AddFavAmenity(amenity, username);
             return Ok("Amenity Added");

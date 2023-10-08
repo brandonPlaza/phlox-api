@@ -1,4 +1,4 @@
-﻿namespace PhloxAPI.Models
+﻿namespace PhloxAPI.Models.Entities
 {
     public enum ReportType
     {
@@ -10,6 +10,6 @@
     {
         public Guid Id { get; set; }
         public ReportType Type { get; set; }
-        public Amenity Amenity { get; set; }
+        public Node Amenity { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using PhloxAPI.Models;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.AdministrationService
 {
@@ -8,7 +9,7 @@ namespace PhloxAPI.Services.AdministrationService
         void AddBuilding(Building building);
         void ConnectBuildings(char buildingOne, char buidingTwo);
         List<Building> GetBuildings();
-        List<Amenity> GetAmenities();
-        Amenity UpdateAmenity();
+        List<Node> GetAmenities();
+        Node UpdateAmenity();
     }
 }

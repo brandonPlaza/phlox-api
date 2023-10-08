@@ -1,4 +1,4 @@
-﻿namespace PhloxAPI.Models
+﻿namespace PhloxAPI.Models.Entities
 {
     public enum DisabilityType
     {

@@ -1,4 +1,4 @@
-﻿namespace PhloxAPI.Models
+﻿namespace PhloxAPI.Models.Entities
 {
     public class User
     {
@@ -9,6 +9,6 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
-        public List<Amenity> FavouriteAmenities { get; set; }
+        public List<Node> FavouriteAmenities { get; set; }
     }
 }

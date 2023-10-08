@@ -1,5 +1,5 @@
-﻿using PhloxAPI.DTOs;
-using PhloxAPI.Models;
+﻿using PhloxAPI.Models.DTOs;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.ReportService
 {
