@@ -5,6 +5,8 @@ using PhloxAPI.Services.ReportService;
 using PhloxAPI.Services.RoutingService;
 using PhloxAPI.Services.HelpRequestService;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,10 +34,15 @@ builder.Services.AddScoped<IRoutingService, RoutingService>();
 // Add Help Request service to builder so it can be dependency injected 
 builder.Services.AddScoped<IHelpRequestService, HelpRequestService>();
 
-//Register Db Context with the builder
-builder.Services.AddDbContext<PhloxDbContext>();
+var connection = String.Empty;
+
+builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.Development.json");
+connection = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
 
 
+
+builder.Services.AddDbContext<PhloxDbContext>(options =>
+    options.UseSqlServer(connection));
 
 var app = builder.Build();
 

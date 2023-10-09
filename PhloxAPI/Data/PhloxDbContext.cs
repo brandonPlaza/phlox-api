@@ -13,12 +13,13 @@ namespace PhloxAPI.Data
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       base.OnConfiguring(optionsBuilder);
-      optionsBuilder.UseSqlite("Filename=database.db");
-      //optionsBuilder.UseSqlServer("Server=tcp:phloxdbserver.database.windows.net,1433;Initial Catalog=Phlox_db;Persist Security Info=False;User ID=voxels;Password=XS%cH429;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+      //optionsBuilder.UseSqlite("Filename=database.db");
+      //optionsBuilder.UseSqlServer();
     }
 
     public DbSet<User> Users { get; set; }
     public DbSet<Node> Nodes { get; set; }
+    public DbSet<WeightedEdge> WeightedEdges { get; set; }
     public DbSet<Report> Reports { get; set; }
     public DbSet<Building> Buildings { get; set; }
     public DbSet<HelpRequest> HelpRequests { get; set; }

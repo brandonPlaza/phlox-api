@@ -8,6 +8,7 @@ public class Node
   public NodeTypes Type { get; set; }
   public string Name { get; set; }
   public List<Report> Reports { get; set; }
+  public List<int> CardinalConnections { get; set; }
   public bool IsOutOfService { get; set; } = false;
  }
 }

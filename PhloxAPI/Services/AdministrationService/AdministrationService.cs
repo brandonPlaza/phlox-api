@@ -13,39 +13,11 @@ namespace PhloxAPI.Services.AdministrationService
             _context = context;
         }
 
-        public void AddAmenity(string name, int type, char building, char connectedBuilding)
+        public void AddNode(string name, int type)
         {
             var newAmenity = new Node {Name = name, Type = (NodeTypes)type};
             _context.Nodes.Add(newAmenity);
             _context.SaveChanges();
-        }
-
-        public void AddBuilding(Building building)
-        {
-            _context.Buildings.Add(building);
-            _context.SaveChanges();
-        }
-
-        public void ConnectBuildings(char buildingOne, char buildingTwo)
-        {
-            var building1 = _context.Buildings.First(b1 => b1.Letter == buildingOne);
-            var building2 = _context.Buildings.First(b2 => b2.Letter == buildingTwo);
-
-            var building2Connected = _context.Buildings.First(x => x.Letter == building1.Letter);
-
-            building2Connected.ConnectedBuilding = building2.Letter;
-
-            _context.SaveChanges();
-        }
-
-        public List<Node> GetAmenities()
-        {
-            return _context.Nodes.ToList();
-        }
-
-        public List<Building> GetBuildings()
-        {
-            return _context.Buildings.ToList();
         }
 
         public Node UpdateAmenity()
