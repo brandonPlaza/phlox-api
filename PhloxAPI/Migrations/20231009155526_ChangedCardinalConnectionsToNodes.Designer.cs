@@ -12,58 +12,20 @@ using PhloxAPI.Data;
 namespace PhloxAPI.Migrations
 {
     [DbContext(typeof(PhloxDbContext))]
-    [Migration("20221209015134_ModifiedHelpRequestTable")]
-    partial class ModifiedHelpRequestTable
+    [Migration("20231009155526_ChangedCardinalConnectionsToNodes")]
+    partial class ChangedCardinalConnectionsToNodes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PhloxAPI.Models.Amenity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Building")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<Guid>("ConnectedBuildingId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Floor")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsOutOfService")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConnectedBuildingId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Amenities");
-                });
-
-            modelBuilder.Entity("PhloxAPI.Models.Building", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Building", b =>
                 {
                     b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,7 +44,7 @@ namespace PhloxAPI.Migrations
                     b.ToTable("Buildings");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.HelpRequest", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.HelpRequest", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +84,43 @@ namespace PhloxAPI.Migrations
                     b.ToTable("HelpRequests");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.Report", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsOutOfService")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("NodeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("WeightedEdgeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NodeId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WeightedEdgeId");
+
+                    b.ToTable("Nodes");
+                });
+
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Report", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -141,7 +139,7 @@ namespace PhloxAPI.Migrations
                     b.ToTable("Reports");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.User", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -176,24 +174,38 @@ namespace PhloxAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.Amenity", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.WeightedEdge", b =>
                 {
-                    b.HasOne("PhloxAPI.Models.Building", "ConnectedBuilding")
-                        .WithMany()
-                        .HasForeignKey("ConnectedBuildingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasOne("PhloxAPI.Models.User", null)
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WeightedEdges");
+                });
+
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
+                {
+                    b.HasOne("PhloxAPI.Models.Entities.Node", null)
+                        .WithMany("CardinalConnections")
+                        .HasForeignKey("NodeId");
+
+                    b.HasOne("PhloxAPI.Models.Entities.User", null)
                         .WithMany("FavouriteAmenities")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("ConnectedBuilding");
+                    b.HasOne("PhloxAPI.Models.Entities.WeightedEdge", null)
+                        .WithMany("Nodes")
+                        .HasForeignKey("WeightedEdgeId");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.Report", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Report", b =>
                 {
-                    b.HasOne("PhloxAPI.Models.Amenity", "Amenity")
+                    b.HasOne("PhloxAPI.Models.Entities.Node", "Amenity")
                         .WithMany("Reports")
                         .HasForeignKey("AmenityId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -202,14 +214,21 @@ namespace PhloxAPI.Migrations
                     b.Navigation("Amenity");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.Amenity", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
                 {
+                    b.Navigation("CardinalConnections");
+
                     b.Navigation("Reports");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.User", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.User", b =>
                 {
                     b.Navigation("FavouriteAmenities");
+                });
+
+            modelBuilder.Entity("PhloxAPI.Models.Entities.WeightedEdge", b =>
+                {
+                    b.Navigation("Nodes");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhloxAPI.Data;
 
@@ -11,9 +12,11 @@ using PhloxAPI.Data;
 namespace PhloxAPI.Migrations
 {
     [DbContext(typeof(PhloxDbContext))]
-    partial class PhloxDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231009140452_RemovedCascadingDeleteError")]
+    partial class RemovedCascadingDeleteError
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,9 +97,6 @@ namespace PhloxAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("NodeId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
@@ -107,8 +107,6 @@ namespace PhloxAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NodeId");
 
                     b.HasIndex("UserId");
 
@@ -187,10 +185,6 @@ namespace PhloxAPI.Migrations
 
             modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
                 {
-                    b.HasOne("PhloxAPI.Models.Entities.Node", null)
-                        .WithMany("CardinalConnections")
-                        .HasForeignKey("NodeId");
-
                     b.HasOne("PhloxAPI.Models.Entities.User", null)
                         .WithMany("FavouriteAmenities")
                         .HasForeignKey("UserId");
@@ -213,8 +207,6 @@ namespace PhloxAPI.Migrations
 
             modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
                 {
-                    b.Navigation("CardinalConnections");
-
                     b.Navigation("Reports");
                 });
 

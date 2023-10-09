@@ -5,7 +5,7 @@
 namespace PhloxAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddFavouriteAmenitiesToUser : Migration
+    public partial class AddedDefaultValueToCardinalDirections : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
