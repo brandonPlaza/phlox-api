@@ -1,11 +1,10 @@
-﻿using PhloxAPI.Models;
-using PhloxAPI.Models.Entities;
+﻿using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.AdministrationService
 {
     public interface IAdministrationService
     {
-        void AddNode(string name, int type);
+        void AddNode(string name, NodeTypes type);
         Node UpdateAmenity();
     }
 }

@@ -6,21 +6,22 @@ using PhloxAPI.Services.AdministrationService;
 
 namespace PhloxAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    public class AdminController : ControllerBase
+  [Route("api/[controller]/[action]")]
+  [ApiController]
+  public class AdminController : ControllerBase
+  {
+    private readonly IAdministrationService _administrationService;
+
+    public AdminController(IAdministrationService administrationService)
     {
-        private readonly IAdministrationService _administrationService;
-
-        public AdminController(IAdministrationService administrationService)
-        {
-            _administrationService = administrationService;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddNode(char buildingLetter)
-        {
-            return Ok("Building Added");
-        }
+      _administrationService = administrationService;
     }
+
+    [HttpPost]
+    public async Task<IActionResult> AddNode(int type, string name)
+    {
+      _administrationService.AddNode(name, (NodeTypes)type);
+      return Ok("Node Added");
+    }
+  }
 }
