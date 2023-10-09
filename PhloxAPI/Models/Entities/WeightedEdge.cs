@@ -9,6 +9,8 @@ namespace PhloxAPI.Models.Entities
   {
     public Guid Id { get; set; }
     public List<Node> Nodes { get; set; }
+    public int FirstNodeToSecondCardinal { get; set; }
+    public int SecondNodeToFirstCardinal { get; set; }
     public int Weight { get; set; }
   }
 }
