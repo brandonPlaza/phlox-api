@@ -32,16 +32,11 @@ namespace PhloxAPI.Services.AdministrationService
         FirstNodeToSecondCardinal = (int)direction,
         SecondNodeToFirstCardinal = flippedCardinal
       };
-      
+
       _context.Add(weightedEdge);
       await _context.SaveChangesAsync();
       
     }
-
-    /// <summary>
-    /// Takes a cardinal direction and sends back its opposite
-    /// </summary>
-    /// <param name="direction"></param>
     private static int FlipCardinals(CardinalDirection direction){
       if((int)direction <= 8){
         // Flips cardinal direction
@@ -57,7 +52,6 @@ namespace PhloxAPI.Services.AdministrationService
         }
       }
     }
-
     public void AddNode(string name, NodeTypes type)
     {
       var existingNode = _context.Nodes.SingleOrDefault(x => x.Name == name);
@@ -75,7 +69,6 @@ namespace PhloxAPI.Services.AdministrationService
       _context.Nodes.Add(newNode);
       _context.SaveChanges();
     }
-
     public Node UpdateAmenity()
     {
       throw new NotImplementedException();
