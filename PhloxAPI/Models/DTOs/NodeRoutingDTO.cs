@@ -13,5 +13,6 @@ namespace PhloxAPI.Models.DTOs
       public bool IsOutOfService { get; set; } = false;
       public bool Visited { get; set; }
       public Node? VisitedBy { get; set; }
+      public int DistanceFromStart { get; set; }
     }
 }

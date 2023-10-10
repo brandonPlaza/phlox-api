@@ -8,8 +8,8 @@ namespace PhloxAPI.Models.DTOs
 {
     public class WeightedEdgeDTO
     {
-      public Node? NodeOne { get; set; }
-      public Node? NodeTwo { get; set; }
+      public NodeRoutingDTO? NodeOne { get; set; }
+      public NodeRoutingDTO? NodeTwo { get; set; }
       public int NodeOneToTwoCardinal { get; set; }
       public int NodeTwoToOneCardinal { get; set; }
       public int Weight { get; set; }
