@@ -8,6 +8,8 @@ namespace PhloxAPI.Models.Entities
     public NodeTypes Type { get; set; }
     public string Name { get; set; }
     public List<Report> Reports { get; set; }
+    public Dictionary<Node, int> Neighbors { get; set; }
+    public Dictionary<Node, int> Cardinality { get; set; }
     public bool IsOutOfService { get; set; } = false;
   }
 }

@@ -1,6 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Routing.Internal;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
@@ -17,33 +15,44 @@ namespace PhloxAPI.Services.RoutingService
       _context = context;
     }
 
-    public async void RequestRoute(string source, string dest)
+    public async Task<(Dictionary<GraphNode, int>, Dictionary<GraphNode, GraphNode>)> RequestRoute(string source, string dest)
     {
-      var weightedEdgeDTOGraph = await _context.WeightedEdges.Include(x => x.Nodes).Select(x => new WeightedEdgeDTO(){
-        NodeOne = new NodeRoutingDTO(){ 
-          Name = x.Nodes[0].Name,
-          NodeType = x.Nodes[0].Type,
-          IsOutOfService = x.Nodes[0].IsOutOfService,
-          Visited = false,
-        },
-        NodeTwo = new NodeRoutingDTO(){
-          Name = x.Nodes[1].Name,
-          NodeType = x.Nodes[1].Type,
-          IsOutOfService = x.Nodes[1].IsOutOfService,
-          Visited = false,
-        },
-        NodeOneToTwoCardinal = x.FirstNodeToSecondCardinal,
-        NodeTwoToOneCardinal = x.SecondNodeToFirstCardinal,
-        Weight = x.Weight
-      }).ToListAsync();
+      var nodes = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinality).ToListAsync();
 
       Graph graph = new Graph();
-      graph.LoadGraph(weightedEdgeDTOGraph);
+      graph.LoadGraph(nodes);
 
-      Dijkstras(graph, graph.Nodes.Find(x => x.Name == source));
+      var results = Dijkstras(graph, graph.Nodes.Find(x => x.Name == source));
+      return results;
     }
 
-    private void Dijkstras(Graph graph, GraphNode source){
+    public List<GraphNode> ConvertNodeToGraphNode(List<Node> nodes){
+      List<GraphNode> convertedNodes = new();
+      foreach(Node node in nodes){
+        if(node.Neighbors == null){
+          node.Neighbors = new Dictionary<Node, int>();
+          node.Cardinality = new Dictionary<Node, int>();
+          continue;
+        }
+        List<Node> neighborKeys = node.Neighbors.Keys.ToList();
+        List<Node> cardinalityKeys = node.Cardinality.Keys.ToList();
+        for(int i = 0 ; i < neighborKeys.Count ; i++){
+          int neighborWeight = node.Neighbors[neighborKeys[i]];
+          int cardinalityValue = node.Cardinality[cardinalityKeys[i]];
+        }
+      }
+    }
+    public Dictionary<GraphNode, int> ParseNodeToGraphNodeDict(Dictionary<Node, int> keyValues){
+      Dictionary<GraphNode, int> parsedGraph = new();
+      List<Node> nodes = keyValues.Keys.ToList();
+      List<GraphNode> graphNodes = new();
+      List<int> values = new();
+      foreach(Node node in nodes){
+        values.Add(keyValues[node]);
+      }
+    }
+
+    private (Dictionary<GraphNode, int>, Dictionary<GraphNode, GraphNode>) Dijkstras(Graph graph, GraphNode source){
       // Start with graph and source node
       // Maps nodes to shortest length from source
       Dictionary<GraphNode, int> totalCosts = new();
@@ -94,12 +103,40 @@ namespace PhloxAPI.Services.RoutingService
               else{
                 prevNodes.Add(neighbor, closestNode);
               }
-              
+              priorityQueue = UpdatePriorityQueue(priorityQueue, neighbor, path);
             }
           }
         }
       }
+      return(totalCosts, prevNodes);
+    }
 
+    // This has to exist thanks to microsoft not having a separate implementation of PQ with updatable priorities
+    private PriorityQueue<GraphNode, int> UpdatePriorityQueue(PriorityQueue<GraphNode, int> priorityQueue, GraphNode updatedGraphNode, int updatedPriority){
+      List<GraphNode> graphNodes = new();
+      List<int> priorities = new();
+
+      for(int i = 0; i<priorityQueue.Count; i++){
+        GraphNode tempGraphNode;
+        int tempPriority;
+
+        priorityQueue.TryPeek(out tempGraphNode, out tempPriority);
+        priorityQueue.Dequeue();
+
+        if(tempGraphNode.Equals(updatedGraphNode)){
+          priorityQueue.Enqueue(updatedGraphNode, updatedPriority);
+        }
+        else{
+          graphNodes.Add(tempGraphNode);
+          priorities.Add(tempPriority);
+        }
+      }
+      PriorityQueue<GraphNode, int> newPriorityQueue = new();
+      for(int i = 0; i < graphNodes.Count; i++){
+        newPriorityQueue.Enqueue(graphNodes[i], priorities[i]);
+      }
+
+      return newPriorityQueue;
     }
   }
 }

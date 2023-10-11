@@ -15,17 +15,12 @@ namespace PhloxAPI.Services.RoutingService.Classes
       _nodes = new();
     }
 
-    public void LoadGraph(List<WeightedEdgeDTO> edges){
-      foreach(WeightedEdgeDTO edge in edges){
+    public void LoadGraph(List<NodeRoutingDTO> edges){
+      foreach(NodeRoutingDTO edge in edges){
         // Check dupes and give both an existing instance of the node or a new one if it is new
-        GraphNode graphNodeOne = PopulateGraphNode(edge.NodeOne);
-        GraphNode graphNodeTwo = PopulateGraphNode(edge.NodeTwo);
-        // Take new or existing nodes and add them as neighbors
-        graphNodeOne.AddNeighbor(graphNodeTwo, edge.Weight, edge.NodeOneToTwoCardinal);
-        graphNodeTwo.AddNeighbor(graphNodeOne, edge.Weight, edge.NodeTwoToOneCardinal);
+        GraphNode graphNode = PopulateGraphNode(edge);
         // Add newly created nodes to _nodes
-        _nodes.Add(graphNodeOne);
-        _nodes.Add(graphNodeTwo);
+        _nodes.Add(graphNode);
       }
     }
 

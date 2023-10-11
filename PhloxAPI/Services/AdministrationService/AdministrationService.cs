@@ -18,22 +18,28 @@ namespace PhloxAPI.Services.AdministrationService
     {
       // Gets node corresponding to the name in nodeOne and stores it in nOne
       // Specifically includes the cyclical components like its list of nodes
-      var nOne = await _context.Nodes.SingleOrDefaultAsync(x => x.Name == nodeOne);
+      var nOne = await _context.Nodes.Include(x => x.Neighbors).SingleOrDefaultAsync(x => x.Name == nodeOne);
 
       // This does the same thing as above but for the other node in the edge
-      var nTwo = await _context.Nodes.SingleOrDefaultAsync(x => x.Name == nodeTwo);
+      var nTwo = await _context.Nodes.Include(x => x.Neighbors).SingleOrDefaultAsync(x => x.Name == nodeTwo);
 
       var flippedCardinal = FlipCardinals(direction);
 
-      var weightedEdge = new WeightedEdge()
-      {
-        Nodes = new List<Node>(){ nOne, nTwo },
-        Weight = weight,
-        FirstNodeToSecondCardinal = (int)direction,
-        SecondNodeToFirstCardinal = flippedCardinal
-      };
+      if(nOne.Neighbors == null){
+        nOne.Neighbors = new Dictionary<Node, int>();
+      }
+      if(nTwo.Neighbors == null){
+        nTwo.Neighbors = new Dictionary<Node, int>();
+      }
 
-      _context.Add(weightedEdge);
+      nOne.Neighbors.Add(nTwo, weight);
+      nTwo.Neighbors.Add(nOne, weight);
+
+      nOne.Cardinality.Add(nTwo, (int)direction);
+      nTwo.Cardinality.Add(nOne, flippedCardinal);
+
+      _context.Nodes.Update(nOne);
+      _context.Nodes.Update(nTwo);
       await _context.SaveChangesAsync();
       
     }
