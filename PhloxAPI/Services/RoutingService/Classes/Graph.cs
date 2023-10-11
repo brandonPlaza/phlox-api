@@ -15,22 +15,8 @@ namespace PhloxAPI.Services.RoutingService.Classes
       _nodes = new();
     }
 
-    public void LoadGraph(List<NodeRoutingDTO> edges){
-      foreach(NodeRoutingDTO edge in edges){
-        // Check dupes and give both an existing instance of the node or a new one if it is new
-        GraphNode graphNode = PopulateGraphNode(edge);
-        // Add newly created nodes to _nodes
-        _nodes.Add(graphNode);
-      }
-    }
-
-    private GraphNode PopulateGraphNode(NodeRoutingDTO nodeDTO){
-      if(!IsDuplicateNode(nodeDTO.Name)){
-        return new GraphNode(nodeDTO.Name);
-      }
-      else{
-        return _nodes.Find(x => x.Name == nodeDTO.Name);
-      }
+    public void LoadGraph(List<GraphNode> graphNodes){
+      _nodes = graphNodes;
     }
 
     private bool IsDuplicateNode(string name){

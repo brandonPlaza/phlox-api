@@ -18,39 +18,42 @@ namespace PhloxAPI.Services.RoutingService
     public async Task<(Dictionary<GraphNode, int>, Dictionary<GraphNode, GraphNode>)> RequestRoute(string source, string dest)
     {
       var nodes = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinality).ToListAsync();
-
+      var graphNodes = ConvertNodeToGraphNode(nodes);
       Graph graph = new Graph();
-      graph.LoadGraph(nodes);
+      graph.LoadGraph(graphNodes);
 
       var results = Dijkstras(graph, graph.Nodes.Find(x => x.Name == source));
       return results;
     }
 
+    // I will optimize this later
     public List<GraphNode> ConvertNodeToGraphNode(List<Node> nodes){
+      // Goal, covert nodes -> convertedNodes
       List<GraphNode> convertedNodes = new();
       foreach(Node node in nodes){
+        // Node w no neighbors gets new dicts
         if(node.Neighbors == null){
           node.Neighbors = new Dictionary<Node, int>();
           node.Cardinality = new Dictionary<Node, int>();
           continue;
         }
+        // Get all neighbors to current node
         List<Node> neighborKeys = node.Neighbors.Keys.ToList();
         List<Node> cardinalityKeys = node.Cardinality.Keys.ToList();
+        GraphNode newNode = new(node.Name);
+        // Find them in nodes so that they carry their data and dont lose it due to cyclical issues
         for(int i = 0 ; i < neighborKeys.Count ; i++){
+          // Get the values
           int neighborWeight = node.Neighbors[neighborKeys[i]];
           int cardinalityValue = node.Cardinality[cardinalityKeys[i]];
+
+          newNode.AddNeighbor(new GraphNode(neighborKeys[i].Name), neighborWeight, cardinalityValue);
         }
+        convertedNodes.Add(newNode);
       }
+      return convertedNodes;
     }
-    public Dictionary<GraphNode, int> ParseNodeToGraphNodeDict(Dictionary<Node, int> keyValues){
-      Dictionary<GraphNode, int> parsedGraph = new();
-      List<Node> nodes = keyValues.Keys.ToList();
-      List<GraphNode> graphNodes = new();
-      List<int> values = new();
-      foreach(Node node in nodes){
-        values.Add(keyValues[node]);
-      }
-    }
+
 
     private (Dictionary<GraphNode, int>, Dictionary<GraphNode, GraphNode>) Dijkstras(Graph graph, GraphNode source){
       // Start with graph and source node
