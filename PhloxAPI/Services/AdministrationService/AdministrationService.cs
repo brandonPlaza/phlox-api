@@ -14,7 +14,7 @@ namespace PhloxAPI.Services.AdministrationService
       _context = context;
     }
 
-    public async Task AddEdge(string nodeOne, string nodeTwo, int weight, CardinalDirection direction)
+    public async Task AddEdge(string nodeOne, string nodeTwo, int weight, int direction)
     {
       // Gets node corresponding to the name in nodeOne and stores it in nOne
       // Specifically includes the cyclical components like its list of nodes
@@ -23,7 +23,7 @@ namespace PhloxAPI.Services.AdministrationService
       // This does the same thing as above but for the other node in the edge
       var nTwo = await _context.Nodes.Include(x => x.Neighbors).SingleOrDefaultAsync(x => x.Name == nodeTwo);
 
-      var flippedCardinal = FlipCardinals(direction);
+      var flippedCardinal = FlipCardinals((CardinalDirection)direction);
 
       if(nOne.Neighbors == null){
         nOne.Neighbors = new List<Neighbor>();
@@ -32,26 +32,41 @@ namespace PhloxAPI.Services.AdministrationService
         nTwo.Neighbors = new List<Neighbor>();
       }
 
-      nOne.Neighbors.Append(new Neighbor(){
+      var tempNeighborOne = new Neighbor(){
         Node = nTwo,
-        Weight = (int)direction
-      });
-      
-      nTwo.Neighbors.Append(new Neighbor(){
+        Weight = weight
+      };
+
+      var tempNeighborTwo = new Neighbor(){
         Node = nOne,
-        Weight = flippedCardinal
-      });
+        Weight = weight
+      };
+
+      var tempCardOneToTwo = new Cardinality(){
+        Neighbor = nTwo,
+        CardinalDirection = (CardinalDirection)direction
+      };
+
+      var tempCardTwoToOne = new Cardinality(){
+        Neighbor = nOne,
+        CardinalDirection = (CardinalDirection)flippedCardinal
+      };
+
+      nOne.Neighbors.Append(tempNeighborOne);
+      
+      nTwo.Neighbors.Append(tempNeighborTwo);
 
       _context.Nodes.Update(nOne);
       _context.Nodes.Update(nTwo);
-
+      _context.Neighbors.Add(tempNeighborOne);
+      _context.Neighbors.Add(tempNeighborTwo);
       await _context.SaveChangesAsync();
       
     }
     private static int FlipCardinals(CardinalDirection direction){
       if((int)direction < 8){
         // Flips cardinal direction
-        return (((int)direction + 5)%8)-1;
+        return ((int)direction + 4)%8;
       }
       else{
         // This would be so much nicer w the ternary op but C# wont let me :(
@@ -79,6 +94,11 @@ namespace PhloxAPI.Services.AdministrationService
       _context.Nodes.Add(newNode);
       _context.SaveChanges();
     }
+
+    public void RemoveNode(){
+      
+    }
+
     public Node UpdateAmenity()
     {
       throw new NotImplementedException();

@@ -3690,26 +3690,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\brand\\.nuget\\packages\\": {}
+    "/home/kpanik/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
+      "projectUniqueName": "/home/kpanik/test/phlox-api/PhloxAPI/PhloxAPI.csproj",
       "projectName": "PhloxAPI",
-      "projectPath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
-      "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
-      "outputPath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\obj\\",
+      "projectPath": "/home/kpanik/test/phlox-api/PhloxAPI/PhloxAPI.csproj",
+      "packagesPath": "/home/kpanik/.nuget/packages/",
+      "outputPath": "/home/kpanik/test/phlox-api/PhloxAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/kpanik/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3776,6 +3774,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.11, 7.0.11]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -3784,7 +3788,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.111/RuntimeIdentifierGraph.json"
       }
     }
   }
