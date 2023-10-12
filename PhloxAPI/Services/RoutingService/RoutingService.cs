@@ -17,7 +17,7 @@ namespace PhloxAPI.Services.RoutingService
 
     public async Task<(Dictionary<GraphNode, int>, Dictionary<GraphNode, GraphNode>)> RequestRoute(string source, string dest)
     {
-      var nodes = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinality).ToListAsync();
+      var nodes = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinalities).ToListAsync();
       var graphNodes = ConvertNodeToGraphNode(nodes);
       Graph graph = new Graph();
       graph.LoadGraph(graphNodes);
@@ -33,27 +33,45 @@ namespace PhloxAPI.Services.RoutingService
       foreach(Node node in nodes){
         // Node w no neighbors gets new dicts
         if(node.Neighbors == null){
-          node.Neighbors = new Dictionary<Node, int>();
-          node.Cardinality = new Dictionary<Node, int>();
+          node.Neighbors = new List<Neighbor>();
           continue;
         }
         // Get all neighbors to current node
-        List<Node> neighborKeys = node.Neighbors.Keys.ToList();
-        List<Node> cardinalityKeys = node.Cardinality.Keys.ToList();
+        List<Node> neighbors = new();
+        List<int> neighborsWeights = new();
+        List<Node> cardinalityNodes = new();
+        List<int> cardinalities = new();
+
+        foreach(Neighbor neighborNode in node.Neighbors){
+          neighbors.Append(neighborNode.Node);
+          neighborsWeights.Append(neighborNode.Weight);
+        }
+        foreach(Cardinality cardinality in node.Cardinalities){
+          cardinalityNodes.Append(cardinality.Neighbor);
+          cardinalities.Append((int)cardinality.CardinalDirection);
+        }
         GraphNode newNode = new(node.Name);
         // Find them in nodes so that they carry their data and dont lose it due to cyclical issues
-        for(int i = 0 ; i < neighborKeys.Count ; i++){
+        for(int i = 0 ; i < neighbors.Count ; i++){
           // Get the values
-          int neighborWeight = node.Neighbors[neighborKeys[i]];
-          int cardinalityValue = node.Cardinality[cardinalityKeys[i]];
+          int neighborWeight = neighborsWeights[i];
+          int cardinalityValue = cardinalities[i];
 
-          newNode.AddNeighbor(new GraphNode(neighborKeys[i].Name), neighborWeight, cardinalityValue);
+          newNode.AddNeighbor(new GraphNode(neighbors[i].Name), neighborWeight, cardinalityValue);
         }
         convertedNodes.Add(newNode);
       }
       return convertedNodes;
     }
 
+    // private (List<Node>, List<int>) ExtractValues(Node nodeData, int count){
+    //   List<Node> node = new();
+    //   List<int> value = new();
+    //   for(int i = 0 ; i < count ; i++){
+        
+    //   }
+    //   return (node, value);
+    // }
 
     private (Dictionary<GraphNode, int>, Dictionary<GraphNode, GraphNode>) Dijkstras(Graph graph, GraphNode source){
       // Start with graph and source node

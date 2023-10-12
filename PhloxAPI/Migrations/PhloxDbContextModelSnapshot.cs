@@ -41,6 +41,25 @@ namespace PhloxAPI.Migrations
                     b.ToTable("Buildings");
                 });
 
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Cardinality", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CardinalDirection")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("NeighborId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NeighborId");
+
+                    b.ToTable("Cardinalities");
+                });
+
             modelBuilder.Entity("PhloxAPI.Models.Entities.HelpRequest", b =>
                 {
                     b.Property<Guid>("Id")
@@ -81,6 +100,25 @@ namespace PhloxAPI.Migrations
                     b.ToTable("HelpRequests");
                 });
 
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Neighbor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("NodeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NodeId");
+
+                    b.ToTable("Neighbors");
+                });
+
             modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
                 {
                     b.Property<Guid>("Id")
@@ -100,14 +138,9 @@ namespace PhloxAPI.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("WeightedEdgeId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex("WeightedEdgeId");
 
                     b.ToTable("Nodes");
                 });
@@ -166,24 +199,26 @@ namespace PhloxAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.Entities.WeightedEdge", b =>
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Cardinality", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("PhloxAPI.Models.Entities.Node", "Neighbor")
+                        .WithMany("Cardinalities")
+                        .HasForeignKey("NeighborId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("FirstNodeToSecondCardinal")
-                        .HasColumnType("int");
+                    b.Navigation("Neighbor");
+                });
 
-                    b.Property<int>("SecondNodeToFirstCardinal")
-                        .HasColumnType("int");
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Neighbor", b =>
+                {
+                    b.HasOne("PhloxAPI.Models.Entities.Node", "Node")
+                        .WithMany("Neighbors")
+                        .HasForeignKey("NodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WeightedEdges");
+                    b.Navigation("Node");
                 });
 
             modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
@@ -191,10 +226,6 @@ namespace PhloxAPI.Migrations
                     b.HasOne("PhloxAPI.Models.Entities.User", null)
                         .WithMany("FavouriteAmenities")
                         .HasForeignKey("UserId");
-
-                    b.HasOne("PhloxAPI.Models.Entities.WeightedEdge", null)
-                        .WithMany("Nodes")
-                        .HasForeignKey("WeightedEdgeId");
                 });
 
             modelBuilder.Entity("PhloxAPI.Models.Entities.Report", b =>
@@ -210,17 +241,16 @@ namespace PhloxAPI.Migrations
 
             modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
                 {
+                    b.Navigation("Cardinalities");
+
+                    b.Navigation("Neighbors");
+
                     b.Navigation("Reports");
                 });
 
             modelBuilder.Entity("PhloxAPI.Models.Entities.User", b =>
                 {
                     b.Navigation("FavouriteAmenities");
-                });
-
-            modelBuilder.Entity("PhloxAPI.Models.Entities.WeightedEdge", b =>
-                {
-                    b.Navigation("Nodes");
                 });
 #pragma warning restore 612, 618
         }

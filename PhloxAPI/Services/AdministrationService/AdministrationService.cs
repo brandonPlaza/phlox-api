@@ -26,25 +26,30 @@ namespace PhloxAPI.Services.AdministrationService
       var flippedCardinal = FlipCardinals(direction);
 
       if(nOne.Neighbors == null){
-        nOne.Neighbors = new Dictionary<Node, int>();
+        nOne.Neighbors = new List<Neighbor>();
       }
       if(nTwo.Neighbors == null){
-        nTwo.Neighbors = new Dictionary<Node, int>();
+        nTwo.Neighbors = new List<Neighbor>();
       }
 
-      nOne.Neighbors.Add(nTwo, weight);
-      nTwo.Neighbors.Add(nOne, weight);
-
-      nOne.Cardinality.Add(nTwo, (int)direction);
-      nTwo.Cardinality.Add(nOne, flippedCardinal);
+      nOne.Neighbors.Append(new Neighbor(){
+        Node = nTwo,
+        Weight = (int)direction
+      });
+      
+      nTwo.Neighbors.Append(new Neighbor(){
+        Node = nOne,
+        Weight = flippedCardinal
+      });
 
       _context.Nodes.Update(nOne);
       _context.Nodes.Update(nTwo);
+
       await _context.SaveChangesAsync();
       
     }
     private static int FlipCardinals(CardinalDirection direction){
-      if((int)direction <= 8){
+      if((int)direction < 8){
         // Flips cardinal direction
         return (((int)direction + 5)%8)-1;
       }
@@ -69,7 +74,6 @@ namespace PhloxAPI.Services.AdministrationService
       {
         Name = name,
         Type = type,
-        Reports = new List<Report>(),
       };
 
       _context.Nodes.Add(newNode);
