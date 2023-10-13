@@ -20,7 +20,7 @@ namespace PhloxAPI.Controllers
     public async Task<IActionResult> GetRoute(string source, string dest)
     {
       var results = await _routingService.RequestRoute(source, dest);
-      return Ok("");
+      return Ok(results);
     }
   }
 }

@@ -97,6 +97,7 @@ namespace PhloxAPI.Services.RoutingService
       foreach(GraphNode node in graph.Nodes){
         if(!node.Equals(source)){
           totalCosts.Add(node, int.MaxValue);
+          break;
         }
       }
 

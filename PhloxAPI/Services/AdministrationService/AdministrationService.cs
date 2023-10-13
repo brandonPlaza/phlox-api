@@ -60,6 +60,8 @@ namespace PhloxAPI.Services.AdministrationService
       _context.Nodes.Update(nTwo);
       _context.Neighbors.Add(tempNeighborOne);
       _context.Neighbors.Add(tempNeighborTwo);
+      _context.Cardinalities.Add(tempCardOneToTwo);
+      _context.Cardinalities.Add(tempCardTwoToOne);
       await _context.SaveChangesAsync();
       
     }
@@ -95,8 +97,18 @@ namespace PhloxAPI.Services.AdministrationService
       _context.SaveChanges();
     }
 
-    public void RemoveNode(){
-      
+    public async Task<string> RemoveNode(string nodeName){
+      var removedNode = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinalities).SingleOrDefaultAsync(x => x.Name == nodeName);
+      if(removedNode != null){
+        _context.Nodes.Remove(removedNode);
+        _context.Neighbors.RemoveRange(removedNode.Neighbors);
+        _context.Cardinalities.RemoveRange(removedNode.Cardinalities);
+        await _context.SaveChangesAsync();
+        return "Node removed";
+      }
+      else{
+        return "No node found";
+      }
     }
 
     public Node UpdateAmenity()
