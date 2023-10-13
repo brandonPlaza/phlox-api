@@ -5,21 +5,22 @@ using PhloxAPI.Services.RoutingService;
 
 namespace PhloxAPI.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    public class RoutingController : ControllerBase
+  [Route("api/[controller]/[action]")]
+  [ApiController]
+  public class RoutingController : ControllerBase
+  {
+    private readonly IRoutingService _routingService;
+
+    public RoutingController(IRoutingService routingService)
     {
-        private readonly IRoutingService _routingService;
-
-        public RoutingController(IRoutingService routingService)
-        {
-            _routingService = routingService;
-        }
-
-        // [HttpGet]
-        // public async Task<IActionResult> GetRoute(char currBuilding, char destBuilding)
-        // {
-
-        // }
+      _routingService = routingService;
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetRoute(string source, string dest)
+    {
+      var results = await _routingService.RequestRoute(source, dest);
+      return Ok(results);
+    }
+  }
 }

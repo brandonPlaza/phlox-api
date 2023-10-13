@@ -14,90 +14,72 @@ namespace PhloxAPI.Services.AdministrationService
       _context = context;
     }
 
-    public async Task AddEdge(string nodeOne, string nodeTwo, int weight, CardinalDirection direction)
+    public async Task AddEdge(string nodeOne, string nodeTwo, int weight, int direction)
     {
       // Gets node corresponding to the name in nodeOne and stores it in nOne
       // Specifically includes the cyclical components like its list of nodes
-      var nOne = await _context.Nodes.Include(x => x.CardinalConnections).Select(x => new NodeDTO()
-      {
-        Id = x.Id,
-        NodeType = x.Type,
-        Name = x.Name,
-        CardinalConnections = x.CardinalConnections,
-        Reports = x.Reports
-      }).SingleOrDefaultAsync(x => x.Name == nodeOne);
+      var nOne = await _context.Nodes.Include(x => x.Neighbors).SingleOrDefaultAsync(x => x.Name == nodeOne);
 
       // This does the same thing as above but for the other node in the edge
-      var nTwo = await _context.Nodes.Include(x => x.CardinalConnections).Select(x => new NodeDTO()
-      {
-        Id = x.Id,
-        NodeType = x.Type,
-        Name = x.Name,
-        CardinalConnections = x.CardinalConnections,
-        Reports = x.Reports
-      }).SingleOrDefaultAsync(x => x.Name == nodeOne);
+      var nTwo = await _context.Nodes.Include(x => x.Neighbors).SingleOrDefaultAsync(x => x.Name == nodeTwo);
 
-      if(nOne != null && nTwo != null){
-        var nodeOneUpdated = new Node()
-        {
-          Id = nOne.Id,
-          Type = nOne.NodeType,
-          Name = nOne.Name,
-          CardinalConnections = nOne.CardinalConnections,
-          Reports = nOne.Reports
-        };
-        
-        var nodeTwoUpdated = new Node()
-        {
-          Id = nTwo.Id,
-          Type = nTwo.NodeType,
-          Name = nTwo.Name,
-          CardinalConnections = nTwo.CardinalConnections,
-          Reports = nTwo.Reports
-        };
+      var flippedCardinal = FlipCardinals((CardinalDirection)direction);
 
-        flipCardinals(ref nodeOneUpdated, ref nodeTwoUpdated, direction);
-        var weightedEdge = new WeightedEdge()
-        {
-          Nodes = new List<Node>(){ nodeOneUpdated, nodeTwoUpdated },
-          Weight = weight
-        };
-        _context.Update(nodeOneUpdated);
-        _context.Update(nodeTwoUpdated);
-        _context.Add(weightedEdge);
-        await _context.SaveChangesAsync();
+      if(nOne.Neighbors == null){
+        nOne.Neighbors = new List<Neighbor>();
       }
+      if(nTwo.Neighbors == null){
+        nTwo.Neighbors = new List<Neighbor>();
+      }
+
+      var tempNeighborOne = new Neighbor(){
+        Node = nTwo,
+        Weight = weight
+      };
+
+      var tempNeighborTwo = new Neighbor(){
+        Node = nOne,
+        Weight = weight
+      };
+
+      var tempCardOneToTwo = new Cardinality(){
+        Neighbor = nTwo,
+        CardinalDirection = (CardinalDirection)direction
+      };
+
+      var tempCardTwoToOne = new Cardinality(){
+        Neighbor = nOne,
+        CardinalDirection = (CardinalDirection)flippedCardinal
+      };
+
+      nOne.Neighbors.Append(tempNeighborOne);
+      
+      nTwo.Neighbors.Append(tempNeighborTwo);
+
+      _context.Nodes.Update(nOne);
+      _context.Nodes.Update(nTwo);
+      _context.Neighbors.Add(tempNeighborOne);
+      _context.Neighbors.Add(tempNeighborTwo);
+      _context.Cardinalities.Add(tempCardOneToTwo);
+      _context.Cardinalities.Add(tempCardTwoToOne);
+      await _context.SaveChangesAsync();
+      
     }
-
-    /// <summary>
-    /// Takes two nodes with a given cardinality from the first node to the second,
-    /// then flips the cardinality to get cardinality from second to first since the graph
-    /// is not directed
-    /// </summary>
-    /// <param name="nodeOneUpdated"></param>
-    /// <param name="nodeTwoUpdated"></param>
-    /// <param name="direction"></param>
-    private void flipCardinals(ref Node nodeOneUpdated, ref Node nodeTwoUpdated, CardinalDirection direction){
-      // Assumption: Cardinal direction provided is from nodeOne to nodeTwo
-      nodeOneUpdated.CardinalConnections[(int)direction] = nodeTwoUpdated;
-
-      // This section flips cardinal directions for nodeTwo -> nodeOne
-      if((int)direction <= 8){
+    private static int FlipCardinals(CardinalDirection direction){
+      if((int)direction < 8){
         // Flips cardinal direction
-        int flippedDirection = (((int)direction + 5)%8)-1;
-        nodeTwoUpdated.CardinalConnections[flippedDirection] = nodeOneUpdated;
+        return ((int)direction + 4)%8;
       }
       else{
         // This would be so much nicer w the ternary op but C# wont let me :(
         if(direction == CardinalDirection.Up){
-          nodeTwoUpdated.CardinalConnections[(int)CardinalDirection.Down] = nodeOneUpdated;
+          return (int)CardinalDirection.Down;
         }
         else{
-          nodeTwoUpdated.CardinalConnections[(int)CardinalDirection.Up] = nodeOneUpdated;
+          return (int)CardinalDirection.Up;
         }
       }
     }
-
     public void AddNode(string name, NodeTypes type)
     {
       var existingNode = _context.Nodes.SingleOrDefault(x => x.Name == name);
@@ -109,12 +91,24 @@ namespace PhloxAPI.Services.AdministrationService
       {
         Name = name,
         Type = type,
-        Reports = new List<Report>(),
-        CardinalConnections = new List<Node>(10)
       };
 
       _context.Nodes.Add(newNode);
       _context.SaveChanges();
+    }
+
+    public async Task<string> RemoveNode(string nodeName){
+      var removedNode = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinalities).SingleOrDefaultAsync(x => x.Name == nodeName);
+      if(removedNode != null){
+        _context.Nodes.Remove(removedNode);
+        _context.Neighbors.RemoveRange(removedNode.Neighbors);
+        _context.Cardinalities.RemoveRange(removedNode.Cardinalities);
+        await _context.SaveChangesAsync();
+        return "Node removed";
+      }
+      else{
+        return "No node found";
+      }
     }
 
     public Node UpdateAmenity()

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PhloxAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class RemovedCascadingDeleteError : Migration
+    public partial class ChangedNodeSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,18 +62,6 @@ namespace PhloxAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WeightedEdges",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Weight = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WeightedEdges", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Nodes",
                 columns: table => new
                 {
@@ -81,8 +69,7 @@ namespace PhloxAPI.Migrations
                     Type = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsOutOfService = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    WeightedEdgeId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -92,11 +79,44 @@ namespace PhloxAPI.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cardinalities",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NeighborId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CardinalDirection = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cardinalities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Nodes_WeightedEdges_WeightedEdgeId",
-                        column: x => x.WeightedEdgeId,
-                        principalTable: "WeightedEdges",
-                        principalColumn: "Id");
+                        name: "FK_Cardinalities_Nodes_NeighborId",
+                        column: x => x.NeighborId,
+                        principalTable: "Nodes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Neighbors",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NodeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Weight = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Neighbors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Neighbors_Nodes_NodeId",
+                        column: x => x.NodeId,
+                        principalTable: "Nodes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,14 +139,19 @@ namespace PhloxAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cardinalities_NeighborId",
+                table: "Cardinalities",
+                column: "NeighborId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Neighbors_NodeId",
+                table: "Neighbors",
+                column: "NodeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Nodes_UserId",
                 table: "Nodes",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Nodes_WeightedEdgeId",
-                table: "Nodes",
-                column: "WeightedEdgeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reports_AmenityId",
@@ -141,7 +166,13 @@ namespace PhloxAPI.Migrations
                 name: "Buildings");
 
             migrationBuilder.DropTable(
+                name: "Cardinalities");
+
+            migrationBuilder.DropTable(
                 name: "HelpRequests");
+
+            migrationBuilder.DropTable(
+                name: "Neighbors");
 
             migrationBuilder.DropTable(
                 name: "Reports");
@@ -151,9 +182,6 @@ namespace PhloxAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "WeightedEdges");
         }
     }
 }

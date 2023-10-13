@@ -5,7 +5,8 @@ namespace PhloxAPI.Services.AdministrationService
     public interface IAdministrationService
     {
         void AddNode(string name, NodeTypes type);
-        Task AddEdge(string nodeOne, string nodeTwo, int weight, CardinalDirection direction);
+        Task AddEdge(string nodeOne, string nodeTwo, int weight, int direction);
+        Task<string> RemoveNode(string nodeName);
         Node UpdateAmenity();
     }
 }

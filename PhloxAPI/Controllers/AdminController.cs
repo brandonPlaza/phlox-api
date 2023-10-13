@@ -23,5 +23,22 @@ namespace PhloxAPI.Controllers
       _administrationService.AddNode(name, (NodeTypes)type);
       return Ok("Node Added");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> AddWeightedEdge(string nodeOne, string nodeTwo, int weight, int direction)
+    {
+      await _administrationService.AddEdge(nodeOne, nodeTwo, weight, direction);
+      return Ok("Edge Added");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RemoveNode(string nodeName){
+      var response = await _administrationService.RemoveNode(nodeName);
+      return Ok(response);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Test(string nodeName){
+      return Ok(nodeName);
+    }
   }
 }

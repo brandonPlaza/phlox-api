@@ -19,7 +19,8 @@ namespace PhloxAPI.Data
 
     public DbSet<User> Users { get; set; }
     public DbSet<Node> Nodes { get; set; }
-    public DbSet<WeightedEdge> WeightedEdges { get; set; }
+    public DbSet<Neighbor> Neighbors { get; set; }
+    public DbSet<Cardinality> Cardinalities { get; set; }
     public DbSet<Report> Reports { get; set; }
     public DbSet<Building> Buildings { get; set; }
     public DbSet<HelpRequest> HelpRequests { get; set; }
