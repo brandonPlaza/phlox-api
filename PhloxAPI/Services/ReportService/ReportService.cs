@@ -5,71 +5,97 @@ using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.ReportService
 {
-    public class ReportService : IReportService
-    {
-        private readonly PhloxDbContext _context;
+	public class ReportService : IReportService
+	{
+		private readonly PhloxDbContext _context;
 
-        public ReportService(PhloxDbContext context)
-        {
-            _context = context;
-        }
+		public ReportService(PhloxDbContext context)
+		{
+			_context = context;
+		}
 
-        public List<Report> GetReports()
-        {
-            return _context.Reports.Include(r => r.Amenity).ToList();
-        }
+		public List<Report> GetReports()
+		{
+			return _context.Reports.Include(r => r.NodeAffected).ToList();
+		}
 
-        public void PostReport(int reportType, string amenityName)
-        {
-            var amenity = _context.Nodes.Include(a => a.Reports).SingleOrDefault(a => a.Name == amenityName);
-            if (amenity != null)
-            {
-                var newReport = new Report { Type = (ReportType)reportType, Amenity = amenity };
-                amenity.Reports.Add(newReport);
-                amenity.IsOutOfService = true;
-                _context.Reports.Add(newReport);
-                _context.SaveChanges();
-            }
-        }
+		public bool PostReport(string nodeAffected, string userMessage)
+		{
+			var node = _context.Nodes.SingleOrDefault(n => n.Name == nodeAffected);
 
-        public List<DownServiceDTO> GetAllDownServices()
-        {
-            var amenities = _context.Nodes.Include(a => a.Reports).Where(a => a.IsOutOfService == true).ToList();
-            var amenityDtos = new List<DownServiceDTO>();
-            foreach(var amenity in amenities)
-            {
-                amenityDtos.Add(
-                    new DownServiceDTO
-                    {
-                        Name = amenity.Name,
-                        Type = amenity.Type.ToString(),
-                        ReportCount = amenity.Reports.Count,
-                        IsOutOfService = amenity.IsOutOfService,
-                    }
-                );
-            }
-            return amenityDtos;
-        }
+			if (node != null)
+			{
+				var newReport = new Report
+				{
+					NodeAffected = node,
+					UserMessage = userMessage,
+					ReportedAt = DateTime.Now
+				};
 
-        public List<string> GetAllAmenityNames()
-        {
-            var amenities = _context.Nodes.ToList();
-            var amenityNames = new List<string>();
-            foreach(var amenity in amenities)
-            {
-                amenityNames.Add(amenity.Name);
-            }
-            return amenityNames;
-        }
+				node.Reports.Add(newReport);
+				
+				if (!node.IsOutOfService)
+				{
+					node.IsOutOfService = true;
+					node.OutOfServiceHistory.Add(
+						new OutOfService
+						{
+							ReportedAt = DateTime.Now,
+							AffectedNode = node,
+						});
+				}
 
-        public List<string> GetAllReportTypes()
-        {
-            var names = new List<string>();
-            foreach(ReportType reporttype in (ReportType[]) Enum.GetValues(typeof(ReportType)))
-            {
-                names.Add(reporttype.ToString());
-            }
-            return names;
-        }
-    }
+				_context.Reports.Add(newReport);
+				_context.SaveChanges();
+
+				return true;
+			}
+
+			return false;
+		}
+
+
+		public List<NodeDTO> GetNodes()
+		{
+			var nodes = _context.Nodes.Include(r => r.Reports).Include(o => o.OutOfServiceHistory).ToList();
+			var nodesDtos = new List<NodeDTO>();
+			foreach (var node in nodes)
+			{
+				var reportDtos = node.Reports.Select(r => new ReportDTO
+				{
+					Id = r.Id,
+					UserMessage = r.UserMessage,
+					ReportedAt = r.ReportedAt
+				}).ToList();
+
+				nodesDtos.Add(
+					new NodeDTO
+					{
+						Id = node.Id,
+						Name = node.Name,
+						IsOutOfService = node.IsOutOfService,
+						NodeType = node.Type,
+						Reports = reportDtos,
+						OutOfServiceHistory = node.OutOfServiceHistory
+					}
+				);
+			}
+			return nodesDtos;
+		}
+
+
+		public void RemoveAllReports()
+		{
+			var reports = _context.Reports.ToList();
+			_context.Reports.RemoveRange(reports);
+
+			var affectedNodes = _context.Nodes.Where(n => n.Reports.Any());
+			foreach (var node in affectedNodes)
+			{
+				node.IsOutOfService = false;
+			}
+
+			_context.SaveChanges();
+		}
+	}
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj": {}
+    "C:\\Development\\phlox-api\\PhloxAPI\\PhloxAPI.csproj": {}
   },
   "projects": {
-    "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj": {
+    "C:\\Development\\phlox-api\\PhloxAPI\\PhloxAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
+        "projectUniqueName": "C:\\Development\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
         "projectName": "PhloxAPI",
-        "projectPath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
-        "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
-        "outputPath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\obj\\",
+        "projectPath": "C:\\Development\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
+        "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
+        "outputPath": "C:\\Development\\phlox-api\\PhloxAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dylan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

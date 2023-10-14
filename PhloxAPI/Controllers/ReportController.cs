@@ -24,28 +24,31 @@ namespace PhloxAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddReport(int reportType, string amenityName)
+        public async Task<IActionResult> AddReport(string nodeAffected, string userMessage = null)
         {
-            _reportsService.PostReport(reportType, amenityName);
-            return Ok("Report Added");
-        }
+			bool reportAdded = _reportsService.PostReport(nodeAffected, userMessage);
+
+			if (reportAdded)
+			{
+				return Ok("Report Added");
+			}
+			else
+			{
+				return BadRequest("Failed to add report"); 
+			}
+		}
 
         [HttpGet]
-        public async Task<IActionResult> GetAllDownServices()
+        public async Task<IActionResult> GetNodes()
         {
-            return Ok(_reportsService.GetAllDownServices());
+            return Ok(_reportsService.GetNodes());
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllAmenityNames()
-        {
-            return Ok(_reportsService.GetAllAmenityNames());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAllReportTypes()
-        {
-            return Ok(_reportsService.GetAllReportTypes());
-        }
-    }
+		[HttpDelete]
+		public async Task<IActionResult> RemoveAllReports()
+		{
+			_reportsService.RemoveAllReports();
+			return Ok("All reports removed");
+		}
+	}
 }
