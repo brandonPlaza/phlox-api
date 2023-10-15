@@ -16,6 +16,9 @@ namespace PhloxAPI.Services.RoutingService.Classes
     }
 
     public void LoadGraph(List<GraphNode> graphNodes){
+      for(int i = 0; i < graphNodes.Count; i++){
+        graphNodes[i].Index = i;
+      }
       _nodes = graphNodes;
     }
 

@@ -5,10 +5,10 @@ namespace PhloxAPI.Services.ReportService
 {
     public interface IReportService
     {
-        void PostReport(int reportType, string amenityName);
+        bool PostReport(string nodeAffected, string userMessage);
         List<Report> GetReports();
-        List<DownServiceDTO> GetAllDownServices();
-        List<string> GetAllAmenityNames();
-        List<string> GetAllReportTypes();
+        List<NodeDTO> GetNodes();
+        List<string> GetNodeTypes();
+        void RemoveAllReports();
     }
 }
