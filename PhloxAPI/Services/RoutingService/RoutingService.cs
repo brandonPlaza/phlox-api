@@ -16,7 +16,7 @@ namespace PhloxAPI.Services.RoutingService
       _context = context;
     }
 
-    public async Task<List<int>> RequestRoute(string source, string dest)
+    public async Task<List<string>> RequestRoute(string source, string dest)
     {
       // var nodes = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinalities).ToListAsync();
       // var unlinkedGraphNodes = ConvertNodesToUnlinkedGraphNodes(nodes);
@@ -27,7 +27,11 @@ namespace PhloxAPI.Services.RoutingService
       graph.LoadGraph(dbLessGraphNodes);
 
       var results = Dijkstra(graph, dbLessGraphNodes.Find(x => x.Name == source), dbLessGraphNodes.Find(x => x.Name == dest));
-      return results;
+      List<string> resultsStrings = new();
+      foreach(int index in results){
+        resultsStrings.Add(graph.Nodes[index].Name);
+      }
+      return resultsStrings;
     }
 
     public List<GraphNode> DbLessGraphNodes(){
@@ -328,6 +332,16 @@ namespace PhloxAPI.Services.RoutingService
       }
 
       return newPriorityQueue;
+    }
+
+    public List<string> GetNodes()
+    {
+      var dataset = DbLessGraphNodes();
+      List<string> datasetStrings = new();
+      foreach(GraphNode node in dataset){
+        datasetStrings.Add(node.Name);
+      }
+      return datasetStrings;
     }
   }
 }
