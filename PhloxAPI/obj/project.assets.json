@@ -3690,26 +3690,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\brand\\.nuget\\packages\\": {}
+    "C:\\Users\\angie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
+      "projectUniqueName": "D:\\Capstone\\phlox-api\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
       "projectName": "PhloxAPI",
-      "projectPath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
-      "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
-      "outputPath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\obj\\",
+      "projectPath": "D:\\Capstone\\phlox-api\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
+      "packagesPath": "C:\\Users\\angie\\.nuget\\packages\\",
+      "outputPath": "D:\\Capstone\\phlox-api\\phlox-api\\PhloxAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\angie\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
