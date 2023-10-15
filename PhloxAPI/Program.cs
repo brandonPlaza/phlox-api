@@ -64,7 +64,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+var webSocketOptions = new WebSocketOptions
+{
+    //KeepAliveInterval = TimeSpan.FromMinutes(2) //default
+};
+/*webSocketOptions.AllowedOrigins.Add("https://client.com");
+webSocketOptions.AllowedOrigins.Add("https://www.client.com");*/
+
 app.UseHttpsRedirection();
+
+app.UseWebSockets();
 
 app.UseCors("MyPolicy");
 
