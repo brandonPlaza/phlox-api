@@ -36,6 +36,13 @@ namespace PhloxAPI.Controllers
       var response = await _administrationService.RemoveNode(nodeName);
       return Ok(response);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> GetNeighbors(){
+      var response = _administrationService.GetNeighbors();
+      return Ok(response);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Test(string nodeName){
       return Ok(nodeName);

@@ -5,6 +5,6 @@ namespace PhloxAPI.Services.RoutingService
 {
     public interface IRoutingService
     {
-        Task<(Dictionary<GraphNode, int>, Dictionary<GraphNode, GraphNode>)> RequestRoute(string source, string dest);
+        Task<List<int>> RequestRoute(string source, string dest);
     }
 }

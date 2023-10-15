@@ -97,6 +97,14 @@ namespace PhloxAPI.Services.AdministrationService
       _context.SaveChanges();
     }
 
+    public List<string> GetNeighbors(){
+      var neighbors = _context.Neighbors.ToList();
+      List<string> neighborNames = new();
+      foreach(Neighbor neighbor in neighbors){
+        neighborNames.Add(neighbor.Node.Name);
+      }
+      return neighborNames;
+    } 
     public async Task<string> RemoveNode(string nodeName){
       var removedNode = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinalities).SingleOrDefaultAsync(x => x.Name == nodeName);
       if(removedNode != null){

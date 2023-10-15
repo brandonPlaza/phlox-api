@@ -208,3 +208,4 @@ E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\scopedcss\bundle\Phl
 E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.csproj.CopyComplete
 E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\PhloxAPI.genruntimeconfig.cache
 E:\repos\Capstone Repos\phlox-api\PhloxAPI\obj\Debug\net7.0\ref\PhloxAPI.dll
+E:\repos\Capstone Repos\phlox-api\PhloxAPI\bin\Debug\net7.0\PriorityQueue.dll

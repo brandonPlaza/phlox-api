@@ -1,29 +1,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
+using PhloxAPI.Models.Entities;
 
 namespace PhloxAPI.Services.RoutingService.Classes
 {
   public class GraphNode
   {
     // Holds neighbors and their weights from the node
-    private Dictionary<GraphNode, int> _neighbors;
+
     // Holds cardinality of this node -> neighbor nodes where key is the node and cardinality is an int corresponding to
     private Dictionary<GraphNode, int> _cardinality;
     private string _name;
-    public Dictionary<GraphNode, int> Neighbors { get{ return _neighbors; }}
+    public List<GraphNode> Neighbors { get; set; }
+    public List<int> NeighborWeights { get; set; }
     public Dictionary<GraphNode, int> Cardinality { get{ return _cardinality; }}
     public string Name { get {return _name; } }
+    public NodeTypes Type { get; set; }
+    public int Index { get; set; }
 
     public GraphNode(string name){
-      _neighbors = new();
+      Neighbors = new();
+      NeighborWeights = new();
       _cardinality = new();
       _name = name;
     }
     
     public void AddNeighbor(GraphNode newNeighbor, int weight, int cardinality){
-      _neighbors.Add(newNeighbor, weight);
+      Neighbors.Add(newNeighbor);
+      NeighborWeights.Add(weight);
       _cardinality.Add(newNeighbor, cardinality);
     }
 
