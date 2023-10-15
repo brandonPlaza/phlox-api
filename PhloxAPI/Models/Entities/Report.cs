@@ -1,15 +1,12 @@
-﻿namespace PhloxAPI.Models.Entities
+﻿using PhloxAPI.Models.DTOs;
+
+namespace PhloxAPI.Models.Entities
 {
-    public enum ReportType
-    {
-        ElevatorDown,
-        RampClosed,
-        EntranceBlocked,
-    }
     public class Report
     {
         public Guid Id { get; set; }
-        public ReportType Type { get; set; }
-        public Node Amenity { get; set; }
-    }
+        public Node NodeAffected { get; set; }
+		public string? UserMessage { get; set; }
+		public DateTime ReportedAt { get; set; }
+	}
 }
