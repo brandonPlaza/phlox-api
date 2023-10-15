@@ -8,6 +8,7 @@ namespace PhloxAPI.Services.ReportService
         bool PostReport(string nodeAffected, string userMessage);
         List<Report> GetReports();
         List<NodeDTO> GetNodes();
+        List<string> GetNodeTypes();
         void RemoveAllReports();
     }
 }

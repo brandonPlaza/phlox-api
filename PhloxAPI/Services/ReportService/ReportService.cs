@@ -83,6 +83,11 @@ namespace PhloxAPI.Services.ReportService
 			return nodesDtos;
 		}
 
+		public List<string> GetNodeTypes()
+		{
+			return new List<string>(Enum.GetNames(typeof(NodeTypes)));
+		}
+
 
 		public void RemoveAllReports()
 		{

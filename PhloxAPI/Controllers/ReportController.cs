@@ -44,6 +44,12 @@ namespace PhloxAPI.Controllers
             return Ok(_reportsService.GetNodes());
         }
 
+		[HttpGet]
+		public async Task<IActionResult> GetNodeTypes()
+		{
+			return Ok(_reportsService.GetNodeTypes());
+		}
+
 		[HttpDelete]
 		public async Task<IActionResult> RemoveAllReports()
 		{
