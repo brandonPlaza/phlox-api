@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
 using PhloxAPI.Services.HelpRequestService;
@@ -11,10 +12,18 @@ namespace PhloxAPI.Controllers
   public class HelpRequestController : ControllerBase
   {
     private readonly IHelpRequestService _helpRequestService;
+    private readonly IHubContext<HelpRequestHub> _hubContext;
 
-    public HelpRequestController(IHelpRequestService helpRequestService)
+    public HelpRequestController(IHelpRequestService helpRequestService, IHubContext<HelpRequestHub> hubContext)
     {
       _helpRequestService = helpRequestService;
+      _hubContext = hubContext;
+    }
+
+    public async void DbChangeNotification()
+    {
+      //await _hubContext.Clients.All.SendAsync("ReceivingNotification", "you got notified by the hub :)");
+      await _hubContext.Clients.All.SendAsync("refreshRequests");
     }
 
     /// <summary>
@@ -41,6 +50,7 @@ namespace PhloxAPI.Controllers
       HelpRequestStatus status = (HelpRequestStatus)Enum.Parse(typeof(HelpRequestStatus), statusHelpRequestDTO.Status, true);
 
       _helpRequestService.UpdateHelpRequestStatus(guid, status);
+
       return Ok("Status updated.");
     }
 
@@ -80,6 +90,5 @@ namespace PhloxAPI.Controllers
       var activeHelpRequests = _helpRequestService.GetActiveHelpRequests();
       return Ok(activeHelpRequests);
     }
-
   }
 }
