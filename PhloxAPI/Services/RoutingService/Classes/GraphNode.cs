@@ -32,15 +32,19 @@ namespace PhloxAPI.Services.RoutingService.Classes
       Neighbors.Add(newNeighbor);
       NeighborWeights.Add(weight);
       _cardinality.Add(newNeighbor, cardinality);
+      if (!newNeighbor.Neighbors.Contains(this))
+      {
+        newNeighbor.AddNeighbor(this, weight, cardinality);
+      }
     }
 
-    public override bool Equals(object? obj)
+/*    public override bool Equals(object? obj)
     {
       return this.Equals(obj as GraphNode);
     }
 
     private bool Equals(GraphNode node){
       return this.Name == node.Name;
-    }
+    }*/
   }
 }

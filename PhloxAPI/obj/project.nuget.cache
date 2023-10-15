@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UMGbLputr6GwNzMntury2dCPcX8qWPpYWEGqkXM+p0/JmnNCi1872vWtQefl4GWCd3sw0Jvju5JwtfOzo6SZMA==",
+  "dgSpecHash": "SaQFi1xGVl1W+gJP4TSTUaTsvHXkMCV5q5Kss+GM/hPLiBGmgVj34geLptC///AsHRTqth7CT8LMR7jlfrku1g==",
   "success": true,
-  "projectFilePath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
+  "projectFilePath": "e:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\brand\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\brand\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

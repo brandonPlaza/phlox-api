@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj": {}
+    "e:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj": {}
   },
   "projects": {
-    "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj": {
+    "e:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
+        "projectUniqueName": "e:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
         "projectName": "PhloxAPI",
-        "projectPath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
+        "projectPath": "e:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\PhloxAPI.csproj",
         "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
-        "outputPath": "E:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\obj\\",
+        "outputPath": "e:\\repos\\Capstone Repos\\phlox-api\\PhloxAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config",

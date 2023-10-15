@@ -56,6 +56,27 @@ namespace PhloxAPI.Services.RoutingService
         new GraphNode("S207"),
         new GraphNode("S207A"),
         new GraphNode("S202"),
+        new GraphNode("Doorway adjacent to coffee shop"),
+        new GraphNode("S220 Corridor"),
+        new GraphNode("S220"),
+        new GraphNode("S221"),
+        new GraphNode("S222"),
+        new GraphNode("S228"),
+        new GraphNode("Entrance to S220 corridors"),
+        new GraphNode("S231"),
+        new GraphNode("2nd Floor SCAET Elevator"),
+        new GraphNode("2nd Floor Stair A"),
+        new GraphNode("1st Floor SCAET Elevator"),
+        new GraphNode("Front Of SCAET Elevator"),
+        new GraphNode("Top of ramp to elevator"),
+        new GraphNode("Bottom of ramp to elevator"),
+        new GraphNode("Bottom of ramp to corridors"),
+        new GraphNode("Top of ramp to corridors"),
+        new GraphNode("Second hallway branch from top of ramp to corridors"),
+        new GraphNode("S144"),
+        new GraphNode("Doorway junction leading to stairwell B"),
+        new GraphNode("Doorway to stairwell B"),
+        new GraphNode("First floor stairwell B"),
       };
       ConnectNodes(ref graphNodes);
       return graphNodes;
@@ -66,30 +87,44 @@ namespace PhloxAPI.Services.RoutingService
       graphNodes[1].AddNeighbor(graphNodes[2], 2, (int)CardinalDirection.SouthWest);
       graphNodes[1].AddNeighbor(graphNodes[3], 3, (int)CardinalDirection.SouthEast);
       graphNodes[3].AddNeighbor(graphNodes[5], 4, (int)CardinalDirection.SouthWest);
-      graphNodes[5].AddNeighbor(graphNodes[6], 5, (int)CardinalDirection.SouthEast);
+      graphNodes[5].AddNeighbor(graphNodes[6], 1, (int)CardinalDirection.SouthEast);
       graphNodes[6].AddNeighbor(graphNodes[7], 3, (int)CardinalDirection.SouthWest);
-      graphNodes[7].AddNeighbor(graphNodes[11], 3, (int)CardinalDirection.NorthWest);
-      graphNodes[7].AddNeighbor(graphNodes[8], 3, (int)CardinalDirection.SouthEast);
+      graphNodes[7].AddNeighbor(graphNodes[11], 2, (int)CardinalDirection.NorthWest);
+      graphNodes[7].AddNeighbor(graphNodes[8], 2, (int)CardinalDirection.SouthEast);
       graphNodes[7].AddNeighbor(graphNodes[9], 3, (int)CardinalDirection.SouthEast);
       graphNodes[11].AddNeighbor(graphNodes[13], 1, (int)CardinalDirection.NorthWest);
       graphNodes[13].AddNeighbor(graphNodes[12], 1, (int)CardinalDirection.NorthWest);
-      graphNodes[12].AddNeighbor(graphNodes[14], 1, (int)CardinalDirection.North);
+      graphNodes[12].AddNeighbor(graphNodes[14], 3, (int)CardinalDirection.North);
       graphNodes[14].AddNeighbor(graphNodes[15], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[3].AddNeighbor(graphNodes[17], 1, (int)CardinalDirection.South);
-      graphNodes[18].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
-      graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
+      graphNodes[3].AddNeighbor(graphNodes[17], 2, (int)CardinalDirection.South);
+      graphNodes[17].AddNeighbor(graphNodes[18], 3, (int)CardinalDirection.SouthEast);
+      graphNodes[17].AddNeighbor(graphNodes[19], 3, (int)CardinalDirection.SouthEast);
+      graphNodes[17].AddNeighbor(graphNodes[20], 3, (int)CardinalDirection.SouthEast);
+      graphNodes[17].AddNeighbor(graphNodes[22], 2, (int)CardinalDirection.SouthEast);
+      graphNodes[17].AddNeighbor(graphNodes[21], 2, (int)CardinalDirection.SouthEast);
+      graphNodes[17].AddNeighbor(graphNodes[23], 2, (int)CardinalDirection.SouthEast);
+      graphNodes[5].AddNeighbor(graphNodes[24], 2, (int)CardinalDirection.SouthEast);
+      graphNodes[6].AddNeighbor(graphNodes[24], 1, (int)CardinalDirection.NorthWest);
+      graphNodes[24].AddNeighbor(graphNodes[25], 1, (int)CardinalDirection.NorthWest);
+      graphNodes[25].AddNeighbor(graphNodes[26], 1, (int)CardinalDirection.SouthWest);
+      graphNodes[25].AddNeighbor(graphNodes[27], 1, (int)CardinalDirection.SouthWest);
+      graphNodes[25].AddNeighbor(graphNodes[28], 1, (int)CardinalDirection.NorthWest);
+      graphNodes[25].AddNeighbor(graphNodes[29], 2, (int)CardinalDirection.NorthEast);
+      graphNodes[29].AddNeighbor(graphNodes[30], 1, (int)CardinalDirection.NorthWest);
+      graphNodes[16].AddNeighbor(graphNodes[30], 1, (int)CardinalDirection.SouthEast);
+      graphNodes[12].AddNeighbor(graphNodes[32], 1, (int)CardinalDirection.SouthWest);
+      graphNodes[32].AddNeighbor(graphNodes[34], 1, (int)CardinalDirection.Down);
+      graphNodes[34].AddNeighbor(graphNodes[35], 1, (int)CardinalDirection.NorthEast);
+      graphNodes[35].AddNeighbor(graphNodes[36], 1, (int)CardinalDirection.SouthEast);
+      graphNodes[36].AddNeighbor(graphNodes[37], 1, (int)CardinalDirection.SouthEast);
+      graphNodes[37].AddNeighbor(graphNodes[38], 1, (int)CardinalDirection.NorthEast);
+      graphNodes[38].AddNeighbor(graphNodes[39], 1, (int)CardinalDirection.NorthEast);
+      graphNodes[39].AddNeighbor(graphNodes[40], 1, (int)CardinalDirection.NorthEast);
+      graphNodes[40].AddNeighbor(graphNodes[41], 1, (int)CardinalDirection.NorthWest);
+      graphNodes[40].AddNeighbor(graphNodes[42], 1, (int)CardinalDirection.NorthEast);
+      graphNodes[42].AddNeighbor(graphNodes[43], 1, (int)CardinalDirection.NorthEast);
+      graphNodes[43].AddNeighbor(graphNodes[44], 1, (int)CardinalDirection.SouthEast);
+      //graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
     }
 
     // I will optimize this later
@@ -228,12 +263,8 @@ namespace PhloxAPI.Services.RoutingService
         distances[i] = int.MaxValue;
       }
 
-      for(int i = 0; i < graph.Nodes.Count; i++){
-        if(graph.Nodes[i] == source){
-          distances[i] = 0;
-          break;
-        }
-      }
+      distances[source.Index] = 0;
+      List<GraphNode> visited = new();
 
       SimplePriorityQueue<GraphNode> nodes = new SimplePriorityQueue<GraphNode>();
       for(int i = 0; i < graph.Nodes.Count; i++){
@@ -244,12 +275,19 @@ namespace PhloxAPI.Services.RoutingService
         GraphNode node = nodes.Dequeue();
         for(int i = 0; i < node.Neighbors.Count; i++){
           GraphNode neighbor = node.Neighbors[i];
+
           int weight = i < node.NeighborWeights.Count ? node.NeighborWeights[i] : 0;
+
           int totWeight = distances[node.Index] + weight;
+
           if(distances[neighbor.Index] > totWeight){
             distances[neighbor.Index] = totWeight;
             prev[neighbor.Index] = node.Index;
-            nodes.UpdatePriority(neighbor, distances[neighbor.Index]);
+            if (!visited.Contains(neighbor))
+            {
+              nodes.UpdatePriority(neighbor, distances[neighbor.Index]);
+              visited.Add(neighbor);
+            }
           }
         }
       }
