@@ -68,7 +68,7 @@ namespace PhloxAPI.Services.AccountsService
             var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
 
             var amenity = _context.Nodes.FirstOrDefault(a => a.Name == amenityDTO.Name);
-            if(user.FavouriteAmenities == null)
+            if (user.FavouriteAmenities == null)
             {
                 user.FavouriteAmenities = new List<Node>{
                     amenity
@@ -100,6 +100,12 @@ namespace PhloxAPI.Services.AccountsService
         {
             string tempHash = HashPassword(plaintextUserPass, salt);
             return hashedUserPass.Equals(tempHash);
+        }
+
+        public User? GetUserByEmail(string email)
+        {
+            var user = _context.Users.FirstOrDefault(r => r.Email.Equals(email));
+            return user;
         }
     }
 }
