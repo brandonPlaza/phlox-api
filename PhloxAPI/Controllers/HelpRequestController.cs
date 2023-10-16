@@ -20,7 +20,8 @@ namespace PhloxAPI.Controllers
       _hubContext = hubContext;
     }
 
-    public async void DbChangeNotification()
+    [ApiExplorerSettings(IgnoreApi = true)]
+    private async void DbChangeNotification()
     {
       //await _hubContext.Clients.All.SendAsync("ReceivingNotification", "you got notified by the hub :)");
       await _hubContext.Clients.All.SendAsync("refreshRequests");
@@ -89,6 +90,13 @@ namespace PhloxAPI.Controllers
     {
       var activeHelpRequests = _helpRequestService.GetActiveHelpRequests();
       return Ok(activeHelpRequests);
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteById(string id)
+    {
+      _helpRequestService.DeleteHelpRequestById(new Guid(id));
+      return Ok();
     }
   }
 }

@@ -7,6 +7,7 @@ namespace PhloxAPI.Controllers
   {
 
     //handle request to connect to the websocket. uses CONNECT instead of GET requests
+    [ApiExplorerSettings(IgnoreApi = true)]
     [Route("/ws")]
     public async Task Get()
     {

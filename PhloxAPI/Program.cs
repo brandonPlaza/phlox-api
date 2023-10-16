@@ -78,7 +78,6 @@ app.UseHttpsRedirection();
 
 app.UseWebSockets();
 
-
 app.UseCors("MyPolicy");
 
 app.MapHub<HelpRequestHub>("/hubs/notifications");
