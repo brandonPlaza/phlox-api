@@ -6,6 +6,7 @@ using PhloxAPI.Services.RoutingService;
 using PhloxAPI.Services.HelpRequestService;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.SignalR;
 
 
 
@@ -17,9 +18,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "MyPolicy",
     policy =>
     {
-        policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true);
     });
 });
+
+builder.Services.AddSignalR();
 
 // Add services to the container.
 
@@ -64,9 +67,32 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+var webSocketOptions = new WebSocketOptions
+{
+    //KeepAliveInterval = TimeSpan.FromMinutes(2) //default
+};
+/*webSocketOptions.AllowedOrigins.Add("https://client.com");
+webSocketOptions.AllowedOrigins.Add("https://www.client.com");*/
+
 app.UseHttpsRedirection();
 
+app.UseWebSockets();
+
 app.UseCors("MyPolicy");
+
+app.MapHub<HelpRequestHub>("/hubs/notifications");
+
+app.Use(async (context, next) =>
+{
+    var hubContext = context.RequestServices
+                            .GetRequiredService<IHubContext<HelpRequestHub>>();
+    //...
+
+    if (next != null)
+    {
+        await next.Invoke();
+    }
+});
 
 app.UseAuthorization();
 

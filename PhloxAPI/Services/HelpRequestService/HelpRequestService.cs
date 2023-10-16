@@ -38,6 +38,16 @@ namespace PhloxAPI.Services.HelpRequestService
       return statusHelpRequest;
     }
 
+    public void DeleteHelpRequestById(Guid id)
+    {
+      var res = GetHelpRequestById(id);
+      if (res != null)
+      {
+        _context.HelpRequests.Remove(res);
+        _context.SaveChanges();
+      }
+    }
+
     public void UpdateHelpRequestStatus(Guid id, HelpRequestStatus newStatus)
     {
       var helpRequest = GetHelpRequestById(id);
@@ -69,46 +79,6 @@ namespace PhloxAPI.Services.HelpRequestService
       UpdateQueuePositions();
     }
 
-    // /* TODO: Following three methods can almost definitely be made more modular to reduce code reuse in the future */
-    // public void AcceptHelpRequest(Guid id)
-    // {
-    //   var helpRequest = GetHelpRequestById(id);
-    //   /* TODO: Reject if status is not waiting */
-    //   if (helpRequest.Status == HelpRequestStatus.Waiting)
-    //   {
-    //     helpRequest.Status = HelpRequestStatus.Accepted;
-    //     helpRequest.TimeAccepted = DateTime.Now;
-    //     _context.SaveChanges();
-
-    //     UpdateQueuePositions();
-    //   }
-    // }
-
-    // public void CompleteHelpRequest(Guid id)
-    // {
-    //   var helpRequest = GetHelpRequestById(id);
-    //   /* TODO: Reject if status is not waiting or accepted */
-    //   if (helpRequest.Status == HelpRequestStatus.Waiting || helpRequest.Status == HelpRequestStatus.Accepted)
-    //   {
-    //     helpRequest.Status = HelpRequestStatus.Completed;
-    //     helpRequest.TimeCompleted = DateTime.Now;
-    //     _context.SaveChanges();
-
-    //     UpdateQueuePositions();
-    //   }
-    // }
-
-    // public void CancelHelpRequest(Guid id)
-    // {
-    //   var helpRequest = GetHelpRequestById(id);
-
-    //   helpRequest.Status = HelpRequestStatus.Cancelled;
-    //   helpRequest.TimeCancelled = DateTime.Now;
-    //   _context.SaveChanges();
-
-    //   UpdateQueuePositions();
-    // }
-
     public List<HelpRequest> GetHelpRequests()
     {
       return _context.HelpRequests.ToList();
@@ -128,6 +98,7 @@ namespace PhloxAPI.Services.HelpRequestService
 
       return helpRequest;
     }
+
 
     private void UpdateQueuePositions()
     {
