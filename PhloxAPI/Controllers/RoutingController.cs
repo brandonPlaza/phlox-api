@@ -22,5 +22,9 @@ namespace PhloxAPI.Controllers
       var results = await _routingService.RequestRoute(source, dest);
       return Ok(results);
     }
+    [HttpGet]
+    public async Task<IActionResult> GetNodes(){
+      return Ok(_routingService.GetNodes());
+    }
   }
 }
