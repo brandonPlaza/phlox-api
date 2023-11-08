@@ -34,10 +34,26 @@ namespace PhloxAPI.Services.RoutingService.Classes
       _cardinality.Add(newNeighbor, cardinality);
       if (!newNeighbor.Neighbors.Contains(this))
       {
-        newNeighbor.AddNeighbor(this, weight, cardinality);
+        var flippedCardinal = FlipCardinals((CardinalDirection)cardinality);
+        newNeighbor.AddNeighbor(this, weight, flippedCardinal);
       }
     }
 
+    private static int FlipCardinals(CardinalDirection direction){
+      if((int)direction < 8){
+        // Flips cardinal direction
+        return ((int)direction + 4)%8;
+      }
+      else{
+        // This would be so much nicer w the ternary op but C# wont let me :(
+        if(direction == CardinalDirection.Up){
+          return (int)CardinalDirection.Down;
+        }
+        else{
+          return (int)CardinalDirection.Up;
+        }
+      }
+    }
 /*    public override bool Equals(object? obj)
     {
       return this.Equals(obj as GraphNode);
@@ -46,5 +62,6 @@ namespace PhloxAPI.Services.RoutingService.Classes
     private bool Equals(GraphNode node){
       return this.Name == node.Name;
     }*/
+
   }
 }

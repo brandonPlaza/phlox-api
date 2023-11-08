@@ -28,10 +28,20 @@ namespace PhloxAPI.Services.RoutingService
 
       var results = Dijkstra(graph, dbLessGraphNodes.Find(x => x.Name == source), dbLessGraphNodes.Find(x => x.Name == dest));
       List<string> resultsStrings = new();
+      List<GraphNode> resultsNodes = new();
       foreach(int index in results){
         resultsStrings.Add(graph.Nodes[index].Name);
+        resultsNodes.Add(graph.Nodes[index]);
       }
-      return resultsStrings;
+      var directionalMovementStrings = ConstructRouteDirections(resultsNodes, CardinalDirection.SouthEast);
+
+      List<string> completeRoute = new();
+      for (int i = 0; i < directionalMovementStrings.Count; i++)
+      {
+        if (!(i + 1 == directionalMovementStrings.Count)) completeRoute.Add($"{i + 1}. From {resultsStrings[i]} {directionalMovementStrings[i]} {resultsStrings[i]}");
+        else completeRoute.Add($"{i + 1}. {directionalMovementStrings[i]} {resultsStrings[i+1]}");
+      }
+      return completeRoute;
     }
 
     public List<GraphNode> DbLessGraphNodes(){
@@ -306,6 +316,79 @@ namespace PhloxAPI.Services.RoutingService
       return indexes;
     }
 
+    private List<string> ConstructRouteDirections(List<GraphNode> nodes, CardinalDirection userDirection){
+      List<int> cardinals = new List<int>();
+      for(int i = 0; i < nodes.Count; i++){
+        if(i+1>=nodes.Count)break;
+        cardinals.Add(nodes[i].Cardinality[nodes[i+1]]);
+      }
+      return RouteDirections(userDirection, cardinals);
+    }
+
+    // This is an unholy abomination, I will fix this
+    private List<string> RouteDirections(CardinalDirection userDirection, List<int> cardinals){
+      var tempUserDirection = userDirection;
+      List<string> routeDirections = new();
+      for(int i = 0; i<cardinals.Count; i++){
+        // Gateway conditions
+        if(cardinals[i] == (int)tempUserDirection){
+          routeDirections.Add("Head forward until");
+          continue;
+        }
+        else if(cardinals[i] == (int)CardinalDirection.Up){
+          routeDirections.Add("Head up via");
+          continue;
+        }
+        else if(cardinals[i] == (int)CardinalDirection.Down){
+          routeDirections.Add("Head down via");
+          continue;
+        }
+        else if(cardinals[i] == ((int)tempUserDirection+4)%7)
+        {
+          routeDirections.Add("Turn around and step to");
+        }
+
+        var directions = Graph.ParseDirection(tempUserDirection);
+        var leftOfUser = directions.Item1;
+        var rightOfUser = directions.Item2;
+
+        if(leftOfUser.Contains((CardinalDirection)cardinals[i])){
+          var indexOfCardinal = leftOfUser.IndexOf((CardinalDirection)cardinals[i]);
+          switch (indexOfCardinal){
+            case 0:
+              routeDirections.Add("Take a slight left, and head towards");
+              tempUserDirection = (CardinalDirection)cardinals[i];
+              break;
+            case 1:
+              routeDirections.Add("Turn left, and head towards");
+              tempUserDirection = (CardinalDirection)cardinals[i];
+              break;
+            case 2:
+              routeDirections.Add("Take a sharp left, and head towards");
+              tempUserDirection = (CardinalDirection)cardinals[i];
+              break;
+          }
+        }
+        else if(rightOfUser.Contains((CardinalDirection)cardinals[i])){
+          var indexOfCardinal = rightOfUser.IndexOf((CardinalDirection)cardinals[i]);
+          switch (indexOfCardinal){
+            case 0:
+              routeDirections.Add("Take a slight right, and head towards");
+              tempUserDirection = (CardinalDirection)cardinals[i];
+              break;
+            case 1:
+              routeDirections.Add("Turn right, and head towards");
+              tempUserDirection = (CardinalDirection)cardinals[i];
+              break;
+            case 2:
+              routeDirections.Add("Take a sharp right, and head towards");
+              tempUserDirection = (CardinalDirection)cardinals[i];
+              break;
+          }
+        }
+      }
+      return routeDirections;
+    }
     // This has to exist thanks to microsoft not having a separate implementation of PQ with updatable priorities
     private PriorityQueue<GraphNode, int> UpdatePriorityQueue(PriorityQueue<GraphNode, int> priorityQueue, GraphNode updatedGraphNode, int updatedPriority){
       List<GraphNode> graphNodes = new();
