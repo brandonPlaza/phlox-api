@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
@@ -39,7 +40,7 @@ namespace PhloxAPI.Services.RoutingService
       for (int i = 0; i < directionalMovementStrings.Count; i++)
       {
         if (!(i + 1 == directionalMovementStrings.Count)) completeRoute.Add($"{i + 1}. From {resultsStrings[i]} {directionalMovementStrings[i]} {resultsStrings[i]}");
-        else completeRoute.Add($"{i + 1}. {directionalMovementStrings[i]} {resultsStrings[i+1]}");
+        else completeRoute.Add($"{i + 1}: {directionalMovementStrings[i]} {resultsStrings[i+1]}");
       }
       return completeRoute;
     }
@@ -329,23 +330,29 @@ namespace PhloxAPI.Services.RoutingService
     private List<string> RouteDirections(CardinalDirection userDirection, List<int> cardinals){
       var tempUserDirection = userDirection;
       List<string> routeDirections = new();
+      Console.WriteLine(cardinals.Count);
       for(int i = 0; i<cardinals.Count; i++){
         // Gateway conditions
         if(cardinals[i] == (int)tempUserDirection){
           routeDirections.Add("Head forward until");
+          Console.WriteLine($"Condition hit {i}");
           continue;
         }
         else if(cardinals[i] == (int)CardinalDirection.Up){
           routeDirections.Add("Head up via");
+          Console.WriteLine($"Condition hit {i}");
           continue;
         }
         else if(cardinals[i] == (int)CardinalDirection.Down){
           routeDirections.Add("Head down via");
+          Console.WriteLine($"Condition hit {i}");
           continue;
         }
         else if(cardinals[i] == ((int)tempUserDirection+4)%7)
         {
           routeDirections.Add("Turn around and step to");
+          Console.WriteLine($"Condition hit {i}");
+          continue;
         }
 
         var directions = Graph.ParseDirection(tempUserDirection);
@@ -358,14 +365,17 @@ namespace PhloxAPI.Services.RoutingService
             case 0:
               routeDirections.Add("Take a slight left, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
+              Console.WriteLine($"Condition hit {i}");
               break;
             case 1:
               routeDirections.Add("Turn left, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
+              Console.WriteLine($"Condition hit {i}");
               break;
             case 2:
               routeDirections.Add("Take a sharp left, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
+              Console.WriteLine($"Condition hit {i}");
               break;
           }
         }
@@ -375,47 +385,25 @@ namespace PhloxAPI.Services.RoutingService
             case 0:
               routeDirections.Add("Take a slight right, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
+              Console.WriteLine($"Condition hit {i}");
               break;
             case 1:
               routeDirections.Add("Turn right, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
+              Console.WriteLine($"Condition hit {i}");
               break;
             case 2:
               routeDirections.Add("Take a sharp right, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
+              Console.WriteLine($"Condition hit {i}");
               break;
           }
         }
       }
+      Console.WriteLine(routeDirections.Count);
       return routeDirections;
     }
     // This has to exist thanks to microsoft not having a separate implementation of PQ with updatable priorities
-    private PriorityQueue<GraphNode, int> UpdatePriorityQueue(PriorityQueue<GraphNode, int> priorityQueue, GraphNode updatedGraphNode, int updatedPriority){
-      List<GraphNode> graphNodes = new();
-      List<int> priorities = new();
-
-      for(int i = 0; i<priorityQueue.Count; i++){
-        GraphNode tempGraphNode;
-        int tempPriority;
-
-        priorityQueue.TryPeek(out tempGraphNode, out tempPriority);
-        priorityQueue.Dequeue();
-
-        if(tempGraphNode.Equals(updatedGraphNode)){
-          priorityQueue.Enqueue(updatedGraphNode, updatedPriority);
-        }
-        else{
-          graphNodes.Add(tempGraphNode);
-          priorities.Add(tempPriority);
-        }
-      }
-      PriorityQueue<GraphNode, int> newPriorityQueue = new();
-      for(int i = 0; i < graphNodes.Count; i++){
-        newPriorityQueue.Enqueue(graphNodes[i], priorities[i]);
-      }
-
-      return newPriorityQueue;
-    }
 
     public List<string> GetNodes()
     {
