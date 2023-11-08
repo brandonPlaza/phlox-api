@@ -30,7 +30,7 @@ namespace PhloxAPI.Controllers
 
             var favAmenitiesStrings = new List<string>();
 
-            foreach(Node amenity in favAmenities)
+            foreach (Node amenity in favAmenities)
             {
                 favAmenitiesStrings.Add(amenity.Name);
             }
@@ -56,6 +56,13 @@ namespace PhloxAPI.Controllers
         public IActionResult Register(UserDTO user)
         {
             string result = _accountsService.RegisterUser(user);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public IActionResult GetUserByEmail(string email)
+        {
+            var result = _accountsService.GetUserByEmail(email);
             return Ok(result);
         }
     }

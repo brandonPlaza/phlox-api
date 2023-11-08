@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
 using PhloxAPI.Services.HelpRequestService;
@@ -11,10 +12,19 @@ namespace PhloxAPI.Controllers
   public class HelpRequestController : ControllerBase
   {
     private readonly IHelpRequestService _helpRequestService;
+    private readonly IHubContext<HelpRequestHub> _hubContext;
 
-    public HelpRequestController(IHelpRequestService helpRequestService)
+    public HelpRequestController(IHelpRequestService helpRequestService, IHubContext<HelpRequestHub> hubContext)
     {
       _helpRequestService = helpRequestService;
+      _hubContext = hubContext;
+    }
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    private async void DbChangeNotification()
+    {
+      //await _hubContext.Clients.All.SendAsync("ReceivingNotification", "you got notified by the hub :)");
+      await _hubContext.Clients.All.SendAsync("refreshRequests");
     }
 
     /// <summary>
@@ -26,6 +36,7 @@ namespace PhloxAPI.Controllers
     public async Task<IActionResult> Add(HelpRequestDTO helpRequestDTO)
     {
       var statusHelpRequestDTO = _helpRequestService.PostHelpRequest(helpRequestDTO);
+      DbChangeNotification();
       return Ok(statusHelpRequestDTO);
     }
 
@@ -41,6 +52,9 @@ namespace PhloxAPI.Controllers
       HelpRequestStatus status = (HelpRequestStatus)Enum.Parse(typeof(HelpRequestStatus), statusHelpRequestDTO.Status, true);
 
       _helpRequestService.UpdateHelpRequestStatus(guid, status);
+
+      DbChangeNotification();
+
       return Ok("Status updated.");
     }
 
@@ -81,5 +95,14 @@ namespace PhloxAPI.Controllers
       return Ok(activeHelpRequests);
     }
 
+    [HttpDelete]
+    public async Task<IActionResult> DeleteById(string id)
+    {
+      _helpRequestService.DeleteHelpRequestById(new Guid(id));
+
+      DbChangeNotification();
+
+      return Ok();
+    }
   }
 }

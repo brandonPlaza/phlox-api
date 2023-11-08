@@ -9,5 +9,7 @@ namespace PhloxAPI.Services.AccountsService
         string Login(UserLoginDTO userLoginDTO);
         List<Node> GetFavAmenities(string username);
         void AddFavAmenity(NodeDTO amenityDTO, string username);
+
+        User? GetUserByEmail(string email);
     }
 }
