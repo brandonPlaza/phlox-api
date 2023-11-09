@@ -39,7 +39,7 @@ namespace PhloxAPI.Services.RoutingService
       List<string> completeRoute = new();
       for (int i = 0; i < directionalMovementStrings.Count; i++)
       {
-        if (!(i + 1 == directionalMovementStrings.Count)) completeRoute.Add($"{i + 1}. From {resultsStrings[i]} {directionalMovementStrings[i]} {resultsStrings[i]}");
+        if (!(i + 1 == directionalMovementStrings.Count)) completeRoute.Add($"{i + 1}. From {resultsStrings[i]}, {directionalMovementStrings[i]} {resultsStrings[i+1]}");
         else completeRoute.Add($"{i + 1}: {directionalMovementStrings[i]} {resultsStrings[i+1]}");
       }
       return completeRoute;
@@ -333,6 +333,7 @@ namespace PhloxAPI.Services.RoutingService
       Console.WriteLine(cardinals.Count);
       for(int i = 0; i<cardinals.Count; i++){
         // Gateway conditions
+        Console.WriteLine($"Cardinal step {i}: {cardinals[i]}, current cardinal: {tempUserDirection}");
         if(cardinals[i] == (int)tempUserDirection){
           routeDirections.Add("Head forward until");
           Console.WriteLine($"Condition hit {i}");
@@ -348,7 +349,7 @@ namespace PhloxAPI.Services.RoutingService
           Console.WriteLine($"Condition hit {i}");
           continue;
         }
-        else if(cardinals[i] == ((int)tempUserDirection+4)%7)
+        else if((cardinals[i]+4)%7 == (int)tempUserDirection)
         {
           routeDirections.Add("Turn around and step to");
           Console.WriteLine($"Condition hit {i}");
