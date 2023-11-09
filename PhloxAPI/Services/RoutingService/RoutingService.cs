@@ -336,23 +336,19 @@ namespace PhloxAPI.Services.RoutingService
         Console.WriteLine($"Cardinal step {i}: {cardinals[i]}, current cardinal: {tempUserDirection}");
         if(cardinals[i] == (int)tempUserDirection){
           routeDirections.Add("Head forward until");
-          Console.WriteLine($"Condition hit {i}");
           continue;
         }
         else if(cardinals[i] == (int)CardinalDirection.Up){
           routeDirections.Add("Head up via");
-          Console.WriteLine($"Condition hit {i}");
           continue;
         }
         else if(cardinals[i] == (int)CardinalDirection.Down){
           routeDirections.Add("Head down via");
-          Console.WriteLine($"Condition hit {i}");
           continue;
         }
         else if((cardinals[i]+4)%7 == (int)tempUserDirection)
         {
           routeDirections.Add("Turn around and step to");
-          Console.WriteLine($"Condition hit {i}");
           continue;
         }
 
@@ -366,17 +362,14 @@ namespace PhloxAPI.Services.RoutingService
             case 0:
               routeDirections.Add("Take a slight left, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
-              Console.WriteLine($"Condition hit {i}");
               break;
             case 1:
               routeDirections.Add("Turn left, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
-              Console.WriteLine($"Condition hit {i}");
               break;
             case 2:
               routeDirections.Add("Take a sharp left, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
-              Console.WriteLine($"Condition hit {i}");
               break;
           }
         }
@@ -386,22 +379,18 @@ namespace PhloxAPI.Services.RoutingService
             case 0:
               routeDirections.Add("Take a slight right, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
-              Console.WriteLine($"Condition hit {i}");
               break;
             case 1:
               routeDirections.Add("Turn right, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
-              Console.WriteLine($"Condition hit {i}");
               break;
             case 2:
               routeDirections.Add("Take a sharp right, and head towards");
               tempUserDirection = (CardinalDirection)cardinals[i];
-              Console.WriteLine($"Condition hit {i}");
               break;
           }
         }
       }
-      Console.WriteLine(routeDirections.Count);
       return routeDirections;
     }
     // This has to exist thanks to microsoft not having a separate implementation of PQ with updatable priorities
