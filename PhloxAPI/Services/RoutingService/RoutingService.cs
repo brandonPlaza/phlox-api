@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
 using PhloxAPI.Models.DTOs;
@@ -15,6 +16,7 @@ namespace PhloxAPI.Services.RoutingService
     public RoutingService(PhloxDbContext context)
     { 
       _context = context;
+      CheckCache();
     }
 
     public async Task<List<string>> RequestRoute(string source, string dest)
@@ -179,7 +181,6 @@ namespace PhloxAPI.Services.RoutingService
     //   }
     //   return convertedNodes;
     // }
-
     public List<GraphNode> ConvertNodesToUnlinkedGraphNodes(List<Node> nodes){
       List<GraphNode> unlinkedGraphNodes = new();
       foreach(Node node in nodes){
@@ -404,5 +405,65 @@ namespace PhloxAPI.Services.RoutingService
       }
       return datasetStrings;
     }
+    
+    // Check existing chache on start
+    private void CheckCache(){
+      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+      var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
+      var finalPath = Path.GetFullPath(pathToFile);
+
+      if(!File.Exists(finalPath)){
+        DateTime minDate = DateTime.MinValue;
+        MapCache cache = new MapCache(){
+          LastUpdate = minDate,
+          Nodes = new Dictionary<string, NodeCacheDTO>(),
+          Connections = new Dictionary<string, ConnectionCacheDTO>()
+        };
+        string jsonCache = JsonSerializer.Serialize(cache);
+        File.WriteAllText(finalPath, jsonCache);
+      }
+    }
+
+    public static T ReadJson<T>(string filePath)
+    {
+      using FileStream stream = File.OpenRead(filePath);
+      return JsonSerializer.Deserialize<T>(stream);
+    }
+
+    //Function to compare last map log update
+    public MapCache CheckLogUpdate(MapCache incomingCache){
+      MapCache updatedCache;
+      MapCache oldCache = ReadJson<MapCache>(@"..\..\Cache\updatecache.json");
+      if(incomingCache.LastUpdate > oldCache.LastUpdate){
+        updatedCache = incomingCache;
+      }
+      else{
+        updatedCache = incomingCache;
+      }
+      return updatedCache;
+    }
+
+    // DateTime minDate = DateTime.Now;
+    // var nodes = _context.Nodes.ToList();
+    // var nodeCache = new Dictionary<string, NodeCacheDTO>();
+    // foreach(Node node in nodes){
+    //   nodeCache.Add(node.Id.ToString(), new NodeCacheDTO(){
+    //   Name = node.Name,
+    //   IsOutOfService = node.IsOutOfService
+    //   });
+    // }
+    // newCache = new MapCache(){
+    //   LastUpdate = minDate,
+    //   Nodes = nodeCache,
+    //   Connections = new Dictionary<string, ConnectionCacheDTO>()
+    // };
+    // string jsonCache = JsonSerializer.Serialize(newCache);
+    // File.WriteAllText(@"..\..\Cache\updatecache.json", jsonCache);
+
+    //Function to pull db nodes and add missing entries to json file
+
+    //Function to build a new connection
+
+    //Function to log map update
   }
 }

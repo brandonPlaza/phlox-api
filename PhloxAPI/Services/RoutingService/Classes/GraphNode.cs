@@ -13,11 +13,10 @@ namespace PhloxAPI.Services.RoutingService.Classes
 
     // Holds cardinality of this node -> neighbor nodes where key is the node and cardinality is an int corresponding to
     private Dictionary<GraphNode, int> _cardinality;
-    private string _name;
     public List<GraphNode> Neighbors { get; set; }
     public List<int> NeighborWeights { get; set; }
     public Dictionary<GraphNode, int> Cardinality { get{ return _cardinality; }}
-    public string Name { get {return _name; } }
+    public string Name { get; set; }
     public NodeTypes Type { get; set; }
     public int Index { get; set; }
 
@@ -25,7 +24,7 @@ namespace PhloxAPI.Services.RoutingService.Classes
       Neighbors = new();
       NeighborWeights = new();
       _cardinality = new();
-      _name = name;
+      Name = name;
     }
     
     public void AddNeighbor(GraphNode newNeighbor, int weight, int cardinality){

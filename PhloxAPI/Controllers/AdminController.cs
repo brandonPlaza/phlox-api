@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhloxAPI.Models;
+using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
 using PhloxAPI.Services.AdministrationService;
 
@@ -18,9 +19,9 @@ namespace PhloxAPI.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddNode(int type, string name)
+    public async Task<IActionResult> AddNode(NodeNewDTO newNode)
     {
-      _administrationService.AddNode(name, (NodeTypes)type);
+      _administrationService.AddNode(newNode.Name, newNode.Type);
       return Ok("Node Added");
     }
 
@@ -41,11 +42,6 @@ namespace PhloxAPI.Controllers
     public async Task<IActionResult> GetNeighbors(){
       var response = _administrationService.GetNeighbors();
       return Ok(response);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Test(string nodeName){
-      return Ok(nodeName);
     }
   }
 }
