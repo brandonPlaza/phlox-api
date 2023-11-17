@@ -19,10 +19,10 @@ namespace PhloxAPI.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddNode(NodeNewDTO newNode)
+    public async Task<IActionResult> AddNode(string name, int type)
     {
-      _administrationService.AddNode(newNode.Name, newNode.Type);
-      return Ok("Node Added");
+      _administrationService.AddNode(name, (NodeTypes)type);
+      return Ok(name);
     }
 
     [HttpPost]
