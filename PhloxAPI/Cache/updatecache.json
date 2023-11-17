@@ -1,5 +1,103 @@
 {
-  "LastUpdate": "0001-01-01T00:00:00",
-  "Nodes": {},
-  "Connections": {}
+  "LastUpdate": "2023-11-16T22:21:31.8956945-05:00",
+  "Nodes": {
+    "5846deee-b924-43f4-ddbc-08dbcb6cdd9e": {
+      "Name": "Front of open glass stairs",
+      "IsOutOfService": true
+    },
+    "30937e9f-2da5-46cf-ddbd-08dbcb6cdd9e": {
+      "Name": "SCAET seating area",
+      "IsOutOfService": false
+    },
+    "908827e8-bb1d-44c6-ddbe-08dbcb6cdd9e": {
+      "Name": "Past coffee shop hallway",
+      "IsOutOfService": true
+    },
+    "14b60caf-54c2-454e-ddbf-08dbcb6cdd9e": {
+      "Name": "Front of stair C",
+      "IsOutOfService": false
+    },
+    "b9532e73-0b51-4cb6-ddc0-08dbcb6cdd9e": {
+      "Name": "C bridge entrance",
+      "IsOutOfService": false
+    },
+    "89a23336-040f-4fec-ddc1-08dbcb6cdd9e": {
+      "Name": "Front of elevator",
+      "IsOutOfService": false
+    },
+    "eca32c04-a100-4f44-ddc2-08dbcb6cdd9e": {
+      "Name": "Front of stair A",
+      "IsOutOfService": false
+    },
+    "5deca3d4-6406-436e-ddc3-08dbcb6cdd9e": {
+      "Name": "Front of open stairs",
+      "IsOutOfService": false
+    },
+    "d3bcb6f4-e44f-4606-ddc4-08dbcb6cdd9e": {
+      "Name": "Entrance hall door junction",
+      "IsOutOfService": false
+    },
+    "0451645d-985f-4489-ddc5-08dbcb6cdd9e": {
+      "Name": "Entrance to corridor near open glass stairs",
+      "IsOutOfService": false
+    },
+    "667c9932-03b8-46b8-ddc6-08dbcb6cdd9e": {
+      "Name": "2nd Floor Stair B",
+      "IsOutOfService": false
+    },
+    "e35cd5ad-4ee4-4035-ddc7-08dbcb6cdd9e": {
+      "Name": "Bottom of open glass stairs",
+      "IsOutOfService": false
+    },
+    "6028cc72-e7f3-4cc9-ddc8-08dbcb6cdd9e": {
+      "Name": "Open stairs down to SCAET Floor 1",
+      "IsOutOfService": false
+    },
+    "471d8704-9dba-4857-ddc9-08dbcb6cdd9e": {
+      "Name": "2nd floor stair C",
+      "IsOutOfService": false
+    },
+    "99d55fff-8467-46cd-ddca-08dbcb6cdd9e": {
+      "Name": "Bruins Coffee Shop",
+      "IsOutOfService": false
+    },
+    "225a7935-7f30-488a-ddcc-08dbcb6cdd9e": {
+      "Name": "S205",
+      "IsOutOfService": false
+    },
+    "77f001f4-f057-411d-ddcd-08dbcb6cdd9e": {
+      "Name": "S206",
+      "IsOutOfService": false
+    },
+    "9b89914a-efe8-4fdd-ddce-08dbcb6cdd9e": {
+      "Name": "S203",
+      "IsOutOfService": false
+    },
+    "5f0cd23d-e24b-420d-ddcf-08dbcb6cdd9e": {
+      "Name": "S207",
+      "IsOutOfService": false
+    },
+    "a079caa7-fff4-4ae5-ddd0-08dbcb6cdd9e": {
+      "Name": "S207A",
+      "IsOutOfService": false
+    },
+    "ffa6bdf6-c201-4abe-ddd1-08dbcb6cdd9e": {
+      "Name": "S202",
+      "IsOutOfService": false
+    },
+    "b7d5e742-b649-4ea3-ddd2-08dbcb6cdd9e": {
+      "Name": "SCAET Entrance",
+      "IsOutOfService": false
+    },
+    "b43b7183-e5d7-4848-ddd3-08dbcb6cdd9e": {
+      "Name": "Front of Stair B",
+      "IsOutOfService": false
+    }
+  },
+  "Connections": {
+    "b7d5e742-b649-4ea3-ddd2-08dbcb6cdd9e|b43b7183-e5d7-4848-ddd3-08dbcb6cdd9e": {
+      "Weight": 1,
+      "Cardinality": 3
+    }
+  }
 }

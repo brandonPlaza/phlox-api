@@ -26,10 +26,10 @@ namespace PhloxAPI.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddWeightedEdge(string nodeOne, string nodeTwo, int weight, int direction)
+    public async Task<IActionResult> AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality)
     {
-      await _administrationService.AddEdge(nodeOne, nodeTwo, weight, direction);
-      return Ok("Edge Added");
+      _administrationService.AddConnection(firstNodeId, secondNodeId, weight, cardinality);
+      return Ok("Connection Added");
     }
 
     [HttpPost]
