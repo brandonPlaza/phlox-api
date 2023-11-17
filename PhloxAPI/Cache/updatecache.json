@@ -1,5 +1,5 @@
 {
-  "LastUpdate": "2023-11-16T22:21:31.8956945-05:00",
+  "LastUpdate": "2023-11-17T14:57:52.4492079-05:00",
   "Nodes": {
     "5846deee-b924-43f4-ddbc-08dbcb6cdd9e": {
       "Name": "Front of open glass stairs",
@@ -91,6 +91,10 @@
     },
     "b43b7183-e5d7-4848-ddd3-08dbcb6cdd9e": {
       "Name": "Front of Stair B",
+      "IsOutOfService": false
+    },
+    "7069ca88-593c-42d0-91cb-08dbe7a77b8e": {
+      "Name": "Doorway adjacent to bruins coffee shop",
       "IsOutOfService": false
     }
   },

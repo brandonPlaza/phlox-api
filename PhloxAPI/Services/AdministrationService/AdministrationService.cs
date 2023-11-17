@@ -97,6 +97,36 @@ namespace PhloxAPI.Services.AdministrationService
 
       _context.Nodes.Add(newNode);
       _context.SaveChanges();
+
+      var nodeFromDB = _context.Nodes.SingleOrDefault(x => x.Name == name);
+
+      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+      var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
+      var finalPath = Path.GetFullPath(pathToFile);
+
+      Console.WriteLine(finalPath);
+
+      MapCache cache = new();
+      
+      string jsonString = File.ReadAllText(finalPath);
+
+      cache = JsonSerializer.Deserialize<MapCache>(jsonString)!;
+
+      if(cache != null){
+        if(cache.Connections == null){
+          cache.Connections = new();
+        }
+
+        cache.LastUpdate = DateTime.Now;
+
+        cache.Nodes.Add(nodeFromDB.Id.ToString(), new NodeCacheDTO(){
+          Name = nodeFromDB.Name,
+          IsOutOfService = nodeFromDB.IsOutOfService
+        });
+
+        string jsonCache = JsonSerializer.Serialize(cache);
+        File.WriteAllText(finalPath, jsonCache);
+      }
     }
 
     // public void Temp(){
