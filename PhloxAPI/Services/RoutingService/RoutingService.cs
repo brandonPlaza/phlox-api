@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
+using PhloxAPI.Helpers;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
 using PhloxAPI.Services.RoutingService.Classes;
@@ -179,7 +181,6 @@ namespace PhloxAPI.Services.RoutingService
     //   }
     //   return convertedNodes;
     // }
-
     public List<GraphNode> ConvertNodesToUnlinkedGraphNodes(List<Node> nodes){
       List<GraphNode> unlinkedGraphNodes = new();
       foreach(Node node in nodes){
@@ -393,7 +394,6 @@ namespace PhloxAPI.Services.RoutingService
       }
       return routeDirections;
     }
-    // This has to exist thanks to microsoft not having a separate implementation of PQ with updatable priorities
 
     public List<string> GetNodes()
     {

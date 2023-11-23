@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
+using PhloxAPI.Helpers;
 using PhloxAPI.Models;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
+using PhloxAPI.Services.RoutingService.Classes;
 
 namespace PhloxAPI.Services.AdministrationService
 {
@@ -12,6 +15,7 @@ namespace PhloxAPI.Services.AdministrationService
 
     public AdministrationService(PhloxDbContext context) {
       _context = context;
+      if(!MapCacheHelper.DoesCacheExist()) MapCacheHelper.BuildInitialCache();
     }
 
     public async Task AddEdge(string nodeOne, string nodeTwo, int weight, int direction)
@@ -95,8 +99,38 @@ namespace PhloxAPI.Services.AdministrationService
 
       _context.Nodes.Add(newNode);
       _context.SaveChanges();
-    }
 
+      var nodeFromDB = _context.Nodes.SingleOrDefault(x => x.Name == name);
+
+      MapCache cache = MapCacheHelper.PullCache();
+
+      if(cache.Connections == null){
+        cache.Connections = new();
+      }
+
+      cache.Nodes.Add(nodeFromDB.Id.ToString(), new NodeCacheDTO(){
+        Name = nodeFromDB.Name,
+        IsOutOfService = nodeFromDB.IsOutOfService
+      });
+
+      MapCacheHelper.WriteToCache(cache);
+    }
+    public void AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality){
+      string connectionId = $"{firstNodeId}|{secondNodeId}";
+
+      MapCache cache = MapCacheHelper.PullCache();
+
+      if(cache.Connections == null){
+        cache.Connections = new();
+      }
+
+      cache.Connections.Add(connectionId, new ConnectionCacheDTO(){
+        Weight = weight,
+        Cardinality = cardinality
+      });
+
+      MapCacheHelper.WriteToCache(cache);
+    }
     public List<string> GetNeighbors(){
       var neighbors = _context.Neighbors.ToList();
       List<string> neighborNames = new();
@@ -118,7 +152,6 @@ namespace PhloxAPI.Services.AdministrationService
         return "No node found";
       }
     }
-
     public Node UpdateAmenity()
     {
       throw new NotImplementedException();

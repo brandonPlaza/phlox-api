@@ -9,6 +9,7 @@ namespace PhloxAPI.Models.Entities
     Stairs,
     Room,
     POI,
-    Entrance
+    Entrance,
+    Doorway
   }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhloxAPI.Models;
+using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
 using PhloxAPI.Services.AdministrationService;
 
@@ -18,17 +19,17 @@ namespace PhloxAPI.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddNode(int type, string name)
+    public async Task<IActionResult> AddNode(string name, int type)
     {
       _administrationService.AddNode(name, (NodeTypes)type);
-      return Ok("Node Added");
+      return Ok(name);
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddWeightedEdge(string nodeOne, string nodeTwo, int weight, int direction)
+    public async Task<IActionResult> AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality)
     {
-      await _administrationService.AddEdge(nodeOne, nodeTwo, weight, direction);
-      return Ok("Edge Added");
+      _administrationService.AddConnection(firstNodeId, secondNodeId, weight, cardinality);
+      return Ok("Connection Added");
     }
 
     [HttpPost]
@@ -41,11 +42,6 @@ namespace PhloxAPI.Controllers
     public async Task<IActionResult> GetNeighbors(){
       var response = _administrationService.GetNeighbors();
       return Ok(response);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Test(string nodeName){
-      return Ok(nodeName);
     }
   }
 }
