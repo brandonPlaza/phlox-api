@@ -2,9 +2,10 @@
 {
     public enum DisabilityType
     {
-        Phisical,
+        Physical,
         Auditory,
-        Visual
+        Visual,
+        NoDisability
     }
     public class Disability
     {
