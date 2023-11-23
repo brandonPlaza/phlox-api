@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
 using PhloxAPI.Models;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
+using PhloxAPI.Services.RoutingService.Classes;
 
 namespace PhloxAPI.Services.AdministrationService
 {
@@ -95,6 +97,94 @@ namespace PhloxAPI.Services.AdministrationService
 
       _context.Nodes.Add(newNode);
       _context.SaveChanges();
+
+      var nodeFromDB = _context.Nodes.SingleOrDefault(x => x.Name == name);
+
+      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+      var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
+      var finalPath = Path.GetFullPath(pathToFile);
+
+      Console.WriteLine(finalPath);
+
+      MapCache cache = new();
+      
+      string jsonString = File.ReadAllText(finalPath);
+
+      cache = JsonSerializer.Deserialize<MapCache>(jsonString)!;
+
+      if(cache != null){
+        if(cache.Connections == null){
+          cache.Connections = new();
+        }
+
+        cache.LastUpdate = DateTime.Now;
+
+        cache.Nodes.Add(nodeFromDB.Id.ToString(), new NodeCacheDTO(){
+          Name = nodeFromDB.Name,
+          IsOutOfService = nodeFromDB.IsOutOfService
+        });
+
+        string jsonCache = JsonSerializer.Serialize(cache);
+        File.WriteAllText(finalPath, jsonCache);
+      }
+    }
+
+    // public void Temp(){
+    //   var allNodes = _context.Nodes.ToList();
+
+    //   string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+    //   var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
+    //   var finalPath = Path.GetFullPath(pathToFile);
+
+    //   MapCache cache = new();
+    //   if(!File.Exists(finalPath)){
+    //     cache = JsonSerializer.Deserialize<MapCache>(finalPath);
+    //   }
+
+    //   cache.Nodes = new();
+    //   cache.LastUpdate = DateTime.Now;
+    //   foreach(Node node in allNodes){
+    //     NodeCacheDTO newNodeCache = new NodeCacheDTO(){
+    //       Name = node.Name,
+    //       IsOutOfService = node.IsOutOfService
+    //     };
+    //     cache.Nodes.Add(node.Id.ToString(), newNodeCache);
+    //   }
+
+    //   string jsonCache = JsonSerializer.Serialize(cache);
+    //   File.WriteAllText(finalPath, jsonCache);
+    // }
+
+    public void AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality){
+      string connectionId = $"{firstNodeId}|{secondNodeId}";
+
+      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+      var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
+      var finalPath = Path.GetFullPath(pathToFile);
+
+      Console.WriteLine(finalPath);
+
+      MapCache cache = new();
+      
+      string jsonString = File.ReadAllText(finalPath);
+
+      cache = JsonSerializer.Deserialize<MapCache>(jsonString)!;
+
+      if(cache != null){
+        if(cache.Connections == null){
+          cache.Connections = new();
+        }
+
+        cache.LastUpdate = DateTime.Now;
+
+        cache.Connections.Add(connectionId, new ConnectionCacheDTO(){
+          Weight = weight,
+          Cardinality = cardinality
+        });
+
+        string jsonCache = JsonSerializer.Serialize(cache);
+        File.WriteAllText(finalPath, jsonCache);
+      }
     }
 
     public List<string> GetNeighbors(){
