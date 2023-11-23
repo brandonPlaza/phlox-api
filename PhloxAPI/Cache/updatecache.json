@@ -1,5 +1,5 @@
 {
-  "LastUpdate": "2023-11-17T14:57:52.4492079-05:00",
+  "LastUpdate": "2023-11-18T22:15:36.3764377-05:00",
   "Nodes": {
     "5846deee-b924-43f4-ddbc-08dbcb6cdd9e": {
       "Name": "Front of open glass stairs",
@@ -96,10 +96,98 @@
     "7069ca88-593c-42d0-91cb-08dbe7a77b8e": {
       "Name": "Doorway adjacent to bruins coffee shop",
       "IsOutOfService": false
+    },
+    "27663407-b18f-49b1-91cc-08dbe7a77b8e": {
+      "Name": "S220 Corridor",
+      "IsOutOfService": false
+    },
+    "890d51aa-1866-4ee1-91cd-08dbe7a77b8e": {
+      "Name": "S220",
+      "IsOutOfService": false
+    },
+    "0a39d8ae-979b-4afc-91ce-08dbe7a77b8e": {
+      "Name": "S221",
+      "IsOutOfService": false
+    },
+    "a290179c-ea18-40d7-91cf-08dbe7a77b8e": {
+      "Name": "S222",
+      "IsOutOfService": false
+    },
+    "82d516a9-31bd-4d03-91d0-08dbe7a77b8e": {
+      "Name": "S228",
+      "IsOutOfService": false
+    },
+    "207e6fbf-c490-46fb-91d1-08dbe7a77b8e": {
+      "Name": "Entrance to S220 corridors",
+      "IsOutOfService": false
+    },
+    "d2f2a393-5f72-4377-91d2-08dbe7a77b8e": {
+      "Name": "S231",
+      "IsOutOfService": false
+    },
+    "95c1060a-06d6-4cea-91d3-08dbe7a77b8e": {
+      "Name": "2nd Floor SCAET Elevator",
+      "IsOutOfService": false
+    },
+    "78829682-46b5-43e1-91d4-08dbe7a77b8e": {
+      "Name": "2nd Floor Stair A",
+      "IsOutOfService": false
+    },
+    "a094ecb9-6142-4a44-91d5-08dbe7a77b8e": {
+      "Name": "1st Floor SCAET Elevator",
+      "IsOutOfService": false
+    },
+    "07455a16-3870-40b6-91d6-08dbe7a77b8e": {
+      "Name": "Front Of SCAET Elevator",
+      "IsOutOfService": false
+    },
+    "ea8562d3-8011-4ab0-91d7-08dbe7a77b8e": {
+      "Name": "Top of ramp to elevator",
+      "IsOutOfService": false
+    },
+    "1286d652-7459-43eb-91d8-08dbe7a77b8e": {
+      "Name": "Bottom of ramp to elevator",
+      "IsOutOfService": false
+    },
+    "3a4dc105-da39-4e8f-91d9-08dbe7a77b8e": {
+      "Name": "Bottom of ramp to corridors",
+      "IsOutOfService": false
+    },
+    "a7f67f6e-fe54-4af7-91da-08dbe7a77b8e": {
+      "Name": "Top of ramp to corridors",
+      "IsOutOfService": false
+    },
+    "f8e550ef-86e5-4d52-91db-08dbe7a77b8e": {
+      "Name": "Second hallway branch from top of ramp to corridors",
+      "IsOutOfService": false
+    },
+    "9d82bb54-1f0a-4b84-91dc-08dbe7a77b8e": {
+      "Name": "S144",
+      "IsOutOfService": false
+    },
+    "fa7a5c10-d5ca-4fbe-91dd-08dbe7a77b8e": {
+      "Name": "Doorway junction leading to stairwell B",
+      "IsOutOfService": false
+    },
+    "7860daa1-780d-4d94-91de-08dbe7a77b8e": {
+      "Name": "Doorway to stairwell B",
+      "IsOutOfService": false
+    },
+    "1cb7cb1f-b159-4683-91df-08dbe7a77b8e": {
+      "Name": "First floor stairwell B",
+      "IsOutOfService": false
     }
   },
   "Connections": {
     "b7d5e742-b649-4ea3-ddd2-08dbcb6cdd9e|b43b7183-e5d7-4848-ddd3-08dbcb6cdd9e": {
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "b43b7183-e5d7-4848-ddd3-08dbcb6cdd9e|5846deee-b924-43f4-ddbc-08dbcb6cdd9e": {
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "5846deee-b924-43f4-ddbc-08dbcb6cdd9e|e35cd5ad-4ee4-4035-ddc7-08dbcb6cdd9e": {
       "Weight": 1,
       "Cardinality": 3
     }

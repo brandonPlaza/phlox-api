@@ -155,7 +155,7 @@ namespace PhloxAPI.Services.AdministrationService
     //   File.WriteAllText(finalPath, jsonCache);
     // }
 
-    public void AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality){
+    public string AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality){
       string connectionId = $"{firstNodeId}|{secondNodeId}";
 
       string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -184,7 +184,10 @@ namespace PhloxAPI.Services.AdministrationService
 
         string jsonCache = JsonSerializer.Serialize(cache);
         File.WriteAllText(finalPath, jsonCache);
+
+        return jsonCache;
       }
+      return "";
     }
 
     public List<string> GetNeighbors(){
@@ -194,7 +197,7 @@ namespace PhloxAPI.Services.AdministrationService
         neighborNames.Add(neighbor.Node.Name);
       }
       return neighborNames;
-    } 
+    }
     public async Task<string> RemoveNode(string nodeName){
       var removedNode = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinalities).SingleOrDefaultAsync(x => x.Name == nodeName);
       if(removedNode != null){

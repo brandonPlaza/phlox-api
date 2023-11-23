@@ -28,8 +28,8 @@ namespace PhloxAPI.Controllers
     [HttpPost]
     public async Task<IActionResult> AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality)
     {
-      _administrationService.AddConnection(firstNodeId, secondNodeId, weight, cardinality);
-      return Ok("Connection Added");
+      var result = _administrationService.AddConnection(firstNodeId, secondNodeId, weight, cardinality);
+      return Ok(result);
     }
 
     [HttpPost]
