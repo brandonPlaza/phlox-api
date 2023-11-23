@@ -43,11 +43,5 @@ namespace PhloxAPI.Controllers
       var response = _administrationService.GetNeighbors();
       return Ok(response);
     }
-
-    [HttpPost]
-    public async Task<IActionResult> PopCache(){
-      _administrationService.Temp();
-      return Ok("Cache Re-Written");
-    }
   }
 }

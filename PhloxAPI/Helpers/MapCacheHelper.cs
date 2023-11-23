@@ -4,10 +4,12 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading.Tasks;
+using PhloxAPI.Models.DTOs;
 using PhloxAPI.Services.RoutingService.Classes;
 
 namespace PhloxAPI.Helpers
 {
+  // I am very proud of this class :)
   public static class MapCacheHelper
   {
     private const string pathToCacheWindows = @"\Cache\updatecache.json";
@@ -39,6 +41,21 @@ namespace PhloxAPI.Helpers
 
       string jsonCache = JsonSerializer.Serialize(newCache);
       File.WriteAllText(cachePath, jsonCache);
+    }
+
+    public static bool DoesCacheExist(){
+      var pathToCache = BuildPathToCache();
+      return File.Exists(pathToCache) ? true : false;
+    }
+
+    public static void BuildInitialCache(){
+      DateTime minDate = DateTime.MinValue;
+      MapCache cache = new MapCache(){
+        LastUpdate = minDate,
+        Nodes = new Dictionary<string, NodeCacheDTO>(),
+        Connections = new Dictionary<string, ConnectionCacheDTO>()
+      };
+      WriteToCache(cache);
     }
   }
 }

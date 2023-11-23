@@ -15,6 +15,7 @@ namespace PhloxAPI.Services.AdministrationService
 
     public AdministrationService(PhloxDbContext context) {
       _context = context;
+      if(!MapCacheHelper.DoesCacheExist()) MapCacheHelper.BuildInitialCache();
     }
 
     public async Task AddEdge(string nodeOne, string nodeTwo, int weight, int direction)
@@ -154,22 +155,6 @@ namespace PhloxAPI.Services.AdministrationService
     public Node UpdateAmenity()
     {
       throw new NotImplementedException();
-    }
-  
-    public void Temp(){
-      var dbNodes = _context.Nodes.ToList();
-      var cache = MapCacheHelper.PullCache();
-      Console.WriteLine(cache.Nodes.Count);
-      cache.Nodes = new Dictionary<string, NodeCacheDTO>();
-
-      foreach(Node node in dbNodes){
-        cache.Nodes.Add(node.Id.ToString(), new NodeCacheDTO{
-          Name = node.Name,
-          IsOutOfService = node.IsOutOfService,
-          Type = (int)node.Type
-        });
-      }
-      MapCacheHelper.WriteToCache(cache);
     }
   }
 }
