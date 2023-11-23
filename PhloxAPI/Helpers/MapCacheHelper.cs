@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 using PhloxAPI.Services.RoutingService.Classes;
@@ -9,14 +10,14 @@ namespace PhloxAPI.Helpers
 {
   public static class MapCacheHelper
   {
-    private const string pathToCache = @"..\..\..\Cache\updatecache.json";
-    
-    private static string BuildPathToCache(){
-      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-      var pathToFile = System.IO.Path.Combine(currentDirectory, pathToCache);
-      var finalPath = Path.GetFullPath(pathToFile);
+    private const string pathToCacheWindows = @"\Cache\updatecache.json";
+    private const string pathToCacheLinux = "./Cache/updatecache.json";
 
-      return finalPath;
+    private static string BuildPathToCache(){
+      string pathToCache = RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? pathToCacheLinux : pathToCacheWindows;
+      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+      var pathToFile = Path.Combine(currentDirectory, pathToCache);
+      return Path.GetFullPath(pathToFile);
     }
 
     public static MapCache PullCache(){

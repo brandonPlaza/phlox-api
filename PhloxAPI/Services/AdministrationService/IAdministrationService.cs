@@ -10,5 +10,6 @@ namespace PhloxAPI.Services.AdministrationService
         Task<string> RemoveNode(string nodeName);
         List<string> GetNeighbors();
         Node UpdateAmenity();
+        void Temp();
     }
 }

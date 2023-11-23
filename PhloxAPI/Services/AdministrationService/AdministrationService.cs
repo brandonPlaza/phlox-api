@@ -155,5 +155,21 @@ namespace PhloxAPI.Services.AdministrationService
     {
       throw new NotImplementedException();
     }
+  
+    public void Temp(){
+      var dbNodes = _context.Nodes.ToList();
+      var cache = MapCacheHelper.PullCache();
+      Console.WriteLine(cache.Nodes.Count);
+      cache.Nodes = new Dictionary<string, NodeCacheDTO>();
+
+      foreach(Node node in dbNodes){
+        cache.Nodes.Add(node.Id.ToString(), new NodeCacheDTO{
+          Name = node.Name,
+          IsOutOfService = node.IsOutOfService,
+          Type = (int)node.Type
+        });
+      }
+      MapCacheHelper.WriteToCache(cache);
+    }
   }
 }
