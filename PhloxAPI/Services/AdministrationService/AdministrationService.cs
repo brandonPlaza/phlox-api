@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
+using PhloxAPI.Helpers;
 using PhloxAPI.Models;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
@@ -100,33 +101,18 @@ namespace PhloxAPI.Services.AdministrationService
 
       var nodeFromDB = _context.Nodes.SingleOrDefault(x => x.Name == name);
 
-      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-      var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
-      var finalPath = Path.GetFullPath(pathToFile);
+      MapCache cache = MapCacheHelper.PullCache();
 
-      Console.WriteLine(finalPath);
-
-      MapCache cache = new();
-      
-      string jsonString = File.ReadAllText(finalPath);
-
-      cache = JsonSerializer.Deserialize<MapCache>(jsonString)!;
-
-      if(cache != null){
-        if(cache.Connections == null){
-          cache.Connections = new();
-        }
-
-        cache.LastUpdate = DateTime.Now;
-
-        cache.Nodes.Add(nodeFromDB.Id.ToString(), new NodeCacheDTO(){
-          Name = nodeFromDB.Name,
-          IsOutOfService = nodeFromDB.IsOutOfService
-        });
-
-        string jsonCache = JsonSerializer.Serialize(cache);
-        File.WriteAllText(finalPath, jsonCache);
+      if(cache.Connections == null){
+        cache.Connections = new();
       }
+
+      cache.Nodes.Add(nodeFromDB.Id.ToString(), new NodeCacheDTO(){
+        Name = nodeFromDB.Name,
+        IsOutOfService = nodeFromDB.IsOutOfService
+      });
+
+      MapCacheHelper.WriteToCache(cache);
     }
 
     // public void Temp(){
@@ -158,33 +144,18 @@ namespace PhloxAPI.Services.AdministrationService
     public void AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality){
       string connectionId = $"{firstNodeId}|{secondNodeId}";
 
-      string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-      var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
-      var finalPath = Path.GetFullPath(pathToFile);
+      MapCache cache = MapCacheHelper.PullCache();
 
-      Console.WriteLine(finalPath);
-
-      MapCache cache = new();
-      
-      string jsonString = File.ReadAllText(finalPath);
-
-      cache = JsonSerializer.Deserialize<MapCache>(jsonString)!;
-
-      if(cache != null){
-        if(cache.Connections == null){
-          cache.Connections = new();
-        }
-
-        cache.LastUpdate = DateTime.Now;
-
-        cache.Connections.Add(connectionId, new ConnectionCacheDTO(){
-          Weight = weight,
-          Cardinality = cardinality
-        });
-
-        string jsonCache = JsonSerializer.Serialize(cache);
-        File.WriteAllText(finalPath, jsonCache);
+      if(cache.Connections == null){
+        cache.Connections = new();
       }
+
+      cache.Connections.Add(connectionId, new ConnectionCacheDTO(){
+        Weight = weight,
+        Cardinality = cardinality
+      });
+
+      MapCacheHelper.WriteToCache(cache);
     }
 
     public List<string> GetNeighbors(){
