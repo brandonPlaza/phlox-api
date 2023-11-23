@@ -51,6 +51,9 @@ namespace PhloxAPI.Helpers
         ){
           connections.Remove(id);
         }
+        else if(nodes[nodeIds[0]].IsOutOfService || nodes[nodeIds[1]].IsOutOfService){
+          connections.Remove(id);
+        }
       }
     }
 
