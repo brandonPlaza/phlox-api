@@ -7,11 +7,13 @@ using PhloxAPI.Services.RoutingService.Classes;
 
 namespace PhloxAPI.Helpers
 {
-  public class MapCacheHelper
+  public static class MapCacheHelper
   {
+    private const string pathToCache = @"..\..\..\Cache\updatecache.json";
+    
     private static string BuildPathToCache(){
       string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-      var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
+      var pathToFile = System.IO.Path.Combine(currentDirectory, pathToCache);
       var finalPath = Path.GetFullPath(pathToFile);
 
       return finalPath;

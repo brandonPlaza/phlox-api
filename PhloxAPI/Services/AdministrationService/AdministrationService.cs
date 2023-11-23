@@ -114,33 +114,6 @@ namespace PhloxAPI.Services.AdministrationService
 
       MapCacheHelper.WriteToCache(cache);
     }
-
-    // public void Temp(){
-    //   var allNodes = _context.Nodes.ToList();
-
-    //   string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-    //   var pathToFile = System.IO.Path.Combine(currentDirectory, @"..\..\..\Cache\updatecache.json");
-    //   var finalPath = Path.GetFullPath(pathToFile);
-
-    //   MapCache cache = new();
-    //   if(!File.Exists(finalPath)){
-    //     cache = JsonSerializer.Deserialize<MapCache>(finalPath);
-    //   }
-
-    //   cache.Nodes = new();
-    //   cache.LastUpdate = DateTime.Now;
-    //   foreach(Node node in allNodes){
-    //     NodeCacheDTO newNodeCache = new NodeCacheDTO(){
-    //       Name = node.Name,
-    //       IsOutOfService = node.IsOutOfService
-    //     };
-    //     cache.Nodes.Add(node.Id.ToString(), newNodeCache);
-    //   }
-
-    //   string jsonCache = JsonSerializer.Serialize(cache);
-    //   File.WriteAllText(finalPath, jsonCache);
-    // }
-
     public void AddConnection(string firstNodeId, string secondNodeId, int weight, int cardinality){
       string connectionId = $"{firstNodeId}|{secondNodeId}";
 
@@ -157,7 +130,6 @@ namespace PhloxAPI.Services.AdministrationService
 
       MapCacheHelper.WriteToCache(cache);
     }
-
     public List<string> GetNeighbors(){
       var neighbors = _context.Neighbors.ToList();
       List<string> neighborNames = new();
@@ -179,7 +151,6 @@ namespace PhloxAPI.Services.AdministrationService
         return "No node found";
       }
     }
-
     public Node UpdateAmenity()
     {
       throw new NotImplementedException();
