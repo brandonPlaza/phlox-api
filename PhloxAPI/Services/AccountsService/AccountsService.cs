@@ -16,15 +16,25 @@ namespace PhloxAPI.Services.AccountsService
             _context = context;
         }
 
-        public string Login(UserLoginDTO userLoginDTO)
+        public UserDTO Login(UserLoginDTO userLoginDTO)
         {
             var user = _context.Users.SingleOrDefault(u => u.Username == userLoginDTO.Username);
-            if (user != null && MatchPasswords(user.Password, userLoginDTO.Password, Convert.FromBase64String(user.Salt)))
+
+			if (user != null && MatchPasswords(user.Password, userLoginDTO.Password, Convert.FromBase64String(user.Salt)))
             {
-                return user.Username;
+                var userDto = new UserDTO
+                {
+                    Email = user.Email,
+                    Firstname = user.FirstName,
+                    Lastname = user.LastName,
+                    Username = user.Username,
+                    FavouriteAmenities = user.FavouriteAmenities,
+                };
+
+                return userDto;
             }
-            return "Username or password is incorrect";
-        }
+			return null;
+		}
 
         public string RegisterUser(UserDTO user)
         {
@@ -63,26 +73,75 @@ namespace PhloxAPI.Services.AccountsService
             return "User created";
         }
 
-        public void AddFavAmenity(NodeDTO amenityDTO, string username)
+        public string AddFavouriteAmenity(string amenityName, string username)
         {
             var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
+            var amenity = _context.Nodes.Include(a => a.Reports).Include(a => a.OutOfServiceHistory).FirstOrDefault(a => a.Name == amenityName);
 
-            var amenity = _context.Nodes.FirstOrDefault(a => a.Name == amenityDTO.Name);
+            if (user == null)
+            {
+                return "User does not exist";
+            }
+
+            if (amenity == null)
+            {
+                return "Amenity does not exist";
+            }
+
             if (user.FavouriteAmenities == null)
             {
                 user.FavouriteAmenities = new List<Node>{
                     amenity
                 };
-                return;
+				_context.SaveChanges();
+				return "User favourite list created and favourite added";
             }
-            user.FavouriteAmenities.Add(amenity);
-            _context.SaveChanges();
+            else
+            {
+				user.FavouriteAmenities.Add(amenity);
+				_context.SaveChanges();
+                return "Favourite added";
+			}
         }
 
-        public List<Node> GetFavAmenities(string username)
+        public string RemoveFavouriteAmenity(string amenityName, string username)
+        {
+			var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
+			var amenity = _context.Nodes.FirstOrDefault(a => a.Name == amenityName);
+
+			if (user == null)
+			{
+				return "User does not exist";
+			}
+
+			if (amenity == null)
+			{
+				return "Amenity does not exist";
+			}
+
+			if (user.FavouriteAmenities == null)
+			{
+				return "User has no favourite amenities";
+			}
+			else
+			{
+				user.FavouriteAmenities.Remove(amenity);
+				_context.SaveChanges();
+				return "Favourite removed";
+			}
+		}
+		
+
+		public List<Node> GetFavouriteAmenities(string username)
         {
             var user = _context.Users.Include(u => u.FavouriteAmenities).FirstOrDefault(u => u.Username == username);
-            return user.FavouriteAmenities;
+            if (user != null)
+            {
+				return user.FavouriteAmenities;
+			} else
+            {
+                return null;
+            }
         }
 
         private static string HashPassword(string password, byte[] salt)

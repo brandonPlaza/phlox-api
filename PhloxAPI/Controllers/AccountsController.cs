@@ -26,30 +26,42 @@ namespace PhloxAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetFavouriteAmenities(string username)
         {
-            var favAmenities = _accountsService.GetFavAmenities(username);
-
-            var favAmenitiesStrings = new List<string>();
-
-            foreach (Node amenity in favAmenities)
+            var favAmenities = _accountsService.GetFavouriteAmenities(username);
+            if (favAmenities != null)
             {
-                favAmenitiesStrings.Add(amenity.Name);
+				return Ok(favAmenities);
+			} else
+            {
+                return BadRequest();
             }
-
-            return Ok(favAmenitiesStrings);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddFavouriteAmenity(NodeDTO amenity, string username)
+        public async Task<IActionResult> AddFavouriteAmenity(string amenity, string username)
         {
-            _accountsService.AddFavAmenity(amenity, username);
-            return Ok("Amenity Added");
-        }
+            var message = _accountsService.AddFavouriteAmenity(amenity, username);
+		    return Ok(message);
+		}
 
-        [HttpPost]
+		[HttpPost]
+		public async Task<IActionResult> RemoveFavouriteAmenity(string amenity, string username)
+		{
+			var message = _accountsService.RemoveFavouriteAmenity(amenity, username);
+			return Ok(message);
+		}
+
+		[HttpPost]
         public async Task<IActionResult> Login(UserLoginDTO userLogin)
         {
-            string user = _accountsService.Login(userLogin);
-            return Ok(user);
+            UserDTO user = _accountsService.Login(userLogin);
+
+            if(user != null)
+            {
+                return Ok(user);
+            } else
+            {
+				return BadRequest(new { message = "Login failed. Invalid username or password." });
+			}
         }
 
         [HttpPost]
