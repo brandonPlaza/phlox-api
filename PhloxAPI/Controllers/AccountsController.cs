@@ -48,8 +48,15 @@ namespace PhloxAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginDTO userLogin)
         {
-            string user = _accountsService.Login(userLogin);
-            return Ok(user);
+            UserDTO user = _accountsService.Login(userLogin);
+
+            if(user != null)
+            {
+                return Ok(user);
+            } else
+            {
+				return BadRequest(new { message = "Login failed. Invalid username or password." });
+			}
         }
 
         [HttpPost]

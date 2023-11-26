@@ -16,15 +16,25 @@ namespace PhloxAPI.Services.AccountsService
             _context = context;
         }
 
-        public string Login(UserLoginDTO userLoginDTO)
+        public UserDTO Login(UserLoginDTO userLoginDTO)
         {
             var user = _context.Users.SingleOrDefault(u => u.Username == userLoginDTO.Username);
-            if (user != null && MatchPasswords(user.Password, userLoginDTO.Password, Convert.FromBase64String(user.Salt)))
+
+			if (user != null && MatchPasswords(user.Password, userLoginDTO.Password, Convert.FromBase64String(user.Salt)))
             {
-                return user.Username;
+                var userDto = new UserDTO
+                {
+                    Email = user.Email,
+                    Firstname = user.FirstName,
+                    Lastname = user.LastName,
+                    Username = user.Username,
+                    FavouriteAmenities = user.FavouriteAmenities,
+                };
+
+                return userDto;
             }
-            return "Username or password is incorrect";
-        }
+			return null;
+		}
 
         public string RegisterUser(UserDTO user)
         {
