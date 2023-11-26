@@ -12,7 +12,7 @@ namespace PhloxAPI.Helpers
   // I am very proud of this class :)
   public static class MapCacheHelper
   {
-    private const string pathToCacheWindows = @"\Cache\updatecache.json";
+    private const string pathToCacheWindows = @".\Cache\updatecache.json";
     private const string pathToCacheLinux = "./Cache/updatecache.json";
 
     private static string BuildPathToCache(){
