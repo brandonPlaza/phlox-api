@@ -7,8 +7,9 @@ namespace PhloxAPI.Services.AccountsService
     {
         string RegisterUser(UserDTO user);
         UserDTO Login(UserLoginDTO userLoginDTO);
-        List<Node> GetFavAmenities(string username);
-        void AddFavAmenity(NodeDTO amenityDTO, string username);
+        List<Node> GetFavouriteAmenities(string username);
+        string AddFavouriteAmenity(string amenityName, string username);
+        string RemoveFavouriteAmenity(string amenityName, string username);
 
         User? GetUserByEmail(string email);
     }
