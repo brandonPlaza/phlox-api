@@ -1,9 +1,9 @@
 {
-  "LastUpdate": "2023-11-23T12:11:13.6861408-05:00",
+  "LastUpdate": "2023-11-26T18:55:41.7641579-05:00",
   "Nodes": {
     "5846deee-b924-43f4-ddbc-08dbcb6cdd9e": {
       "Name": "Front of open glass stairs",
-      "IsOutOfService": true,
+      "IsOutOfService": false,
       "Type": 3
     },
     "30937e9f-2da5-46cf-ddbd-08dbcb6cdd9e": {
@@ -13,7 +13,7 @@
     },
     "908827e8-bb1d-44c6-ddbe-08dbcb6cdd9e": {
       "Name": "Past coffee shop hallway",
-      "IsOutOfService": true,
+      "IsOutOfService": false,
       "Type": 3
     },
     "14b60caf-54c2-454e-ddbf-08dbcb6cdd9e": {
@@ -38,7 +38,7 @@
     },
     "5deca3d4-6406-436e-ddc3-08dbcb6cdd9e": {
       "Name": "Front of open stairs",
-      "IsOutOfService": true,
+      "IsOutOfService": false,
       "Type": 3
     },
     "d3bcb6f4-e44f-4606-ddc4-08dbcb6cdd9e": {
@@ -224,8 +224,34 @@
   },
   "Connections": {
     "b7d5e742-b649-4ea3-ddd2-08dbcb6cdd9e|b43b7183-e5d7-4848-ddd3-08dbcb6cdd9e": {
+      "Names":"SCAET Entrance|Front of Stair B",
       "Weight": 1,
       "Cardinality": 3
+    },
+    "b43b7183-e5d7-4848-ddd3-08dbcb6cdd9e|667c9932-03b8-46b8-ddc6-08dbcb6cdd9e": {
+      "Names":"Front of Stair B|2nd Floor Stair B",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "b43b7183-e5d7-4848-ddd3-08dbcb6cdd9e|5846deee-b924-43f4-ddbc-08dbcb6cdd9e": {
+      "Names":"Front of Stair B|Front of open glass stairs",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "5846deee-b924-43f4-ddbc-08dbcb6cdd9e|30937e9f-2da5-46cf-ddbd-08dbcb6cdd9e": {
+      "Names":"Front of open glass stairs|SCAET seating area",
+      "Weight": 2,
+      "Cardinality": 5
+    },
+    "30937e9f-2da5-46cf-ddbd-08dbcb6cdd9e|99d55fff-8467-46cd-ddca-08dbcb6cdd9e": {
+      "Names":"SCAET seating area|Bruins Coffee Shop",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "99d55fff-8467-46cd-ddca-08dbcb6cdd9e|908827e8-bb1d-44c6-ddbe-08dbcb6cdd9e": {
+      "Names":"Bruins Coffee Shop|Past coffee shop hallway",
+      "Weight": 2,
+      "Cardinality": 5
     }
   }
 }
