@@ -21,8 +21,9 @@ namespace PhloxAPI.Helpers
       var connectionIds = connections.Keys.ToList();
       foreach(string id in connectionIds){
         string[] nodeIds = id.Split('|');
-        GraphNode firstNode = GenerateGraphNode(ref nodes, ref graph, nodeIds[0], nodes[nodeIds[0]].Name);
-        GraphNode secondNode = GenerateGraphNode(ref nodes, ref graph, nodeIds[1], nodes[nodeIds[1]].Name);
+        string[] names = connections[id].Names.Split('|');
+        GraphNode firstNode = GenerateGraphNode(ref nodes, ref graph, nodeIds[0], names[0]);
+        GraphNode secondNode = GenerateGraphNode(ref nodes, ref graph, nodeIds[1], names[1]);
         firstNode.AddNeighbor(secondNode, connections[id].Weight, connections[id].Cardinality);
       }
 
@@ -46,6 +47,7 @@ namespace PhloxAPI.Helpers
       var connectionIds = connections.Keys.ToList();
       foreach(string id in connectionIds){
         string[] nodeIds = id.Split('|');
+        Console.WriteLine($"{nodeIds[0]}, {nodeIds[1]}");
         if((IsAmenityCompatibleWithDisability((NodeTypes)nodes[nodeIds[0]].Type, disability) == false) || 
             IsAmenityCompatibleWithDisability((NodeTypes)nodes[nodeIds[1]].Type, disability) == false
         ){

@@ -27,9 +27,12 @@ namespace PhloxAPI.Services.RoutingService
 
       var dbLessGraphNodes = DbLessGraphNodes();
       Graph graph = new Graph();
-      graph.LoadGraph(dbLessGraphNodes);
+      //graph.LoadGraph(dbLessGraphNodes);
+      var cache = MapCacheHelper.PullCache();
+      
+      graph.LoadGraph(GraphingHelper.GenerateGraph(cache.Nodes, cache.Connections, DisabilityType.Physical));
+      var results = Dijkstra(graph, graph.Nodes.Find(x => x.Name == source), graph.Nodes.Find(x => x.Name == dest));
 
-      var results = Dijkstra(graph, dbLessGraphNodes.Find(x => x.Name == source), dbLessGraphNodes.Find(x => x.Name == dest));
       List<string> resultsStrings = new();
       List<GraphNode> resultsNodes = new();
       foreach(int index in results){
