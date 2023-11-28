@@ -47,7 +47,6 @@ namespace PhloxAPI.Helpers
       var connectionIds = connections.Keys.ToList();
       foreach(string id in connectionIds){
         string[] nodeIds = id.Split('|');
-        Console.WriteLine($"{nodeIds[0]}, {nodeIds[1]}");
         if((IsAmenityCompatibleWithDisability((NodeTypes)nodes[nodeIds[0]].Type, disability) == false) || 
             IsAmenityCompatibleWithDisability((NodeTypes)nodes[nodeIds[1]].Type, disability) == false
         ){
