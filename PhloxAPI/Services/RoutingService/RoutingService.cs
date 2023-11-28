@@ -117,7 +117,6 @@ namespace PhloxAPI.Services.RoutingService
       ConnectNodes(ref graphNodes);
       return graphNodes;
     }
-
     public void ConnectNodes(ref List<GraphNode> graphNodes){
       graphNodes[0].AddNeighbor(graphNodes[1], 2, (int)CardinalDirection.SouthEast);
       graphNodes[1].AddNeighbor(graphNodes[2], 2, (int)CardinalDirection.SouthWest);
@@ -162,7 +161,6 @@ namespace PhloxAPI.Services.RoutingService
       graphNodes[43].AddNeighbor(graphNodes[44], 1, (int)CardinalDirection.SouthEast);
       //graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
     }
-
     private List<int> Dijkstra(Graph graph,GraphNode source, GraphNode dest){
       int[] prev = new int[graph.Nodes.Count];
       for(int i = 0; i < prev.Count(); i++){
@@ -212,7 +210,6 @@ namespace PhloxAPI.Services.RoutingService
       indexes.Reverse();
       return indexes;
     }
-
     private List<string> ConstructRouteDirections(List<GraphNode> nodes, CardinalDirection userDirection){
       List<int> cardinals = new List<int>();
       for(int i = 0; i < nodes.Count; i++){
@@ -221,8 +218,6 @@ namespace PhloxAPI.Services.RoutingService
       }
       return RouteDirections(userDirection, cardinals);
     }
-
-    // This is an unholy abomination, I will fix this
     private List<string> RouteDirections(CardinalDirection userDirection, List<int> cardinals){
       var tempUserDirection = userDirection;
       List<string> routeDirections = new();
@@ -287,7 +282,6 @@ namespace PhloxAPI.Services.RoutingService
       }
       return routeDirections;
     }
-
     public List<string> GetNodes()
     {
       var dataset = DbLessGraphNodes();
