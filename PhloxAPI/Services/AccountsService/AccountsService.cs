@@ -167,5 +167,11 @@ namespace PhloxAPI.Services.AccountsService
       var user = _context.Users.FirstOrDefault(r => r.Email.Equals(email));
       return user;
     }
+
+    public List<Node> GetAllAmenities()
+    {
+      var amenities = _context.Nodes.Where(x=>(x.Type == NodeTypes.Elevator)||(x.Type == NodeTypes.AutomaticDoor)||(x.Type == NodeTypes.Ramp)).ToList();
+      return amenities;
+    }
   }
 }

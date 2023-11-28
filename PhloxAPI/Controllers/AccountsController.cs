@@ -51,6 +51,16 @@ namespace PhloxAPI.Controllers
       return Ok(message);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAllAmenities(){
+      var amenities = _accountsService.GetAllAmenities();
+      // List<string> amenityNames = new();
+      // foreach(Node amenity in amenities){
+      //   amenityNames.Add(amenity.Name);
+      // }
+      return Ok(amenities);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Login(UserLoginDTO userLogin)
     {
