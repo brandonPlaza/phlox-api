@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using PhloxAPI.Models.DTOs;
@@ -103,6 +104,13 @@ namespace PhloxAPI.Controllers
       DbChangeNotification();
 
       return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetStatusById(string id)
+    {
+      var statusHelpRequestDTO = _helpRequestService.GetStatusById(new Guid(id));
+      return Ok(statusHelpRequestDTO);
     }
   }
 }

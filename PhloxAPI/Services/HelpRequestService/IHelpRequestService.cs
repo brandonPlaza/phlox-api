@@ -12,5 +12,6 @@ namespace PhloxAPI.Services.HelpRequestService
     List<HelpRequest> GetHelpRequests();
     List<HelpRequest> GetActiveHelpRequests();
     void DeleteHelpRequestById(Guid id);
+    StatusHelpRequestDTO GetStatusById(Guid id);
   }
 }
