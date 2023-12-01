@@ -8,9 +8,9 @@ namespace PhloxAPI.Models.DTOs
     public class NodeSimpleDTO
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public String? Building {get; set;}
-		public String NodeType { get; set; }
-		
+        public String Name { get; set; }
+        public String? Building { get; set; }
+        public String NodeType { get; set; }
+
     }
 }
