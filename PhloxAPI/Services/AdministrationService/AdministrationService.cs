@@ -125,6 +125,7 @@ namespace PhloxAPI.Services.AdministrationService
       }
 
       cache.Connections.Add(connectionId, new ConnectionCacheDTO(){
+        Names = $"{cache.Nodes[firstNodeId].Name}|{cache.Nodes[secondNodeId].Name}",
         Weight = weight,
         Cardinality = cardinality
       });

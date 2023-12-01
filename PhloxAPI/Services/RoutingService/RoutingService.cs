@@ -19,17 +19,22 @@ namespace PhloxAPI.Services.RoutingService
       _context = context;
     }
 
-    public async Task<List<string>> RequestRoute(string source, string dest)
+    public async Task<List<string>> RequestRoute(string source, string dest, string disability)
     {
       // var nodes = await _context.Nodes.Include(x => x.Neighbors).Include(x => x.Cardinalities).ToListAsync();
       // var unlinkedGraphNodes = ConvertNodesToUnlinkedGraphNodes(nodes);
       // var linkedGraphNodes = LinkGraphNodes(nodes, unlinkedGraphNodes);
 
-      var dbLessGraphNodes = DbLessGraphNodes();
+      //var dbLessGraphNodes = DbLessGraphNodes();
       Graph graph = new Graph();
-      graph.LoadGraph(dbLessGraphNodes);
+      //graph.LoadGraph(dbLessGraphNodes);
+      var cache = MapCacheHelper.PullCache();
 
-      var results = Dijkstra(graph, dbLessGraphNodes.Find(x => x.Name == source), dbLessGraphNodes.Find(x => x.Name == dest));
+      DisabilityType userDisability = ParseDisability(disability);
+      
+      graph.LoadGraph(GraphingHelper.GenerateGraph(cache.Nodes, cache.Connections, userDisability));
+      var results = Dijkstra(graph, graph.Nodes.Find(x => x.Name == source), graph.Nodes.Find(x => x.Name == dest));
+
       List<string> resultsStrings = new();
       List<GraphNode> resultsNodes = new();
       foreach(int index in results){
@@ -47,6 +52,20 @@ namespace PhloxAPI.Services.RoutingService
       return completeRoute;
     }
 
+    private DisabilityType ParseDisability(string disability){
+      if(disability == DisabilityType.Physical.ToString()){
+        return DisabilityType.Physical;
+      }
+      else if(disability == DisabilityType.Auditory.ToString()){
+        return DisabilityType.Auditory;
+      }
+      else if(disability == DisabilityType.Visual.ToString()){
+        return DisabilityType.Visual;
+      }
+      else{
+        return DisabilityType.NoDisability;
+      }
+    }
     public List<GraphNode> DbLessGraphNodes(){
       List<GraphNode> graphNodes = new List<GraphNode>(){
         new GraphNode("SCAET Entrance"),
@@ -98,7 +117,6 @@ namespace PhloxAPI.Services.RoutingService
       ConnectNodes(ref graphNodes);
       return graphNodes;
     }
-
     public void ConnectNodes(ref List<GraphNode> graphNodes){
       graphNodes[0].AddNeighbor(graphNodes[1], 2, (int)CardinalDirection.SouthEast);
       graphNodes[1].AddNeighbor(graphNodes[2], 2, (int)CardinalDirection.SouthWest);
@@ -143,131 +161,6 @@ namespace PhloxAPI.Services.RoutingService
       graphNodes[43].AddNeighbor(graphNodes[44], 1, (int)CardinalDirection.SouthEast);
       //graphNodes[0].AddNeighbor(graphNodes[1], 1, (int)CardinalDirection.SouthEast);
     }
-
-    // I will optimize this later
-    // public List<GraphNode> ConvertNodeToGraphNode(List<Node> nodes){
-    //   // Goal, covert nodes -> convertedNodes
-    //   List<GraphNode> convertedNodes = new();
-    //   foreach(Node node in nodes){
-    //     // Node w no neighbors gets new dicts
-    //     if(node.Neighbors == null){
-    //       node.Neighbors = new List<Neighbor>();
-    //       continue;
-    //     }
-    //     // Get all neighbors to current node
-    //     List<Node> neighbors = new();
-    //     List<int> neighborsWeights = new();
-    //     List<Node> cardinalityNodes = new();
-    //     List<int> cardinalities = new();
-
-    //     foreach(Neighbor neighborNode in node.Neighbors){
-    //       neighbors.Append(neighborNode.Node);
-    //       neighborsWeights.Append(neighborNode.Weight);
-    //     }
-    //     foreach(Cardinality cardinality in node.Cardinalities){
-    //       cardinalityNodes.Append(cardinality.Neighbor);
-    //       cardinalities.Append((int)cardinality.CardinalDirection);
-    //     }
-    //     GraphNode newNode = new(node.Name);
-    //     // Find them in nodes so that they carry their data and dont lose it due to cyclical issues
-    //     for(int i = 0 ; i < neighbors.Count ; i++){
-    //       // Get the values
-    //       int neighborWeight = neighborsWeights[i];
-    //       int cardinalityValue = cardinalities[i];
-
-    //       newNode.AddNeighbor(new GraphNode(neighbors[i].Name), neighborWeight, cardinalityValue);
-    //     }
-    //     convertedNodes.Add(newNode);
-    //   }
-    //   return convertedNodes;
-    // }
-    public List<GraphNode> ConvertNodesToUnlinkedGraphNodes(List<Node> nodes){
-      List<GraphNode> unlinkedGraphNodes = new();
-      foreach(Node node in nodes){
-        unlinkedGraphNodes.Add(new GraphNode(node.Name));
-      }
-      return unlinkedGraphNodes;
-    }
-
-    // public List<GraphNode> LinkGraphNodes(List<Node> nodes, List<GraphNode> graphNodes){
-    //   List<GraphNode> linkedGraphNodes = graphNodes;
-    //   for(int i = 0; i < nodes.Count; i++){
-    //     if(nodes[i].Neighbors != null){
-    //       foreach(Neighbor neighbor in nodes[i].Neighbors){
-    //         var tempGraphNode = linkedGraphNodes.Find(x => x.Name == neighbor.Node.Name);
-    //         linkedGraphNodes[i].Neighbors.Add(tempGraphNode, neighbor.Weight);
-    //       }
-    //     }
-    //     else if(nodes[i].Cardinalities != null){
-    //       foreach(Cardinality cardinality in nodes[i].Cardinalities){
-    //         var tempGraphNode = linkedGraphNodes.Find(x => x.Name == cardinality.Neighbor.Name);
-    //         linkedGraphNodes[i].Cardinality.Add(tempGraphNode, (int)cardinality.CardinalDirection);
-    //       }
-    //     }
-    //   }
-    //   return linkedGraphNodes;
-    // }
-
-    // private (Dictionary<GraphNode, int>, Dictionary<GraphNode, GraphNode>) Dijkstras(Graph graph, GraphNode source){
-    //   // Start with graph and source node
-    //   // Maps nodes to shortest length from source
-    //   Dictionary<GraphNode, int> totalCosts = new();
-
-    //   // Records prev nodes
-    //   Dictionary<GraphNode, GraphNode> prevNodes = new();
-
-    //   // Holds visited nodes
-    //   List<GraphNode> visited = new();
-
-    //   // Priority Queue to set what nodes to visit
-    //   PriorityQueue<GraphNode, int> priorityQueue = new();
-
-    //   // Set source node distance to 0
-    //   totalCosts.Add(source, 0);
-
-    //   // Queue up the first node
-    //   priorityQueue.Enqueue(source, 0);
-
-    //   // At the beginning all distances are set to infinity
-    //   foreach(GraphNode node in graph.Nodes){
-    //     if(!node.Equals(source)){
-    //       totalCosts.Add(node, int.MaxValue);
-    //       break;
-    //     }
-    //   }
-
-    //   // Start with distance from source to source; I.e 0
-    //   // Start loop
-    //   while(priorityQueue.Count != 0){
-    //     //Visit the unvisited node with the smallest distance from start (at the beginning it will be the start node)
-    //     GraphNode closestNode = priorityQueue.Dequeue();
-    //     //For the current node we look at its unvisited neighbors
-    //     foreach(GraphNode neighbor in closestNode.Neighbors.Keys){
-    //       if(!visited.Contains(neighbor)){
-    //         int closestNodeDistance;
-    //         int closestNodeToNeighborDistance;
-    //         totalCosts.TryGetValue(closestNode, out closestNodeDistance);
-    //         closestNode.Neighbors.TryGetValue(neighbor, out closestNodeToNeighborDistance);
-    //         int path = closestNodeDistance + closestNodeToNeighborDistance;
-            
-    //         int neighborDistance;
-    //         totalCosts.TryGetValue(neighbor, out neighborDistance);
-    //         if(path < neighborDistance){
-    //           totalCosts[neighbor] = path;
-    //           if(prevNodes.Keys.Contains(neighbor)){
-    //             prevNodes[neighbor] = closestNode;
-    //           }
-    //           else{
-    //             prevNodes.Add(neighbor, closestNode);
-    //           }
-    //           priorityQueue = UpdatePriorityQueue(priorityQueue, neighbor, path);
-    //         }
-    //       }
-    //     }
-    //   }
-    //   return(totalCosts, prevNodes);
-    // }
-
     private List<int> Dijkstra(Graph graph,GraphNode source, GraphNode dest){
       int[] prev = new int[graph.Nodes.Count];
       for(int i = 0; i < prev.Count(); i++){
@@ -317,7 +210,6 @@ namespace PhloxAPI.Services.RoutingService
       indexes.Reverse();
       return indexes;
     }
-
     private List<string> ConstructRouteDirections(List<GraphNode> nodes, CardinalDirection userDirection){
       List<int> cardinals = new List<int>();
       for(int i = 0; i < nodes.Count; i++){
@@ -326,15 +218,11 @@ namespace PhloxAPI.Services.RoutingService
       }
       return RouteDirections(userDirection, cardinals);
     }
-
-    // This is an unholy abomination, I will fix this
     private List<string> RouteDirections(CardinalDirection userDirection, List<int> cardinals){
       var tempUserDirection = userDirection;
       List<string> routeDirections = new();
-      Console.WriteLine(cardinals.Count);
       for(int i = 0; i<cardinals.Count; i++){
         // Gateway conditions
-        Console.WriteLine($"Cardinal step {i}: {cardinals[i]}, current cardinal: {tempUserDirection}");
         if(cardinals[i] == (int)tempUserDirection){
           routeDirections.Add("Head forward until");
           continue;
@@ -394,7 +282,6 @@ namespace PhloxAPI.Services.RoutingService
       }
       return routeDirections;
     }
-
     public List<string> GetNodes()
     {
       var dataset = DbLessGraphNodes();

@@ -17,9 +17,9 @@ namespace PhloxAPI.Controllers
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetRoute(string source, string dest)
+    public async Task<IActionResult> GetRoute(string source, string dest, string disability)
     {
-      var results = await _routingService.RequestRoute(source, dest);
+      var results = await _routingService.RequestRoute(source, dest, disability);
       return Ok(results);
     }
     [HttpGet]
