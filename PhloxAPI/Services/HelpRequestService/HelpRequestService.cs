@@ -105,5 +105,18 @@ namespace PhloxAPI.Services.HelpRequestService
       // TODO: Get all accepted requests and update their position in queue based on time accepted
     }
 
+    public StatusHelpRequestDTO GetStatusById(Guid id)
+    {
+      var helpRequest = _context.HelpRequests.FirstOrDefault(r => r.Id == id);
+
+      var statusHelpRequest = new StatusHelpRequestDTO
+      {
+        Id = helpRequest.Id.ToString(),
+        Status = helpRequest.Status,
+        Position = helpRequest.Position
+      };
+
+      return statusHelpRequest;
+    }
   }
 }
