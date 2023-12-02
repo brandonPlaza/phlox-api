@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhloxAPI.Data;
 
@@ -11,9 +12,11 @@ using PhloxAPI.Data;
 namespace PhloxAPI.Migrations
 {
     [DbContext(typeof(PhloxDbContext))]
-    partial class PhloxDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231124023236_AddBuildingToNode")]
+    partial class AddBuildingToNode
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,8 +69,11 @@ namespace PhloxAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("NodeId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitute")
+                        .HasColumnType("float");
 
                     b.Property<int?>("Position")
                         .HasColumnType("int");
@@ -93,8 +99,6 @@ namespace PhloxAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NodeId");
 
                     b.ToTable("HelpRequests");
                 });
@@ -128,6 +132,9 @@ namespace PhloxAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
+                    b.Property<Guid?>("BuildingId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsOutOfService")
                         .HasColumnType("bit");
 
@@ -142,6 +149,8 @@ namespace PhloxAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BuildingId");
 
                     b.HasIndex("UserId");
 
@@ -238,17 +247,6 @@ namespace PhloxAPI.Migrations
                     b.Navigation("Neighbor");
                 });
 
-            modelBuilder.Entity("PhloxAPI.Models.Entities.HelpRequest", b =>
-                {
-                    b.HasOne("PhloxAPI.Models.Entities.Node", "Node")
-                        .WithMany()
-                        .HasForeignKey("NodeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Node");
-                });
-
             modelBuilder.Entity("PhloxAPI.Models.Entities.Neighbor", b =>
                 {
                     b.HasOne("PhloxAPI.Models.Entities.Node", "Node")
@@ -262,6 +260,10 @@ namespace PhloxAPI.Migrations
 
             modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>
                 {
+                    b.HasOne("PhloxAPI.Models.Entities.Building", null)
+                        .WithMany("Nodes")
+                        .HasForeignKey("BuildingId");
+
                     b.HasOne("PhloxAPI.Models.Entities.User", null)
                         .WithMany("FavouriteAmenities")
                         .HasForeignKey("UserId");
@@ -287,6 +289,11 @@ namespace PhloxAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("NodeAffected");
+                });
+
+            modelBuilder.Entity("PhloxAPI.Models.Entities.Building", b =>
+                {
+                    b.Navigation("Nodes");
                 });
 
             modelBuilder.Entity("PhloxAPI.Models.Entities.Node", b =>

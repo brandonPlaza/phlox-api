@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using PhloxAPI.Models.DTOs;
@@ -84,6 +85,18 @@ namespace PhloxAPI.Controllers
     }
 
     /// <summary>
+    /// Get all help requests in the database in a simplified format.
+    /// </summary>
+    /// <param></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<IActionResult> GetAllSimple()
+    {
+      var helpRequests = _helpRequestService.GetSimpleHelpRequests();
+      return Ok(helpRequests);
+    }
+
+    /// <summary>
     /// Get all active (AKA not completed or cancelled) help requests
     /// </summary>
     /// <param></param>
@@ -103,6 +116,13 @@ namespace PhloxAPI.Controllers
       DbChangeNotification();
 
       return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetStatusById(string id)
+    {
+      var statusHelpRequestDTO = _helpRequestService.GetStatusById(new Guid(id));
+      return Ok(statusHelpRequestDTO);
     }
   }
 }

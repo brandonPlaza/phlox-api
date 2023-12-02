@@ -83,6 +83,33 @@ namespace PhloxAPI.Services.ReportService
 			return nodesDtos;
 		}
 
+		public List<NodeSimpleDTO> GetNodesSimple() 
+		{
+			var nodes = _context.Nodes.ToList();
+			var simpleNodes = new List<NodeSimpleDTO>();
+			foreach (var node in nodes) {
+				simpleNodes.Add(
+					new NodeSimpleDTO
+					{
+						Id = node.Id,
+						Name = node.Name,
+						Building = node.Building.ToString(),
+						NodeType = node.Type.ToString()
+					}
+				);
+			}
+			return simpleNodes;
+		}
+
+		public void SetAllNodesToS() {
+			var nodes = _context.Nodes.ToList();
+			foreach (var node in nodes){
+				node.Building = 's';
+			}
+			_context.SaveChanges();
+			
+		}
+
 		public List<string> GetNodeTypes()
 		{
 			return new List<string>(Enum.GetNames(typeof(NodeTypes)));
