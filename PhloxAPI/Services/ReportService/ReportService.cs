@@ -65,7 +65,9 @@ namespace PhloxAPI.Services.ReportService
 				{
 					Id = r.Id,
 					UserMessage = r.UserMessage,
-					ReportedAt = r.ReportedAt
+					ReportedAt = r.ReportedAt,
+					Resolved = r.Resolved,
+					ResolvedAt = r.ResolvedAt,
 				}).ToList();
 
 				nodesDtos.Add(
