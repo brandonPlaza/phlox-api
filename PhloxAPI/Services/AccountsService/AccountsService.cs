@@ -36,7 +36,7 @@ namespace PhloxAPI.Services.AccountsService
       return null;
     }
 
-    public string RegisterUser(UserDTO user)
+    public string RegisterUser(UserRegisterDTO user)
     {
       if (_context.Users.FirstOrDefault(u => u.Email == user.Email) != null)
       {
@@ -60,8 +60,8 @@ namespace PhloxAPI.Services.AccountsService
 
       var newUser = new User
       {
-        FirstName = user.Firstname,
-        LastName = user.Lastname,
+        FirstName = user.FirstName,
+        LastName = user.LastName,
         Username = user.Username,
         Email = user.Email,
         Password = hashedPass,

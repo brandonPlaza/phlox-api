@@ -77,7 +77,7 @@ namespace PhloxAPI.Controllers
     }
 
     [HttpPost]
-    public IActionResult Register(UserDTO user)
+    public async Task<IActionResult> Register(UserRegisterDTO user)
     {
       string result = _accountsService.RegisterUser(user);
       return Ok(result);
