@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
@@ -20,8 +21,7 @@ namespace PhloxAPI.Services.HelpRequestService
       {
         UserEmail = helpRequest.UserEmail,
         Status = HelpRequestStatus.Waiting.ToString(),
-        Latitude = Convert.ToDouble(helpRequest.Latitude),
-        Longitute = Convert.ToDouble(helpRequest.Longitude),
+        Node = _context.Nodes.FirstOrDefault(n => n.Id == new Guid(helpRequest.NodeId)),
         TimeCreated = DateTime.Now
       };
 
@@ -81,24 +81,51 @@ namespace PhloxAPI.Services.HelpRequestService
 
     public List<HelpRequest> GetHelpRequests()
     {
-      return _context.HelpRequests.ToList();
+      return _context.HelpRequests.Include(r => r.Node).ToList();
+    }
+
+    public List<NodeHelpRequestDTO> GetSimpleHelpRequests()
+    {
+      var query = _context.HelpRequests.Include(r => r.Node).ToList();
+      var helpRequests = new List<NodeHelpRequestDTO>();
+
+      foreach (var req in query)
+      {
+        helpRequests.Add(new NodeHelpRequestDTO
+        {
+          UserEmail = req.UserEmail,
+          Status = req.Status,
+          Position = req.Position,
+          Node = new NodeSimpleDTO
+          {
+            Id = req.Node.Id,
+            Name = req.Node.Name,
+            Building = req.Node.Building == 0 ? null : req.Node.Building.ToString(),
+            NodeType = req.Node.Type.ToString()
+          }
+        });
+      }
+
+      return helpRequests;
     }
 
     public List<HelpRequest> GetActiveHelpRequests()
     {
       var activeRequests = _context.HelpRequests
+        .Include(r => r.Node)
         .Where(r => r.Status.Equals(HelpRequestStatus.Waiting.ToString()) || r.Status.Equals(HelpRequestStatus.Accepted.ToString()))
-        .OrderByDescending(o => o.TimeCreated);
-      return activeRequests.ToList();
+        .OrderByDescending(o => o.TimeCreated)
+        .ToList();
+
+      return activeRequests;
     }
 
     public HelpRequest GetHelpRequestById(Guid id)
     {
-      var helpRequest = _context.HelpRequests.FirstOrDefault(r => r.Id == id);
+      var helpRequest = _context.HelpRequests.Include(r => r.Node).FirstOrDefault(r => r.Id == id);
 
       return helpRequest;
     }
-
 
     private void UpdateQueuePositions()
     {

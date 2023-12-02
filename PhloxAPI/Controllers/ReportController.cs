@@ -44,6 +44,17 @@ namespace PhloxAPI.Controllers
             return Ok(_reportsService.GetNodes());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetSimpleNodes() {
+            return Ok(_reportsService.GetNodesSimple());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SetAllNodesToS() {
+            _reportsService.SetAllNodesToS();
+            return Ok("Nodes set to S Building");
+        }
+
 		[HttpGet]
 		public async Task<IActionResult> GetNodeTypes()
 		{

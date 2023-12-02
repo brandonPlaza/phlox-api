@@ -85,6 +85,18 @@ namespace PhloxAPI.Controllers
     }
 
     /// <summary>
+    /// Get all help requests in the database in a simplified format.
+    /// </summary>
+    /// <param></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<IActionResult> GetAllSimple()
+    {
+      var helpRequests = _helpRequestService.GetSimpleHelpRequests();
+      return Ok(helpRequests);
+    }
+
+    /// <summary>
     /// Get all active (AKA not completed or cancelled) help requests
     /// </summary>
     /// <param></param>

@@ -2,9 +2,16 @@ namespace PhloxAPI.Models.DTOs
 {
   public class HelpRequestDTO
   {
-    public string UserEmail { get; set; }
-    public string Latitude { get; set; }
-    public string Longitude { get; set; }
+    public String UserEmail { get; set; }
+    public String NodeId { get; set; }
+  }
+
+  public class NodeHelpRequestDTO
+  {
+    public String UserEmail { get; set; }
+    public String Status { get; set; }
+    public int? Position { get; set; }
+    public NodeSimpleDTO Node { get; set; }
   }
 
   public class StatusHelpRequestDTO
