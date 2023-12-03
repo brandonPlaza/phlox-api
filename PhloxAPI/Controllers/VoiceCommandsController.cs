@@ -25,16 +25,16 @@ namespace PhloxAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetIntentFromAudioWithParams(String fileUrl, String encoding = "LINEAR16", int sampleRate = 44100, String languageCode = "en-US")
+        public async Task<IActionResult> GetTranscriptFromAudioWithParams(String fileUrl, String encoding = "LINEAR16", int sampleRate = 44100, String languageCode = "en-US")
         {
-            var response = await _voiceCommandsService.GetIntentFromAudioWithParams(fileUrl, encoding, sampleRate, languageCode);
+            var response = await _voiceCommandsService.GetTranscriptFromAudioWithParams(fileUrl, encoding, sampleRate, languageCode);
             return Ok(response);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetIntentFromAudio(String fileUrl)
+        public async Task<IActionResult> GetTranscriptFromAudio(String fileUrl)
         {
-            var response = await _voiceCommandsService.GetIntentFromAudio(fileUrl);
+            var response = await _voiceCommandsService.GetTranscriptFromAudio(fileUrl);
             return Ok(response);
         }
 

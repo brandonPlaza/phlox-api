@@ -7,9 +7,9 @@ namespace PhloxAPI.Services.VoiceCommandsService
 {
     public interface IVoiceCommandsService
     {
-        Task<String> GetIntentFromAudioWithParams(String fileUrl, String encoding, int sampleRate, String languageCode);
+        Task<String> GetTranscriptFromAudioWithParams(String fileUrl, String encoding, int sampleRate, String languageCode);
 
-        Task<String> GetIntentFromAudio(String fileUrl);
+        Task<String> GetTranscriptFromAudio(String fileUrl);
 
     }
 }
