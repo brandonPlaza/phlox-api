@@ -109,7 +109,6 @@ namespace PhloxAPI.Services.AdministrationService
 				Name = name,
 				Type = type,
 			};
-
 			_context.Nodes.Add(newNode);
 			_context.SaveChanges();
 
@@ -125,7 +124,8 @@ namespace PhloxAPI.Services.AdministrationService
 			cache.Nodes.Add(nodeFromDB.Id.ToString(), new NodeCacheDTO()
 			{
 				Name = nodeFromDB.Name,
-				IsOutOfService = nodeFromDB.IsOutOfService
+				IsOutOfService = nodeFromDB.IsOutOfService,
+        Type = (int)nodeFromDB.Type
 			});
 
 			MapCacheHelper.WriteToCache(cache);
