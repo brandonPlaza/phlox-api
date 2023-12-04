@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhloxAPI.Data;
+using PhloxAPI.Helpers;
 using PhloxAPI.Models.DTOs;
 using PhloxAPI.Models.Entities;
 
@@ -44,6 +45,10 @@ namespace PhloxAPI.Services.ReportService
 							AffectedNode = node,
 						});
 				}
+        var cache = MapCacheHelper.PullCache();
+        cache.Nodes[node.Id.ToString()].IsOutOfService = true;
+
+        MapCacheHelper.WriteToCache(cache);
 
 				_context.Reports.Add(newReport);
 				_context.SaveChanges();
@@ -122,13 +127,14 @@ namespace PhloxAPI.Services.ReportService
 		{
 			var reports = _context.Reports.ToList();
 			_context.Reports.RemoveRange(reports);
-
+      var cache = MapCacheHelper.PullCache();
 			var affectedNodes = _context.Nodes.Where(n => n.Reports.Any());
 			foreach (var node in affectedNodes)
 			{
 				node.IsOutOfService = false;
+        cache.Nodes[node.Id.ToString()].IsOutOfService = false;
 			}
-
+      MapCacheHelper.WriteToCache(cache);
 			_context.SaveChanges();
 		}
 	}
