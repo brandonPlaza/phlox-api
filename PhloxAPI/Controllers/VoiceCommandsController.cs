@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using PhloxAPI.Helpers;
 using PhloxAPI.Services.VoiceCommandsService;
 
 namespace PhloxAPI.Controllers
@@ -38,6 +39,5 @@ namespace PhloxAPI.Controllers
             var response = await _voiceCommandsService.GetTranscriptFromAudio(fileUrl);
             return Ok(JsonConvert.SerializeObject(response));
         }
-
     }
 }
