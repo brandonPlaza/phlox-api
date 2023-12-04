@@ -168,7 +168,7 @@
     },
     "a094ecb9-6142-4a44-91d5-08dbe7a77b8e": {
       "Name": "1st Floor SCAET Elevator",
-      "IsOutOfService": true,
+      "IsOutOfService": false,
       "Type": 0
     },
     "07455a16-3870-40b6-91d6-08dbe7a77b8e": {
