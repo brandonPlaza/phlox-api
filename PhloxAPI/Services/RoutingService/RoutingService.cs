@@ -211,31 +211,31 @@ namespace PhloxAPI.Services.RoutingService
       return indexes;
     }
     private List<string> ConstructRouteDirections(List<GraphNode> nodes, CardinalDirection userDirection){
-      List<int> cardinals = new List<int>();
+      List<CardinalDirection> cardinals = new List<CardinalDirection>();
       for(int i = 0; i < nodes.Count; i++){
         if(i+1>=nodes.Count)break;
-        cardinals.Add(nodes[i].Cardinality[nodes[i+1]]);
+        cardinals.Add((CardinalDirection)nodes[i].Cardinality[nodes[i+1]]);
       }
       return RouteDirections(userDirection, cardinals);
     }
-    private List<string> RouteDirections(CardinalDirection userDirection, List<int> cardinals){
+    private List<string> RouteDirections(CardinalDirection userDirection, List<CardinalDirection> cardinals){
       var tempUserDirection = userDirection;
       List<string> routeDirections = new();
       for(int i = 0; i<cardinals.Count; i++){
         // Gateway conditions
-        if(cardinals[i] == (int)tempUserDirection){
+        if(cardinals[i] == tempUserDirection){
           routeDirections.Add("Head forward until");
           continue;
         }
-        else if(cardinals[i] == (int)CardinalDirection.Up){
+        else if(cardinals[i] == CardinalDirection.Up){
           routeDirections.Add("Head up via");
           continue;
         }
-        else if(cardinals[i] == (int)CardinalDirection.Down){
+        else if(cardinals[i] == CardinalDirection.Down){
           routeDirections.Add("Head down via");
           continue;
         }
-        else if((cardinals[i]+4)%7 == (int)tempUserDirection)
+        else if(((int)cardinals[i]+4)%8 == (int)tempUserDirection)
         {
           routeDirections.Add("Turn around and step to");
           continue;
@@ -245,37 +245,37 @@ namespace PhloxAPI.Services.RoutingService
         var leftOfUser = directions.Item1;
         var rightOfUser = directions.Item2;
 
-        if(leftOfUser.Contains((CardinalDirection)cardinals[i])){
-          var indexOfCardinal = leftOfUser.IndexOf((CardinalDirection)cardinals[i]);
+        if(leftOfUser.Contains(cardinals[i])){
+          var indexOfCardinal = leftOfUser.IndexOf(cardinals[i]);
           switch (indexOfCardinal){
             case 0:
               routeDirections.Add("Take a slight left, and head towards");
-              tempUserDirection = (CardinalDirection)cardinals[i];
+              tempUserDirection = cardinals[i];
               break;
             case 1:
               routeDirections.Add("Turn left, and head towards");
-              tempUserDirection = (CardinalDirection)cardinals[i];
+              tempUserDirection = cardinals[i];
               break;
             case 2:
               routeDirections.Add("Take a sharp left, and head towards");
-              tempUserDirection = (CardinalDirection)cardinals[i];
+              tempUserDirection = cardinals[i];
               break;
           }
         }
-        else if(rightOfUser.Contains((CardinalDirection)cardinals[i])){
-          var indexOfCardinal = rightOfUser.IndexOf((CardinalDirection)cardinals[i]);
+        else if(rightOfUser.Contains(cardinals[i])){
+          var indexOfCardinal = rightOfUser.IndexOf(cardinals[i]);
           switch (indexOfCardinal){
             case 0:
               routeDirections.Add("Take a slight right, and head towards");
-              tempUserDirection = (CardinalDirection)cardinals[i];
+              tempUserDirection = cardinals[i];
               break;
             case 1:
               routeDirections.Add("Turn right, and head towards");
-              tempUserDirection = (CardinalDirection)cardinals[i];
+              tempUserDirection = cardinals[i];
               break;
             case 2:
               routeDirections.Add("Take a sharp right, and head towards");
-              tempUserDirection = (CardinalDirection)cardinals[i];
+              tempUserDirection = cardinals[i];
               break;
           }
         }
