@@ -7,6 +7,7 @@ using PhloxAPI.Services.HelpRequestService;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SignalR;
+using PhloxAPI.Services.VoiceCommandsService;
 
 
 
@@ -47,6 +48,9 @@ builder.Services.AddScoped<IRoutingService, RoutingService>();
 
 // Add Help Request service to builder so it can be dependency injected 
 builder.Services.AddScoped<IHelpRequestService, HelpRequestService>();
+
+// Add Voice Commands service to builder so it can be dependency injected 
+builder.Services.AddScoped<IVoiceCommandsService, VoiceCommandsService>();
 
 var connection = String.Empty;
 
