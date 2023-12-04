@@ -1,5 +1,5 @@
 {
-  "LastUpdate": "2023-11-27T16:08:31.3330358-05:00",
+  "LastUpdate": "2023-12-03T23:38:14.4993012-05:00",
   "Nodes": {
     "5846deee-b924-43f4-ddbc-08dbcb6cdd9e": {
       "Name": "Front of open glass stairs",
@@ -168,7 +168,7 @@
     },
     "a094ecb9-6142-4a44-91d5-08dbe7a77b8e": {
       "Name": "1st Floor SCAET Elevator",
-      "IsOutOfService": false,
+      "IsOutOfService": true,
       "Type": 0
     },
     "07455a16-3870-40b6-91d6-08dbe7a77b8e": {
@@ -220,6 +220,136 @@
       "Name": "First floor stairwell B",
       "IsOutOfService": false,
       "Type": 4
+    },
+    "0cefc538-e95e-41aa-edb7-08dbf3b1f0f7": {
+      "Name": "Art hallway S building entrance",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "aa864982-3aa0-4cef-edb8-08dbf3b1f0f7": {
+      "Name": "Art hallway C building entrance",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "b0f7687b-9267-4c3c-edb9-08dbf3b1f0f7": {
+      "Name": "Doors to library",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "636769c9-7c0e-4568-edbd-08dbf3b1f0f7": {
+      "Name": "Bottom of ramp near library",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "b313f6f4-0353-43cd-edbe-08dbf3b1f0f7": {
+      "Name": "Top of ramp near library",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "bf01be5a-321f-4ca4-edbf-08dbf3b1f0f7": {
+      "Name": "Bottom of stairs near library",
+      "IsOutOfService": false,
+      "Type": 4
+    },
+    "a5914b5b-f6b4-4aef-edc0-08dbf3b1f0f7": {
+      "Name": "Top of stairs near library",
+      "IsOutOfService": false,
+      "Type": 4
+    },
+    "b04782eb-ac7d-410e-edc1-08dbf3b1f0f7": {
+      "Name": "Front of stairs up to C building floor 2",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "a86dd14c-f388-438e-edc2-08dbf3b1f0f7": {
+      "Name": "The learning commons",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "2a4ac679-e4f0-4580-edc3-08dbf3b1f0f7": {
+      "Name": "B building side of the learning commons",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "4fb6b6cf-a7d5-489b-edc4-08dbf3b1f0f7": {
+      "Name": "Front of stairs to B building bridge",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "4d53921a-7b96-4f2c-edc5-08dbf3b1f0f7": {
+      "Name": "Bottom of stairs to B building bridge",
+      "IsOutOfService": false,
+      "Type": 4
+    },
+    "675a65af-3673-4d73-edc6-08dbf3b1f0f7": {
+      "Name": "Top of stairs to B building bridge",
+      "IsOutOfService": false,
+      "Type": 4
+    },
+    "562d31bd-f330-41c7-edc7-08dbf3b1f0f7": {
+      "Name": "Bottom of ramp to B building bridge",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "b187c981-30c4-4f50-edc8-08dbf3b1f0f7": {
+      "Name": "Top of ramp to B building bridge",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "539564f5-7850-4296-edc9-08dbf3b1f0f7": {
+      "Name": "Doorway to C bridge from B building side",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "8645e3b6-6d5e-4966-edca-08dbf3b1f0f7": {
+      "Name": "Bottom of ramp to C bridge B building side corridor",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "2a8bad8d-2282-49bc-edcb-08dbf3b1f0f7": {
+      "Name": "Top of ramp to C bridge B building side corridor",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "4a68e398-14d4-4ee7-edcc-08dbf3b1f0f7": {
+      "Name": "C bridge B building side corridor",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "874205ec-3b03-4163-edcd-08dbf3b1f0f7": {
+      "Name": "C bridge B building side entrance",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "4053f34c-7665-4761-edce-08dbf3b1f0f7": {
+      "Name": "Bottom of lower ramp to B bridge",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "44e7004f-3b43-477b-edcf-08dbf3b1f0f7": {
+      "Name": "Top of lower ramp to B bridge",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "e646c3a1-e14b-469c-edd0-08dbf3b1f0f7": {
+      "Name": "Bottom of upper ramp to B bridge",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "b7702512-bead-49e4-edd1-08dbf3b1f0f7": {
+      "Name": "Top of upper ramp to B bridge",
+      "IsOutOfService": false,
+      "Type": 1
+    },
+    "1450498a-432c-4975-edd2-08dbf3b1f0f7": {
+      "Name": "Learning commons window seating hallway",
+      "IsOutOfService": false,
+      "Type": 3
+    },
+    "6e0f2af6-4f9b-4688-edd3-08dbf3b1f0f7": {
+      "Name": "Corridor near outside entrance",
+      "IsOutOfService": false,
+      "Type": 3
     }
   },
   "Connections": {
@@ -257,6 +387,331 @@
       "Names": "Past coffee shop hallway|C bridge entrance",
       "Weight": 3,
       "Cardinality": 7
+    },
+    "908827e8-bb1d-44c6-ddbe-08dbcb6cdd9e|6028cc72-e7f3-4cc9-ddc8-08dbcb6cdd9e": {
+      "Names": "Past coffee shop hallway|Open stairs down to SCAET Floor 1",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "b9532e73-0b51-4cb6-ddc0-08dbcb6cdd9e|eca32c04-a100-4f44-ddc2-08dbcb6cdd9e": {
+      "Names": "C bridge entrance|Front of stair A",
+      "Weight": 1,
+      "Cardinality": 7
+    },
+    "eca32c04-a100-4f44-ddc2-08dbcb6cdd9e|89a23336-040f-4fec-ddc1-08dbcb6cdd9e": {
+      "Names": "Front of stair A|Front of elevator",
+      "Weight": 1,
+      "Cardinality": 7
+    },
+    "89a23336-040f-4fec-ddc1-08dbcb6cdd9e|5deca3d4-6406-436e-ddc3-08dbcb6cdd9e": {
+      "Names": "Front of elevator|Front of open stairs",
+      "Weight": 2,
+      "Cardinality": 7
+    },
+    "5deca3d4-6406-436e-ddc3-08dbcb6cdd9e|d3bcb6f4-e44f-4606-ddc4-08dbcb6cdd9e": {
+      "Names": "Front of open stairs|Entrance hall door junction",
+      "Weight": 3,
+      "Cardinality": 1
+    },
+    "d3bcb6f4-e44f-4606-ddc4-08dbcb6cdd9e|b7d5e742-b649-4ea3-ddd2-08dbcb6cdd9e": {
+      "Names": "Entrance hall door junction|SCAET Entrance",
+      "Weight": 2,
+      "Cardinality": 1
+    },
+    "30937e9f-2da5-46cf-ddbd-08dbcb6cdd9e|7069ca88-593c-42d0-91cb-08dbe7a77b8e": {
+      "Names": "SCAET seating area|Doorway adjacent to bruins coffee shop",
+      "Weight": 2,
+      "Cardinality": 5
+    },
+    "5846deee-b924-43f4-ddbc-08dbcb6cdd9e|0451645d-985f-4489-ddc5-08dbcb6cdd9e": {
+      "Names": "Front of open glass stairs|Entrance to corridor near open glass stairs",
+      "Weight": 2,
+      "Cardinality": 4
+    },
+    "0451645d-985f-4489-ddc5-08dbcb6cdd9e|225a7935-7f30-488a-ddcc-08dbcb6cdd9e": {
+      "Names": "Entrance to corridor near open glass stairs|S205",
+      "Weight": 2,
+      "Cardinality": 3
+    },
+    "0451645d-985f-4489-ddc5-08dbcb6cdd9e|77f001f4-f057-411d-ddcd-08dbcb6cdd9e": {
+      "Names": "Entrance to corridor near open glass stairs|S206",
+      "Weight": 2,
+      "Cardinality": 3
+    },
+    "0451645d-985f-4489-ddc5-08dbcb6cdd9e|9b89914a-efe8-4fdd-ddce-08dbcb6cdd9e": {
+      "Names": "Entrance to corridor near open glass stairs|S203",
+      "Weight": 2,
+      "Cardinality": 3
+    },
+    "0451645d-985f-4489-ddc5-08dbcb6cdd9e|5f0cd23d-e24b-420d-ddcf-08dbcb6cdd9e": {
+      "Names": "Entrance to corridor near open glass stairs|S207",
+      "Weight": 2,
+      "Cardinality": 3
+    },
+    "0451645d-985f-4489-ddc5-08dbcb6cdd9e|a079caa7-fff4-4ae5-ddd0-08dbcb6cdd9e": {
+      "Names": "Entrance to corridor near open glass stairs|S207A",
+      "Weight": 2,
+      "Cardinality": 3
+    },
+    "0451645d-985f-4489-ddc5-08dbcb6cdd9e|ffa6bdf6-c201-4abe-ddd1-08dbcb6cdd9e": {
+      "Names": "Entrance to corridor near open glass stairs|S202",
+      "Weight": 2,
+      "Cardinality": 3
+    },
+    "0451645d-985f-4489-ddc5-08dbcb6cdd9e|30937e9f-2da5-46cf-ddbd-08dbcb6cdd9e": {
+      "Names": "Entrance to corridor near open glass stairs|SCAET seating area",
+      "Weight": 2,
+      "Cardinality": 5
+    },
+    "7069ca88-593c-42d0-91cb-08dbe7a77b8e|27663407-b18f-49b1-91cc-08dbe7a77b8e": {
+      "Names": "Doorway adjacent to bruins coffee shop|S220 Corridor",
+      "Weight": 2,
+      "Cardinality": 7
+    },
+    "27663407-b18f-49b1-91cc-08dbe7a77b8e|890d51aa-1866-4ee1-91cd-08dbe7a77b8e": {
+      "Names": "S220 Corridor|S220",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "0a39d8ae-979b-4afc-91ce-08dbe7a77b8e|890d51aa-1866-4ee1-91cd-08dbe7a77b8e": {
+      "Names": "S221|S220",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "0a39d8ae-979b-4afc-91ce-08dbe7a77b8e|a290179c-ea18-40d7-91cf-08dbe7a77b8e": {
+      "Names": "S221|S222",
+      "Weight": 1,
+      "Cardinality": 7
+    },
+    "0a39d8ae-979b-4afc-91ce-08dbe7a77b8e|82d516a9-31bd-4d03-91d0-08dbe7a77b8e": {
+      "Names": "S221|S228",
+      "Weight": 1,
+      "Cardinality": 1
+    },
+    "82d516a9-31bd-4d03-91d0-08dbe7a77b8e|207e6fbf-c490-46fb-91d1-08dbe7a77b8e": {
+      "Names": "S228|Entrance to S220 corridors",
+      "Weight": 1,
+      "Cardinality": 7
+    },
+    "d2f2a393-5f72-4377-91d2-08dbe7a77b8e|d3bcb6f4-e44f-4606-ddc4-08dbcb6cdd9e": {
+      "Names": "S231|Entrance hall door junction",
+      "Weight": 1,
+      "Cardinality": 7
+    },
+    "207e6fbf-c490-46fb-91d1-08dbe7a77b8e|d3bcb6f4-e44f-4606-ddc4-08dbcb6cdd9e": {
+      "Names": "Entrance to S220 corridors|Entrance hall door junction",
+      "Weight": 1,
+      "Cardinality": 7
+    },
+    "eca32c04-a100-4f44-ddc2-08dbcb6cdd9e|78829682-46b5-43e1-91d4-08dbe7a77b8e": {
+      "Names": "Front of stair A|2nd Floor Stair A",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "89a23336-040f-4fec-ddc1-08dbcb6cdd9e|95c1060a-06d6-4cea-91d3-08dbe7a77b8e": {
+      "Names": "Front of elevator|2nd Floor SCAET Elevator",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "a094ecb9-6142-4a44-91d5-08dbe7a77b8e|07455a16-3870-40b6-91d6-08dbe7a77b8e": {
+      "Names": "1st Floor SCAET Elevator|Front Of SCAET Elevator",
+      "Weight": 1,
+      "Cardinality": 1
+    },
+    "07455a16-3870-40b6-91d6-08dbe7a77b8e|ea8562d3-8011-4ab0-91d7-08dbe7a77b8e": {
+      "Names": "Front Of SCAET Elevator|Top of ramp to elevator",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "ea8562d3-8011-4ab0-91d7-08dbe7a77b8e|1286d652-7459-43eb-91d8-08dbe7a77b8e": {
+      "Names": "Top of ramp to elevator|Bottom of ramp to elevator",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "1286d652-7459-43eb-91d8-08dbe7a77b8e|3a4dc105-da39-4e8f-91d9-08dbe7a77b8e": {
+      "Names": "Bottom of ramp to elevator|Bottom of ramp to corridors",
+      "Weight": 1,
+      "Cardinality": 1
+    },
+    "3a4dc105-da39-4e8f-91d9-08dbe7a77b8e|a7f67f6e-fe54-4af7-91da-08dbe7a77b8e": {
+      "Names": "Bottom of ramp to corridors|Top of ramp to corridors",
+      "Weight": 1,
+      "Cardinality": 1
+    },
+    "a7f67f6e-fe54-4af7-91da-08dbe7a77b8e|f8e550ef-86e5-4d52-91db-08dbe7a77b8e": {
+      "Names": "Top of ramp to corridors|Second hallway branch from top of ramp to corridors",
+      "Weight": 2,
+      "Cardinality": 1
+    },
+    "f8e550ef-86e5-4d52-91db-08dbe7a77b8e|9d82bb54-1f0a-4b84-91dc-08dbe7a77b8e": {
+      "Names": "Second hallway branch from top of ramp to corridors|S144",
+      "Weight": 1,
+      "Cardinality": 7
+    },
+    "f8e550ef-86e5-4d52-91db-08dbe7a77b8e|fa7a5c10-d5ca-4fbe-91dd-08dbe7a77b8e": {
+      "Names": "Second hallway branch from top of ramp to corridors|Doorway junction leading to stairwell B",
+      "Weight": 1,
+      "Cardinality": 1
+    },
+    "fa7a5c10-d5ca-4fbe-91dd-08dbe7a77b8e|7860daa1-780d-4d94-91de-08dbe7a77b8e": {
+      "Names": "Doorway junction leading to stairwell B|Doorway to stairwell B",
+      "Weight": 1,
+      "Cardinality": 1
+    },
+    "7860daa1-780d-4d94-91de-08dbe7a77b8e|1cb7cb1f-b159-4683-91df-08dbe7a77b8e": {
+      "Names": "Doorway to stairwell B|First floor stairwell B",
+      "Weight": 1,
+      "Cardinality": 1
+    },
+    "1cb7cb1f-b159-4683-91df-08dbe7a77b8e|667c9932-03b8-46b8-ddc6-08dbcb6cdd9e": {
+      "Names": "First floor stairwell B|2nd Floor Stair B",
+      "Weight": 1,
+      "Cardinality": 8
+    },
+    "95c1060a-06d6-4cea-91d3-08dbe7a77b8e|a094ecb9-6142-4a44-91d5-08dbe7a77b8e": {
+      "Names": "2nd Floor SCAET Elevator|1st Floor SCAET Elevator",
+      "Weight": 1,
+      "Cardinality": 9
+    },
+    "1286d652-7459-43eb-91d8-08dbe7a77b8e|0cefc538-e95e-41aa-edb7-08dbf3b1f0f7": {
+      "Names": "Bottom of ramp to elevator|Art hallway S building entrance",
+      "Weight": 3,
+      "Cardinality": 3
+    },
+    "0cefc538-e95e-41aa-edb7-08dbf3b1f0f7|aa864982-3aa0-4cef-edb8-08dbf3b1f0f7": {
+      "Names": "Art hallway S building entrance|Art hallway C building entrance",
+      "Weight": 3,
+      "Cardinality": 4
+    },
+    "aa864982-3aa0-4cef-edb8-08dbf3b1f0f7|b0f7687b-9267-4c3c-edb9-08dbf3b1f0f7": {
+      "Names": "Art hallway C building entrance|Doors to library",
+      "Weight": 2,
+      "Cardinality": 5
+    },
+    "b0f7687b-9267-4c3c-edb9-08dbf3b1f0f7|636769c9-7c0e-4568-edbd-08dbf3b1f0f7": {
+      "Names": "Doors to library|Bottom of ramp near library",
+      "Weight": 1,
+      "Cardinality": 2
+    },
+    "636769c9-7c0e-4568-edbd-08dbf3b1f0f7|b313f6f4-0353-43cd-edbe-08dbf3b1f0f7": {
+      "Names": "Bottom of ramp near library|Top of ramp near library",
+      "Weight": 1,
+      "Cardinality": 2
+    },
+    "b0f7687b-9267-4c3c-edb9-08dbf3b1f0f7|bf01be5a-321f-4ca4-edbf-08dbf3b1f0f7": {
+      "Names": "Doors to library|Bottom of stairs near library",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "bf01be5a-321f-4ca4-edbf-08dbf3b1f0f7|a5914b5b-f6b4-4aef-edc0-08dbf3b1f0f7": {
+      "Names": "Bottom of stairs near library|Top of stairs near library",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "a5914b5b-f6b4-4aef-edc0-08dbf3b1f0f7|b04782eb-ac7d-410e-edc1-08dbf3b1f0f7": {
+      "Names": "Top of stairs near library|Front of stairs up to C building floor 2",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "b313f6f4-0353-43cd-edbe-08dbf3b1f0f7|b04782eb-ac7d-410e-edc1-08dbf3b1f0f7": {
+      "Names": "Top of ramp near library|Front of stairs up to C building floor 2",
+      "Weight": 2,
+      "Cardinality": 5
+    },
+    "b04782eb-ac7d-410e-edc1-08dbf3b1f0f7|a86dd14c-f388-438e-edc2-08dbf3b1f0f7": {
+      "Names": "Front of stairs up to C building floor 2|The learning commons",
+      "Weight": 3,
+      "Cardinality": 3
+    },
+    "b04782eb-ac7d-410e-edc1-08dbf3b1f0f7|6e0f2af6-4f9b-4688-edd3-08dbf3b1f0f7": {
+      "Names": "Front of stairs up to C building floor 2|Corridor near outside entrance",
+      "Weight": 3,
+      "Cardinality": 5
+    },
+    "a86dd14c-f388-438e-edc2-08dbf3b1f0f7|2a4ac679-e4f0-4580-edc3-08dbf3b1f0f7": {
+      "Names": "The learning commons|B building side of the learning commons",
+      "Weight": 2,
+      "Cardinality": 3
+    },
+    "2a4ac679-e4f0-4580-edc3-08dbf3b1f0f7|4fb6b6cf-a7d5-489b-edc4-08dbf3b1f0f7": {
+      "Names": "B building side of the learning commons|Front of stairs to B building bridge",
+      "Weight": 2,
+      "Cardinality": 5
+    },
+    "6e0f2af6-4f9b-4688-edd3-08dbf3b1f0f7|1450498a-432c-4975-edd2-08dbf3b1f0f7": {
+      "Names": "Corridor near outside entrance|Learning commons window seating hallway",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "1450498a-432c-4975-edd2-08dbf3b1f0f7|4053f34c-7665-4761-edce-08dbf3b1f0f7": {
+      "Names": "Learning commons window seating hallway|Bottom of lower ramp to B bridge",
+      "Weight": 2,
+      "Cardinality": 3
+    },
+    "1450498a-432c-4975-edd2-08dbf3b1f0f7|4fb6b6cf-a7d5-489b-edc4-08dbf3b1f0f7": {
+      "Names": "Learning commons window seating hallway|Front of stairs to B building bridge",
+      "Weight": 5,
+      "Cardinality": 3
+    },
+    "4053f34c-7665-4761-edce-08dbf3b1f0f7|44e7004f-3b43-477b-edcf-08dbf3b1f0f7": {
+      "Names": "Bottom of lower ramp to B bridge|Top of lower ramp to B bridge",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "44e7004f-3b43-477b-edcf-08dbf3b1f0f7|e646c3a1-e14b-469c-edd0-08dbf3b1f0f7": {
+      "Names": "Top of lower ramp to B bridge|Bottom of upper ramp to B bridge",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "e646c3a1-e14b-469c-edd0-08dbf3b1f0f7|b7702512-bead-49e4-edd1-08dbf3b1f0f7": {
+      "Names": "Bottom of upper ramp to B bridge|Top of upper ramp to B bridge",
+      "Weight": 1,
+      "Cardinality": 3
+    },
+    "4fb6b6cf-a7d5-489b-edc4-08dbf3b1f0f7|4d53921a-7b96-4f2c-edc5-08dbf3b1f0f7": {
+      "Names": "Front of stairs to B building bridge|Bottom of stairs to B building bridge",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "4d53921a-7b96-4f2c-edc5-08dbf3b1f0f7|675a65af-3673-4d73-edc6-08dbf3b1f0f7": {
+      "Names": "Bottom of stairs to B building bridge|Top of stairs to B building bridge",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "675a65af-3673-4d73-edc6-08dbf3b1f0f7|e646c3a1-e14b-469c-edd0-08dbf3b1f0f7": {
+      "Names": "Top of stairs to B building bridge|Bottom of upper ramp to B bridge",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "b7702512-bead-49e4-edd1-08dbf3b1f0f7|562d31bd-f330-41c7-edc7-08dbf3b1f0f7": {
+      "Names": "Top of upper ramp to B bridge|Bottom of ramp to B building bridge",
+      "Weight": 1,
+      "Cardinality": 4
+    },
+    "562d31bd-f330-41c7-edc7-08dbf3b1f0f7|b187c981-30c4-4f50-edc8-08dbf3b1f0f7": {
+      "Names": "Bottom of ramp to B building bridge|Top of ramp to B building bridge",
+      "Weight": 1,
+      "Cardinality": 5
+    },
+    "b187c981-30c4-4f50-edc8-08dbf3b1f0f7|539564f5-7850-4296-edc9-08dbf3b1f0f7": {
+      "Names": "Top of ramp to B building bridge|Doorway to C bridge from B building side",
+      "Weight": 1,
+      "Cardinality": 2
+    },
+    "539564f5-7850-4296-edc9-08dbf3b1f0f7|4a68e398-14d4-4ee7-edcc-08dbf3b1f0f7": {
+      "Names": "Doorway to C bridge from B building side|C bridge B building side corridor",
+      "Weight": 1,
+      "Cardinality": 0
+    },
+    "4a68e398-14d4-4ee7-edcc-08dbf3b1f0f7|874205ec-3b03-4163-edcd-08dbf3b1f0f7": {
+      "Names": "C bridge B building side corridor|C bridge B building side entrance",
+      "Weight": 1,
+      "Cardinality": 7
+    },
+    "b9532e73-0b51-4cb6-ddc0-08dbcb6cdd9e|874205ec-3b03-4163-edcd-08dbf3b1f0f7": {
+      "Names": "C bridge entrance|C bridge B building side entrance",
+      "Weight": 5,
+      "Cardinality": 3
     }
   }
 }
