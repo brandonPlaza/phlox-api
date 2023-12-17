@@ -4,12 +4,14 @@ namespace PhloxAPI.Models.DTOs
   {
     public String UserEmail { get; set; }
     public String NodeId { get; set; }
+    public String? Description { get; set; }
   }
 
   public class NodeHelpRequestDTO
   {
     public String UserEmail { get; set; }
     public String Status { get; set; }
+    public String? Description { get; set; }
     public int? Position { get; set; }
     public NodeSimpleDTO Node { get; set; }
   }

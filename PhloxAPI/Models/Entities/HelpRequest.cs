@@ -13,6 +13,7 @@ namespace PhloxAPI.Models.Entities
     public string UserEmail { get; set; }
     public string Status { get; set; }
     public int? Position { get; set; }
+    public string? Description { get; set; }
     public Node Node { get; set; } = null!; //required reference navigation
     public DateTime TimeCreated { get; set; }
     public DateTime? TimeAccepted { get; set; }

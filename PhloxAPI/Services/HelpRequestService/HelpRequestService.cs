@@ -21,6 +21,7 @@ namespace PhloxAPI.Services.HelpRequestService
       {
         UserEmail = helpRequest.UserEmail,
         Status = HelpRequestStatus.Waiting.ToString(),
+        Description = helpRequest.Description,
         Node = _context.Nodes.FirstOrDefault(n => n.Id == new Guid(helpRequest.NodeId)),
         TimeCreated = DateTime.Now
       };
@@ -95,6 +96,7 @@ namespace PhloxAPI.Services.HelpRequestService
         {
           UserEmail = req.UserEmail,
           Status = req.Status,
+          Description = req.Description,
           Position = req.Position,
           Node = new NodeSimpleDTO
           {
