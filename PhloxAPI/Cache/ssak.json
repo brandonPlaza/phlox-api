@@ -1,13 +1,13 @@
 {
   "type": "service_account",
   "project_id": "phlox-capstone",
-  "private_key_id": "b54ddc82f65abde4841bef02cfb107d8bb729005",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDFI9j+bkVY64QQ\n6vT2tHz45E8bBrpggq/l39rBuX9w+H+E2u+daXNHbe/+H1VxYLf6fwgdecKwNAXF\nIFc7PSnYoIle1O8KrBVTdn7Np9j03eHRC53Ydje9Sz2LKa9IhDxTtVvIsIQIzq2n\niX/q4ym+e6ra9TkV0JHDToLDhek41FUYwKoU1+y2EHoCVX6NXg6KGmwvXfMS6bIK\nQ6H3Wz/FNU9AQD1aZBHUDE+xXha2CzIgwcpsXML0fkobWTgVGoyjA8UoHGGp9Hke\n5NzpWH93vmNCp4BSlHQ39PXs23R14Sac2K3zO+xnE+hlrCmFaqRE8hq09usa+Ztb\nfhctpFuLAgMBAAECggEATXlykD8O0syv2KQ1w/SXforfCbyBp2cEsJ7iTirTyjZm\nivQtodusucAbRm/S+N0tQG0G5+qPmAbB08ALeBTn6qHgipu9G6EYOnZBjBnwGf9O\n/QQHMuf2rNYyaAvoPmP1f2IxIXQ5V2q99S8Eze8bWygns6gWmJughTRIEIYCa1nZ\nhIKPbwBzN1bBzpaUVSl1KdOuRma0Lgj3NiwjkkAhFqBaPOt+jlVmoAV8RZHczyUE\nq4Q04yRXFflHkBTU4otCTN0w2RguxXTs8cPr3bPLJeN/FhfBlckK9+LUcrINTVmi\n8ljDgtQ4hYGR6ekg5Uyxo+90gkmnFssLnTnAwTniAQKBgQD2ruthy7ribw8U/tmY\nTC7lmAk1H021oVsm77TaUtJewbX9xuYhW2qqZZwfkDRHl1YL3XExXcxXshqbTRyZ\nyx0q15PSdSkKFNVTV0o3EypDnfQ0BXzI1HhnerjZ+3+uhGcgLydmEg/Ts4fkvPG7\nTe0PKwUBkTFykRRU/0TwjoqpiwKBgQDMleoi4dZAwOpLH1dFz9CgO6/Go8qTzTf0\n9FOScmrHRcAgPs4nm3BziePv3ovvKkyG3aYLeTG0/koVPWM/vprgfSckpdR3TGgJ\nK+vMblRu6eucmo5hLnUFlBJk6hAT+aripqZBEex+i6NwFKmGcLocQQhc9x737Oho\nIJ8hsQ9WAQKBgQCwQh2ne/Vlk2sYWlxJqK2dmTuC/IH+9HL36DC2CpWL5SdPVA3c\n6b/WTtH174ibWrO9uJUHa/j09Cp0qu1zqiCGGxDhQJt5O5eNfAJoRcZeF/+EKCOY\nL9B0R8jK4BvEK5Cv+2FQWjl6z32a37JtXemze86Q5xiIvsbjUJ4GsCK9rwKBgHl4\niYwsiwnngTUZZrgMq9J3neZTWfRn5NGMQBKz3LJ0t55tq/nYUOxI8w15FZzrgIST\nFgO58cmFMndp+4PdqBeiN5uK2pv6wcqwSVEYMQmp2jshiWgqLVEimclRMDqsAsqQ\nKCZ6ffCk+GWT3xPz2ozsEAsir0CFaXhp5hIbDwABAoGBAJ1yXdwgc2vfBhvFZii2\njHfCz2Brdt9ZwpSHTV57f5+SWOw3ji9lVXuMhXmI+mrHpbAtELNrTW+pYlNRKSuo\nMBc67N8Zati+DvVxTOnQlWsHSG37uIsc2cyd6uk+gNNWhmNCB75gZBsa5GgABh5Y\n5DemetMV65aDiPrz1++bj3Lr\n-----END PRIVATE KEY-----\n",
-  "client_email": "phlox-wearos-speech@phlox-capstone.iam.gserviceaccount.com",
-  "client_id": "109312970967158484663",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/phlox-wearos-speech%40phlox-capstone.iam.gserviceaccount.com",
+  "private_key_id": "REPLACE",
+  "private_key": "REPLACE",
+  "client_email": "REPLACE",
+  "client_id": "REPLACE",
+  "auth_uri": "REPLACE",
+  "token_uri": "REPLACE",
+  "auth_provider_x509_cert_url": "REPLACE",
+  "client_x509_cert_url": "REPLACE",
   "universe_domain": "googleapis.com"
 }
